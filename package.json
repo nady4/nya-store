@@ -3,26 +3,26 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "tsx src/index.ts"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "prettier": {
-      "tabWidth": 4
-  },
   "description": "",
   "compilerOptions": {
     "moduleResolution": "node",
     "baseUrl": "."
   },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
   "devDependencies": {
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/parser": "^7.12.0",
-    "ts-node": "^10.9.2",
     "tsx": "^4.13.3",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "uuid": "^10.0.0"
   }
 }
