@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "street": "Av. Corrientes 1234",
+    "city": "Buenos Aires",
+    "state": "CABA",
+    "zipCode": "C1001ABC"
+  },
+  {
+    "id": 2,
+    "street": "Calle San Martín 567",
+    "city": "Córdoba",
+    "state": "Córdoba",
+    "zipCode": "X5000DEF"
+  },
+  {
+    "id": 3,
+    "street": "Av. Pellegrini 890",
+    "city": "Rosario",
+    "state": "Santa Fe",
+    "zipCode": "S2000GHI"
+  },
+  {
+    "id": 4,
+    "street": "Bolívar 321",
+    "city": "Mendoza",
+    "state": "Mendoza",
+    "zipCode": "M5500JKL"
+  },
+  {
+    "id": 5,
+    "street": "Mitre 789",
+    "city": "San Miguel de Tucumán",
+    "state": "Tucumán",
+    "zipCode": "T4000MNO"
+  },
+  {
+    "id": 6,
+    "street": "Av. Alem 456",
+    "city": "La Plata",
+    "state": "Buenos Aires",
+    "zipCode": "B1900PQR"
+  },
+  {
+    "id": 7,
+    "street": "San Juan 1122",
+    "city": "Mar del Plata",
+    "state": "Buenos Aires",
+    "zipCode": "B7600STU"
+  },
+  {
+    "id": 8,
+    "street": "Independencia 654",
+    "city": "Salta",
+    "state": "Salta",
+    "zipCode": "A4400VWX"
+  },
+  {
+    "id": 9,
+    "street": "9 de Julio 333",
+    "city": "San Juan",
+    "state": "San Juan",
+    "zipCode": "J5400YZA"
+  },
+  {
+    "id": 10,
+    "street": "Rivadavia 777",
+    "city": "Neuquén",
+    "state": "Neuquén",
+    "zipCode": "Q8300BCD"
+  }
+]

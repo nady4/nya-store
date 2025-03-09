@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "username": "alphaWizard",
+    "email": "alphaWizard@example.com",
+    "password": "Xyz@1234",
+    "createdAt": "2025-01-15T12:34:56Z",
+    "updatedAt": "2025-02-20T14:20:00Z"
+  },
+  {
+    "id": 2,
+    "username": "betaCoder",
+    "email": "betaCoder@example.com",
+    "password": "Abc@5678",
+    "createdAt": "2025-01-17T11:10:10Z",
+    "updatedAt": "2025-03-07T09:00:00Z"
+  },
+  {
+    "id": 3,
+    "username": "gammaGeek",
+    "email": "gammaGeek@example.com",
+    "password": "Passw0rd!",
+    "createdAt": "2025-02-01T08:00:00Z",
+    "updatedAt": "2025-02-15T10:30:00Z"
+  },
+  {
+    "id": 4,
+    "username": "deltaDev",
+    "email": "deltaDev@example.com",
+    "password": "Dev!2025",
+    "createdAt": "2025-03-01T09:00:00Z",
+    "updatedAt": "2025-03-07T09:30:00Z"
+  },
+  {
+    "id": 5,
+    "username": "epsilonEngineer",
+    "email": "epsilonEngineer@example.com",
+    "password": "Eng#2025",
+    "createdAt": "2025-02-05T12:00:00Z",
+    "updatedAt": "2025-02-28T13:00:00Z"
+  },
+  {
+    "id": 6,
+    "username": "zetaZone",
+    "email": "zetaZone@example.com",
+    "password": "Zone$123",
+    "createdAt": "2025-01-20T15:45:00Z",
+    "updatedAt": "2025-03-05T16:10:00Z"
+  },
+  {
+    "id": 7,
+    "username": "etaExpert",
+    "email": "etaExpert@example.com",
+    "password": "Expert*321",
+    "createdAt": "2025-02-10T10:10:00Z",
+    "updatedAt": "2025-02-20T11:45:00Z"
+  },
+  {
+    "id": 8,
+    "username": "thetaThinker",
+    "email": "thetaThinker@example.com",
+    "password": "Thinker@2025",
+    "createdAt": "2025-03-03T07:20:00Z",
+    "updatedAt": "2025-03-08T08:00:00Z"
+  },
+  {
+    "id": 9,
+    "username": "iotaInnovator",
+    "email": "iotaInnovator@example.com",
+    "password": "Innov8tor!",
+    "createdAt": "2025-02-12T14:50:00Z",
+    "updatedAt": "2025-03-01T15:30:00Z"
+  },
+  {
+    "id": 10,
+    "username": "kappaKing",
+    "email": "kappaKing@example.com",
+    "password": "King#2025",
+    "createdAt": "2025-01-25T11:11:00Z",
+    "updatedAt": "2025-02-15T12:12:00Z"
+  }
+]
