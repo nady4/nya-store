@@ -20,7 +20,7 @@ function SignInPage() {
       password: data.password,
     });
     if (res?.ok) {
-      router.push("/dashboard");
+      router.push("/");
       router.refresh();
     } else {
       setError(res?.error);
