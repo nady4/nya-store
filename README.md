@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+    <img src="./public/assets/cat.svg" height="50px">
+</p>
+<h1 align="center"> NYA STORE </h1>
 
-## Getting Started
+🐱 E-commerce built with Next.js, Redux Toolkit, Prisma and PostgreSQL.
 
-First, run the development server:
+<br>
 
-```bash
+## 🚀 Tech Stack
+
+| Technology  | Version  |
+| ----------- | -------- |
+| Next.js     | 15.2.1   |
+| React       | 19.0.0   |
+| TypeScript  | ^5       |
+| Prisma ORM  | ^6.5.0   |
+| NextAuth.js | ^4.24.11 |
+| Sass        | ^1.85.1  |
+
+<br>
+
+## 📦 Libraries
+
+- **Prisma** – Database ORM 🗄️
+- **NextAuth.js** – Authentication 🔐
+- **bcrypt** – Password hashing 🔑
+- **React Hook Form** – Form handling 📝
+- **Sass** – Stylish styling 💅
+- **ESLint** – Code linting 🚨
+
+<br>
+
+## 🗄️ Database
+
+<p align="center">
+    <a href="https://dbdiagram.io/d/nya-store-666152b99713410b05e47081">
+        <img src="./erd.png" height="300px">
+    </a>
+</p>
+
+<br>
+
+## 📜 Scripts
+
+Run these commands to get started:
+
+```sh
+# Start dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Lint code
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎮 Demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🚧 _Coming soon... Stay tuned!_ 🚧
 
-## Learn More
+<br>
 
-To learn more about Next.js, take a look at the following resources:
+## 📬 Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 💌 Email: **nadyajerochim@gmail.com**
+- 💼 LinkedIn: [/nady4](https://www.linkedin.com/in/nady4)
+- 👩🏻‍💻 GitHub: [@nady4](https://github.com/nady4)
