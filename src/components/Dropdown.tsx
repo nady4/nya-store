@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useRef, useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
 import menu from "../../public/assets/menu.svg";
 import cart from "../../public/assets/cart.svg";
 import heart from "../../public/assets/heart.svg";
@@ -7,8 +9,6 @@ import truck from "../../public/assets/truck.svg";
 import gear from "../../public/assets/gear.svg";
 import logout from "../../public/assets/logout.svg";
 import "@/styles/Dropdown.scss";
-import { useRef, useEffect, useState } from "react";
-import { signOut } from "next-auth/react";
 
 export default function Dropdown() {
   const dropdownRef = useRef<HTMLDivElement>(null);
