@@ -9,6 +9,27 @@
 
 <br>
 
+## 💾 Installation & Setup
+
+```sh
+# Clone the repository
+git clone https://github.com/nady4/nya-store.git
+
+# Navigate to the project directory
+cd nya-store
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+
+# Run the development server
+npm run dev
+```
+
+<br>
+
 ## 🚀 Tech Stack
 
 | Technology  | Version  |
