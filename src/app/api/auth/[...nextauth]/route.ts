@@ -1,7 +1,30 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+declare module "next-auth" {
+  interface User {
+    id: string;
+    email: string;
+    username?: string;
+  }
 
-export const authOptions = {
+  interface Session {
+    user: {
+      id: string;
+      email: string;
+      username?: string;
+    };
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    id: string;
+    email: string;
+    username?: string;
+  }
+}
+
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -9,7 +32,7 @@ export const authOptions = {
         email: {
           label: "Email",
           type: "text",
-          placeholder: "nadyajerochim@gmail.com",
+          placeholder: "email@example.com",
         },
         password: {
           label: "Password",
@@ -18,17 +41,30 @@ export const authOptions = {
         },
       },
       async authorize(credentials) {
-        const res = await fetch("http://localhost:3000/api/auth/signin", {
-          method: "POST",
-          body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" },
-        });
-        const user = await res.json();
-        if (user) {
-          return user;
-        } else {
+        if (!credentials?.email || !credentials?.password) {
           return null;
         }
+
+        const res = await fetch("http://localhost:3000/api/auth/signin", {
+          method: "POST",
+          body: JSON.stringify({
+            email: credentials.email,
+            password: credentials.password,
+          }),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (!res.ok) {
+          return null;
+        }
+
+        const user = await res.json();
+
+        if (user.error) {
+          return null;
+        }
+
+        return user;
       },
     }),
   ],
@@ -36,6 +72,32 @@ export const authOptions = {
     signIn: "/auth/signin",
     signOut: "/auth/logout",
   },
+  callbacks: {
+    async jwt({ token, user }) {
+      // Initial sign in
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.username = user.username;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user = {
+          id: token.id,
+          email: token.email,
+          username: token.username,
+        };
+      }
+      return session;
+    },
+  },
+  session: {
+    strategy: "jwt" as const,
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+  debug: process.env.NODE_ENV === "development",
 };
 
 const handler = NextAuth(authOptions);

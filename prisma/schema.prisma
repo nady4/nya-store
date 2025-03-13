@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String      @id @default(uuid())
+  address    Address?    @relation(fields: [addressId], references: [id])
+  orders     Order[]
+  orderItems OrderItem[] 
+  wishlist   WishList?
+
+  username   String
+  email      String      @unique
+  password   String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  addressId  String?     @unique
+}
+
+model Address {
+  id         String    @id @default(uuid())
+  user       User?
+  shipment   Shipment?
+
+  street     String
+  city       String
+  state      String
+  zipCode    String
+}
+
+model Shipment {
+  id             String    @id @default(uuid())
+  order          Order     @relation(fields: [orderId], references: [id])
+  address        Address?  @relation(fields: [addressId], references: [id])
+
+  trackingNumber String?
+  shipmentStatus String
+  shippedDate    DateTime?
+  deliveryDate   DateTime?
+
+  orderId        String    @unique
+  addressId      String?   @unique
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  user       User        @relation(fields: [userId], references: [id])
+  orderItems OrderItem[]
+  payment    Payment?
+  shipment   Shipment?   
+
+  status     String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  userId     String
+}
+
+model OrderItem {
+  id         String   @id @default(uuid())
+  order      Order    @relation(fields: [orderId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+  product    Product  @relation(fields: [productId], references: [id])
+
+  size       String
+  quantity   Int
+  cost       Float
+  price      Float
+  total      Float
+
+  orderId    String
+  userId     String
+  productId  String
+}
+
+model Product {
+  id         String      @id @default(uuid())
+  orderItems OrderItem[]
+  wishLists  WishList[]  // Changed to many-to-many relationship
+
+  name       String
+  photo      String
+  price      Float
+}
+
+model WishList {
+  id         String    @id @default(uuid())
+  user       User      @relation(fields: [userId], references: [id])
+  product    Product   @relation(fields: [productId], references: [id])
+
+  name       String
+  photo      String
+
+  userId     String    @unique
+  productId  String    // Removed optional flag and not making it unique
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  order         Order    @relation(fields: [orderId], references: [id])
+  card          Card?
+
+  paymentMethod String
+  paymentDate   DateTime
+  paymentStatus String
+  
+  orderId       String   @unique
+}
+
+model Card {
+  id          String  @id @default(uuid())
+  payment     Payment @relation(fields: [paymentId], references: [id])
+
+  type        String
+  name        String
+  numbers     String
+  expiryDate  DateTime
+  ccv         String
+
+  paymentId   String  @unique
+}

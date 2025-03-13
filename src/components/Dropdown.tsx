@@ -5,9 +5,10 @@ import cart from "../../public/assets/cart.svg";
 import heart from "../../public/assets/heart.svg";
 import truck from "../../public/assets/truck.svg";
 import gear from "../../public/assets/gear.svg";
-import sign from "../../public/assets/sign.svg";
+import logout from "../../public/assets/logout.svg";
 import "@/styles/Dropdown.scss";
 import { useRef, useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
 
 export default function Dropdown() {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -37,7 +38,7 @@ export default function Dropdown() {
   }, []);
 
   return (
-    <div className="dropdown-wrapper">
+    <div className="dropdown-wrapper right-content">
       <Image
         ref={buttonRef}
         src={user}
@@ -51,25 +52,25 @@ export default function Dropdown() {
         ref={dropdownRef}
       >
         <Link href="/cart">
-          <Image src={cart} alt="cart" />
+          <Image src={cart} alt="cart button" />
           <h3>Cart</h3>
         </Link>
         <Link href="/orders">
-          <Image src={truck} alt="orders" />
+          <Image src={truck} alt="orders button" />
           <h3>Orders</h3>
         </Link>
         <Link href="/wishlists">
-          <Image src={heart} alt="heart" />
+          <Image src={heart} alt="wishlists button" />
           <h3>Wishlists</h3>
         </Link>
         <Link href="/userconfig">
-          <Image src={gear} alt="gear" />
+          <Image src={gear} alt="user configuration button" />
           <h3>Settings</h3>
         </Link>
-        <Link href="/auth/logout">
-          <Image src={sign} alt="logout button" />
+        <a onClick={() => signOut()}>
+          <Image src={logout} alt="logout button" height={26} />
           <h3>Logout</h3>
-        </Link>
+        </a>
       </div>
     </div>
   );
