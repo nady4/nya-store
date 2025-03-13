@@ -37,7 +37,7 @@
 
 <p align="center">
     <a href="https://dbdiagram.io/d/nya-store-666152b99713410b05e47081">
-        <img src="./erd.png" height="300px">
+        <img src="./erd.png" height="400px">
     </a>
 </p>
 
