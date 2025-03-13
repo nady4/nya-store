@@ -13,6 +13,10 @@
 
 @media screen and (max-width: 600px) {
   .navbar-container {
+    align-items: center;
+    .left-content {
+      font-size: 1.5rem;
+    }
     .center-content {
       order: -1;
       position: relative;
