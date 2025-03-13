@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import user from "../../public/assets/user.svg";
+import menu from "../../public/assets/menu.svg";
 import cart from "../../public/assets/cart.svg";
 import heart from "../../public/assets/heart.svg";
 import truck from "../../public/assets/truck.svg";
@@ -41,9 +41,9 @@ export default function Dropdown() {
     <div className="dropdown-wrapper right-content">
       <Image
         ref={buttonRef}
-        src={user}
-        alt="user icon"
-        height={40}
+        src={menu}
+        alt="menu icon"
+        height={60}
         className="dropdown-switch"
         onClick={toggleDropdown}
       />
