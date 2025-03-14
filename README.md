@@ -7,6 +7,10 @@
 🐱 E-commerce built with Next.js, Redux Toolkit, Prisma and PostgreSQL 🛒
 </p>
 
+<p align="center">
+    <img src="https://cdn.discordapp.com/attachments/1323126391088091221/1349929067696357376/image.png?ex=67d4e2ea&is=67d3916a&hm=c90c9b7bf84e23e1f9c9e27223bf285b3b0b27bd566c99bdc491296a10832ecd&format=webp&quality=lossless&width=1135&height=552" width="100%">
+</p>
+
 <br>
 
 ## 💾 Installation & Setup
