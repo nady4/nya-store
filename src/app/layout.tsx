@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { NextAuthProvider } from "../providers";
-import "./globals.css";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Nya Store :3",

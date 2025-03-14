@@ -82,11 +82,12 @@ model OrderItem {
 model Product {
   id         String      @id @default(uuid())
   orderItems OrderItem[]
-  wishLists  WishList[]  // Changed to many-to-many relationship
+  wishLists  WishList[]
 
   name       String
   photo      String
   price      Float
+  category   String
 }
 
 model WishList {
@@ -98,7 +99,7 @@ model WishList {
   photo      String
 
   userId     String    @unique
-  productId  String    // Removed optional flag and not making it unique
+  productId  String
 }
 
 model Payment {

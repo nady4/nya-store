@@ -1,104 +1,104 @@
 [
   {
-    "id": 1,
     "name": "Majestic Mountain Graphic T-Shirt",
     "price": 44.0,
-    "photo": "https://i.imgur.com/QkIa5tT.jpeg"
+    "photo": "https://i.imgur.com/QkIa5tT.jpeg",
+    "category": "T-Shirts"
   },
   {
-    "id": 2,
     "name": "Classic Red Pullover Hoodie",
     "price": 10.0,
-    "photo": "https://i.imgur.com/1twoaDy.jpeg"
+    "photo": "https://i.imgur.com/1twoaDy.jpeg",
+    "category": "Hoodies"
   },
   {
-    "id": 3,
     "name": "Classic Heather Gray Hoodie",
     "price": 69.0,
-    "photo": "https://i.imgur.com/cHddUCu.jpeg"
+    "photo": "https://i.imgur.com/cHddUCu.jpeg",
+    "category": "Hoodies"
   },
   {
-    "id": 4,
     "name": "Classic Grey Hooded Sweatshirt",
     "price": 90.0,
-    "photo": "https://i.imgur.com/R2PN9Wq.jpeg"
+    "photo": "https://i.imgur.com/R2PN9Wq.jpeg",
+    "category": "Hoodies"
   },
   {
-    "id": 5,
     "name": "Classic Black Hooded Sweatshirt",
     "price": 79.0,
-    "photo": "https://i.imgur.com/cSytoSD.jpeg"
+    "photo": "https://i.imgur.com/cSytoSD.jpeg",
+    "category": "Hoodies"
   },
   {
-    "id": 6,
     "name": "Classic Comfort Fit Joggers",
     "price": 25.0,
-    "photo": "https://i.imgur.com/ZKGofuB.jpeg"
+    "photo": "https://i.imgur.com/ZKGofuB.jpeg",
+    "category": "Joggers"
   },
   {
-    "id": 7,
     "name": "Classic Comfort Drawstring Joggers",
     "price": 79.0,
-    "photo": "https://i.imgur.com/mp3rUty.jpeg"
+    "photo": "https://i.imgur.com/mp3rUty.jpeg",
+    "category": "Joggers"
   },
   {
-    "id": 8,
     "name": "Classic Red Jogger Sweatpants",
     "price": 98.0,
-    "photo": "https://i.imgur.com/9LFjwpI.jpeg"
+    "photo": "https://i.imgur.com/9LFjwpI.jpeg",
+    "category": "Joggers"
   },
   {
-    "id": 9,
     "name": "Classic Navy Blue Baseball Cap",
     "price": 61.0,
-    "photo": "https://i.imgur.com/R3iobJA.jpeg"
+    "photo": "https://i.imgur.com/R3iobJA.jpeg",
+    "category": "Caps"
   },
   {
-    "id": 10,
     "name": "Classic Blue Baseball Cap",
     "price": 86.0,
-    "photo": "https://i.imgur.com/wXuQ7bm.jpeg"
+    "photo": "https://i.imgur.com/wXuQ7bm.jpeg",
+    "category": "Caps"
   },
   {
-    "id": 11,
     "name": "Classic Red Baseball Cap",
     "price": 35.0,
-    "photo": "https://i.imgur.com/cBuLvBi.jpeg"
+    "photo": "https://i.imgur.com/cBuLvBi.jpeg",
+    "category": "Caps"
   },
   {
-    "id": 12,
     "name": "Classic Black Baseball Cap",
     "price": 58.0,
-    "photo": "https://i.imgur.com/KeqG6r4.jpeg"
+    "photo": "https://i.imgur.com/KeqG6r4.jpeg",
+    "category": "Caps"
   },
   {
-    "id": 13,
     "name": "Classic Olive Chino Shorts",
     "price": 84.0,
-    "photo": "https://i.imgur.com/UsFIvYs.jpeg"
+    "photo": "https://i.imgur.com/UsFIvYs.jpeg",
+    "category": "Shorts"
   },
   {
-    "id": 14,
     "name": "Classic High-Waisted Athletic Shorts",
     "price": 43.0,
-    "photo": "https://i.imgur.com/eGOUveI.jpeg"
+    "photo": "https://i.imgur.com/eGOUveI.jpeg",
+    "category": "Shorts"
   },
   {
-    "id": 15,
     "name": "Classic White Crew Neck T-Shirt",
     "price": 39.0,
-    "photo": "https://i.imgur.com/axsyGpD.jpeg"
+    "photo": "https://i.imgur.com/axsyGpD.jpeg",
+    "category": "T-Shirts"
   },
   {
-    "id": 16,
     "name": "Classic White Tee - Timeless Style and Comfort",
     "price": 73.0,
-    "photo": "https://i.imgur.com/Y54Bt8J.jpeg"
+    "photo": "https://i.imgur.com/Y54Bt8J.jpeg",
+    "category": "T-Shirts"
   },
   {
-    "id": 17,
     "name": "Classic Black T-Shirt",
     "price": 35.0,
-    "photo": "https://i.imgur.com/9DqEOV5.jpeg"
+    "photo": "https://i.imgur.com/9DqEOV5.jpeg",
+    "category": "T-Shirts"
   }
 ]
