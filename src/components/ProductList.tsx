@@ -1,12 +1,8 @@
-import { PrismaClient } from "@prisma/client";
 import ProductCard from "./ProductCard";
+import { ProductsProps } from "@/types";
 import "../styles/ProductList.scss";
 
-const prisma = new PrismaClient();
-
-async function ProductList() {
-  const products = await prisma.product.findMany();
-
+async function ProductList({ products }: ProductsProps) {
   return (
     <div className="product-list">
       {products.map((product) => (

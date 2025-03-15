@@ -1,13 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ProductProps } from "@/types";
 import { silkscreen, tomorrow } from "@/app/fonts";
-
-interface ProductProps {
-  id: string;
-  name: string;
-  price: number;
-  photo: string;
-}
 
 const ProductCard: React.FC<ProductProps> = ({ id, name, price, photo }) => {
   return (

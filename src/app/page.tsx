@@ -1,13 +1,16 @@
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import SearchBar from "@/components/SearchBar";
 import ProductList from "@/components/ProductList";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 async function Home() {
-  const session = await getServerSession(authOptions);
-  console.log(session);
+  const products = await prisma.product.findMany();
+
   return (
     <div className="home-container">
-      <ProductList />
+      <SearchBar products={products} />
+      <ProductList products={products} />
     </div>
   );
 }

@@ -100,5 +100,11 @@
     "price": 35.0,
     "photo": "https://i.imgur.com/9DqEOV5.jpeg",
     "category": "T-Shirts"
+  },
+  {
+    "name": "Blahaj",
+    "price": 35.0,
+    "photo": "https://www.ikea.com/us/en/images/products/blahaj-soft-toy-shark__0710175_pe727378_s5.jpg?f=xs",
+    "category": "Toys"
   }
 ]
