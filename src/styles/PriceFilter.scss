@@ -1,6 +1,6 @@
 .price-filter {
   position: relative;
-  width: 200px;
+  width: 250px;
   height: 50px;
 
   &::before {
@@ -10,7 +10,6 @@
     left: 0;
     width: 100%;
     height: 4px;
-    background-color: #e5e7eb;
     border-radius: 8px;
     transform: translateY(-50%);
     z-index: 1;
@@ -90,9 +89,5 @@
       font-size: 0.875rem;
       color: #374151;
     }
-  }
-
-  @media screen and (max-width: 600px) {
-    width: 80%;
   }
 }

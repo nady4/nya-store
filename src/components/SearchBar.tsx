@@ -13,21 +13,19 @@ function SearchBar({ products }: ProductsProps) {
 
   return (
     <div className="search-bar">
+      <select className="category-filter">
+        <option value="">All</option>
+        {categories.map((category) => (
+          <option key={category}>{category}</option>
+        ))}
+      </select>
       <div className="search-box">
         <input type="text" className={tomorrow.className + " search-input"} />
         <button className="search-button">
           <Image src={search} alt="search icon" height={20} />
         </button>
       </div>
-      <div className="filters-box">
-        <PriceFilter min={0} max={100} step={1} />
-        <select className="category-filter">
-          <option value="">All</option>
-          {categories.map((category) => (
-            <option key={category}>{category}</option>
-          ))}
-        </select>
-      </div>
+      <PriceFilter min={0} max={100} step={1} />
     </div>
   );
 }
