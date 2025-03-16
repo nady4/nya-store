@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { NextAuthProvider } from "../providers";
+import { NextAuthProvider } from "../providers/NextAuthProvider";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import "./globals.css";

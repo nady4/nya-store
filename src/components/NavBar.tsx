@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import cat from "../../public/assets/cat.svg";
-import Dropdown from "./Dropdown";
-import signin from "../../public/assets/signin.svg";
 import { useSession } from "next-auth/react";
 import { silkscreen } from "@/app/fonts";
+import cat from "../../public/assets/icons/cat.svg";
+import signin from "../../public/assets/icons/signin.svg";
+import Dropdown from "./Dropdown";
 import "@/styles/Navbar.scss";
 
 function NavBar() {

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ProductProps } from "@/types";
+import { ProductType } from "@/types";
 import { silkscreen, tomorrow } from "@/app/fonts";
 
-const ProductCard: React.FC<ProductProps> = ({ id, name, price, photo }) => {
+const ProductCard: React.FC<ProductType> = ({ id, name, price, photo }) => {
   return (
     <Link href={`/products/${id}`} passHref>
       <div className="product-card" key={id}>

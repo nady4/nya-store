@@ -1,4 +1,4 @@
-import pixelHeart from "../../public/assets/pixelHeart.svg";
+import pixelHeart from "../../public/assets/icons/pixelHeart.svg";
 import Image from "next/image";
 import { silkscreen } from "@/app/fonts";
 import "@/styles/Footer.scss";

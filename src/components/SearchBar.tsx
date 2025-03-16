@@ -1,35 +1,42 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
-import search from "../../public/assets/search.svg";
+import search from "../../public/assets/icons/search.svg";
 import PriceFilter from "./PriceFilter";
 import { tomorrow } from "@/app/fonts";
-import { ProductsProps } from "@/types";
+import { ProductsType } from "@/types";
 import "../styles/SearchBar.scss";
 
-function SearchBar({ products }: ProductsProps) {
-  const categories = products
-    .map((product) => product.category)
-    .filter((category, index, array) => array.indexOf(category) === index);
+function SearchBar({ products }: ProductsType) {
+  // Memoizar categorías para que no se recalculen en cada render
+  const categories = useMemo(
+    () => [...new Set(products.map((p) => p.category))],
+    [products]
+  );
 
   const [activeCategories, setActiveCategories] = useState<
     Record<string, boolean>
   >({});
 
   useEffect(() => {
-    const newActiveCategories = { ...activeCategories };
+    setActiveCategories((prev) => {
+      const newActiveCategories = { ...prev };
 
-    categories.forEach((category) => {
-      if (!(category in newActiveCategories)) {
-        newActiveCategories[category] = true;
-      }
+      categories.forEach((category) => {
+        if (!(category in newActiveCategories)) {
+          newActiveCategories[category] = true;
+        }
+      });
+
+      return newActiveCategories;
     });
-  }, [categories, activeCategories]);
+  }, [categories]);
 
   const onButtonClick = (category: string) => {
-    const newActiveCategories = { ...activeCategories };
-    newActiveCategories[category] = !newActiveCategories[category];
-    setActiveCategories(newActiveCategories);
+    setActiveCategories((prev) => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
   };
 
   return (

@@ -1,8 +1,8 @@
 import ProductCard from "./ProductCard";
-import { ProductsProps } from "@/types";
+import { ProductsType } from "@/types";
 import "../styles/ProductList.scss";
 
-async function ProductList({ products }: ProductsProps) {
+async function ProductList({ products }: ProductsType) {
   return (
     <div className="product-list">
       {products.map((product) => (

@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./public/assets/cat.svg" height="50px">
+    <img src="./public/assets/icons/cat.svg" height="50px">
 </p>
 <h1 align="center"> NYA STORE </h1>
 
@@ -8,7 +8,9 @@
 </p>
 
 <p align="center">
-    <img src="./public/assets/ui.png" width="100%">
+    <img src="./public/assets/docs/desktop_home.png" width="100%">
+    <img src="./public/assets/docs/mobile_home.jpg" width="49%">
+    <img src="./public/assets/docs/mobile_home2.jpg" width="49%">
 </p>
 
 <br>
@@ -62,7 +64,7 @@ npm run dev
 
 <p align="center">
     <a href="https://dbdiagram.io/d/nya-store-666152b99713410b05e47081">
-        <img src="./public/assets/erd.png" width="100%">
+        <img src="./public/assets/docs/erd.png" width="100%">
     </a>
 </p>
 
