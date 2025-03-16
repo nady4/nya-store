@@ -7,5 +7,17 @@ export interface ProductType {
 }
 
 export interface ProductsType {
-  products: ProductTypoe[];
+  products: ProductType[];
+}
+
+export interface CatalogProps {
+  products: ProductType[];
+}
+
+export interface ProductListProps {
+  products: ProductType[];
+}
+
+export interface SearchBarProps {
+  products: ProductType[];
 }

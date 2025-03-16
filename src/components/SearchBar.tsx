@@ -1,42 +1,22 @@
 "use client";
-import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
-import search from "../../public/assets/icons/search.svg";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { toggleCategory } from "@/store/slices/categorySlice";
 import PriceFilter from "./PriceFilter";
+import search from "../../public/assets/icons/search.svg";
 import { tomorrow } from "@/app/fonts";
-import { ProductsType } from "@/types";
+import { SearchBarProps } from "@/types";
 import "../styles/SearchBar.scss";
 
-function SearchBar({ products }: ProductsType) {
-  // Memoizar categorías para que no se recalculen en cada render
-  const categories = useMemo(
-    () => [...new Set(products.map((p) => p.category))],
-    [products]
+function SearchBar({ products }: SearchBarProps) {
+  console.log(products);
+  const { categories, activeCategories } = useAppSelector(
+    (state) => state.category
   );
-
-  const [activeCategories, setActiveCategories] = useState<
-    Record<string, boolean>
-  >({});
-
-  useEffect(() => {
-    setActiveCategories((prev) => {
-      const newActiveCategories = { ...prev };
-
-      categories.forEach((category) => {
-        if (!(category in newActiveCategories)) {
-          newActiveCategories[category] = true;
-        }
-      });
-
-      return newActiveCategories;
-    });
-  }, [categories]);
+  const dispatch = useAppDispatch();
 
   const onButtonClick = (category: string) => {
-    setActiveCategories((prev) => ({
-      ...prev,
-      [category]: !prev[category],
-    }));
+    dispatch(toggleCategory(category));
   };
 
   return (

@@ -1,12 +1,27 @@
+"use client";
+import { useAppSelector } from "@/store/hooks";
+import { ProductListProps } from "@/types";
 import ProductCard from "./ProductCard";
-import { ProductsType } from "@/types";
 import "../styles/ProductList.scss";
 
-async function ProductList({ products }: ProductsType) {
+function ProductList({ products }: ProductListProps) {
+  const { activeCategories } = useAppSelector((state) => state.category);
+
+  const filteredProducts = products.filter(
+    (product) => activeCategories[product.category]
+  );
+
   return (
     <div className="product-list">
-      {products.map((product) => (
-        <ProductCard key={product.id} {...product} />
+      {filteredProducts.map((product) => (
+        <ProductCard
+          key={product.id}
+          id={product.id}
+          name={product.name}
+          price={product.price}
+          category={product.category}
+          photo={product.photo}
+        />
       ))}
     </div>
   );

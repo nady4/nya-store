@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ReduxProvider } from "@/store/provider";
 import { NextAuthProvider } from "../providers/NextAuthProvider";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
@@ -17,11 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NextAuthProvider>
-          <NavBar />
-          {children}
-          <Footer />
-        </NextAuthProvider>
+        <ReduxProvider>
+          <NextAuthProvider>
+            <NavBar />
+            {children}
+            <Footer />
+          </NextAuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
