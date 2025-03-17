@@ -15,7 +15,7 @@ function SearchBar() {
   const { categories, activeCategories } = useAppSelector(
     (state) => state.category
   );
-  const searchTerm = useAppSelector((state) => state.searchTerm.searchTerm);
+  const searchTerm = useAppSelector((state) => state.searchTerm);
 
   const onCategoriesClick = (category: string) => {
     dispatch(toggleCategory(category));

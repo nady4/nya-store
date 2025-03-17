@@ -8,7 +8,7 @@ import { ProductType } from "@/types";
 
 function ProductList({ products }: { products: ProductType[] }) {
   const dispatch = useAppDispatch();
-  const searchTerm = useAppSelector((state) => state.searchTerm.searchTerm);
+  const searchTerm = useAppSelector((state) => state.searchTerm);
   const { activeCategories } = useAppSelector((state) => state.category);
   const minPrice = useAppSelector((state) => state.price.min);
   const maxPrice = useAppSelector((state) => state.price.max);
