@@ -50,17 +50,6 @@ npm run dev
 
 <br>
 
-## 📦 Libraries
-
-- **Prisma** – Database ORM 🗄️
-- **NextAuth.js** – Authentication 🔐
-- **bcrypt** – Password hashing 🔑
-- **React Hook Form** – Form handling 📝
-- **Sass** – Stylish styling 💅
-- **ESLint** – Code linting 🚨
-
-<br>
-
 ## 🗄️ Database
 
 <p align="center">
