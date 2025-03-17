@@ -1,11 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import categoryReducer from "./slices/categorySlice";
+import { searchTermSlice } from "./slices/searchTermSlice";
+import { priceSlice } from "./slices/priceSlice";
 
 export const store = configureStore({
   reducer: {
     category: categoryReducer,
+    searchTerm: searchTermSlice.reducer,
+    price: priceSlice.reducer,
   },
-  // This disables Redux Toolkit's serialization check for server components
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

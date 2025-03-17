@@ -1,14 +1,29 @@
 "use client";
-import { useAppSelector } from "@/store/hooks";
-import { ProductListProps } from "@/types";
+import { useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { setCategories } from "@/store/slices/categorySlice";
 import ProductCard from "./ProductCard";
 import "../styles/ProductList.scss";
+import { ProductType } from "@/types";
 
-function ProductList({ products }: ProductListProps) {
+function ProductList({ products }: { products: ProductType[] }) {
+  const dispatch = useAppDispatch();
+  const searchTerm = useAppSelector((state) => state.searchTerm.searchTerm);
   const { activeCategories } = useAppSelector((state) => state.category);
+  const minPrice = useAppSelector((state) => state.price.min);
+  const maxPrice = useAppSelector((state) => state.price.max);
+
+  useEffect(() => {
+    const categories = [...new Set(products.map((p) => p.category))];
+    dispatch(setCategories(categories));
+  }, [products, dispatch]);
 
   const filteredProducts = products.filter(
-    (product) => activeCategories[product.category]
+    (product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      activeCategories[product.category] &&
+      product.price >= minPrice &&
+      product.price <= maxPrice
   );
 
   return (

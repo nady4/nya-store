@@ -38,14 +38,15 @@ npm run dev
 
 ## 🚀 Tech Stack
 
-| Technology  | Version  |
-| ----------- | -------- |
-| Next.js     | 15.2.1   |
-| React       | 19.0.0   |
-| TypeScript  | ^5       |
-| Prisma ORM  | ^6.5.0   |
-| NextAuth.js | ^4.24.11 |
-| Sass        | ^1.85.1  |
+| Technology    | Version  |
+| ------------- | -------- |
+| Next.js       | 15.2.1   |
+| React         | ^19.0.0  |
+| TypeScript    | ^5       |
+| Prisma ORM    | ^6.5.0   |
+| Redux Toolkit | ^2.6.1   |
+| NextAuth.js   | ^4.24.11 |
+| Sass          | ^1.85.1  |
 
 <br>
 

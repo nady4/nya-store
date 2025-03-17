@@ -1,28 +1,21 @@
-import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { setMin, setMax } from "@/store/slices/priceSlice";
 import "../styles/PriceFilter.scss";
 
-interface RangeSliderProps {
-  min: number;
-  max: number;
-  step?: number;
-}
-
-const DoubleRangeSlider: React.FC<RangeSliderProps> = ({
-  min,
-  max,
-  step = 1,
-}) => {
-  const [minValue, setMinValue] = useState(min);
-  const [maxValue, setMaxValue] = useState(max);
+const DoubleRangeSlider = () => {
+  const dispatch = useAppDispatch();
+  const { min, max } = useAppSelector((state) => state.price);
+  const minLimit = 0;
+  const maxLimit = 100;
 
   const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.min(Number(event.target.value), maxValue - step);
-    setMinValue(value);
+    const value = Math.min(Number(event.target.value), max - 1);
+    dispatch(setMin(value));
   };
 
   const handleMaxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.max(Number(event.target.value), minValue + step);
-    setMaxValue(value);
+    const value = Math.max(Number(event.target.value), min + 1);
+    dispatch(setMax(value));
   };
 
   return (
@@ -30,32 +23,32 @@ const DoubleRangeSlider: React.FC<RangeSliderProps> = ({
       className="price-filter"
       style={
         {
-          "--min": `${((minValue - min) / (max - min)) * 100}%`,
-          "--max": `${((maxValue - min) / (max - min)) * 100}%`,
+          "--min": `${((min - minLimit) / (maxLimit - minLimit)) * 100}%`,
+          "--max": `${((max - minLimit) / (maxLimit - minLimit)) * 100}%`,
         } as React.CSSProperties
       }
     >
       <input
         type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={minValue}
+        min={minLimit}
+        max={maxLimit}
+        step={1}
+        value={min}
         onChange={handleMinChange}
         className="price-filter-input min-range"
       />
       <input
         type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={maxValue}
+        min={minLimit}
+        max={maxLimit}
+        step={1}
+        value={max}
         onChange={handleMaxChange}
         className="price-filter-input max-range"
       />
       <div className="range-values">
-        <span className="min-value">{minValue}</span>
-        <span className="max-value">{maxValue}</span>
+        <span className="min-value">{min}</span>
+        <span className="max-value">{max}</span>
       </div>
     </div>
   );
