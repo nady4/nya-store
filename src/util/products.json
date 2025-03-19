@@ -1,110 +1,56 @@
 [
   {
-    "name": "Majestic Mountain Graphic T-Shirt",
-    "price": 44.0,
-    "photo": "https://i.imgur.com/QkIa5tT.jpeg",
-    "category": "T-Shirts"
-  },
-  {
-    "name": "Classic Red Pullover Hoodie",
-    "price": 10.0,
-    "photo": "https://i.imgur.com/1twoaDy.jpeg",
-    "category": "Hoodies"
-  },
-  {
-    "name": "Classic Heather Gray Hoodie",
-    "price": 69.0,
-    "photo": "https://i.imgur.com/cHddUCu.jpeg",
-    "category": "Hoodies"
-  },
-  {
-    "name": "Classic Grey Hooded Sweatshirt",
-    "price": 90.0,
-    "photo": "https://i.imgur.com/R2PN9Wq.jpeg",
-    "category": "Hoodies"
-  },
-  {
-    "name": "Classic Black Hooded Sweatshirt",
-    "price": 79.0,
-    "photo": "https://i.imgur.com/cSytoSD.jpeg",
-    "category": "Hoodies"
-  },
-  {
-    "name": "Classic Comfort Fit Joggers",
-    "price": 25.0,
-    "photo": "https://i.imgur.com/ZKGofuB.jpeg",
-    "category": "Joggers"
-  },
-  {
-    "name": "Classic Comfort Drawstring Joggers",
-    "price": 79.0,
-    "photo": "https://i.imgur.com/mp3rUty.jpeg",
-    "category": "Joggers"
-  },
-  {
-    "name": "Classic Red Jogger Sweatpants",
-    "price": 98.0,
-    "photo": "https://i.imgur.com/9LFjwpI.jpeg",
-    "category": "Joggers"
-  },
-  {
-    "name": "Classic Navy Blue Baseball Cap",
-    "price": 61.0,
-    "photo": "https://i.imgur.com/R3iobJA.jpeg",
-    "category": "Caps"
-  },
-  {
-    "name": "Classic Blue Baseball Cap",
-    "price": 86.0,
-    "photo": "https://i.imgur.com/wXuQ7bm.jpeg",
-    "category": "Caps"
-  },
-  {
-    "name": "Classic Red Baseball Cap",
-    "price": 35.0,
-    "photo": "https://i.imgur.com/cBuLvBi.jpeg",
-    "category": "Caps"
-  },
-  {
-    "name": "Classic Black Baseball Cap",
-    "price": 58.0,
-    "photo": "https://i.imgur.com/KeqG6r4.jpeg",
-    "category": "Caps"
-  },
-  {
-    "name": "Classic Olive Chino Shorts",
-    "price": 84.0,
-    "photo": "https://i.imgur.com/UsFIvYs.jpeg",
-    "category": "Shorts"
-  },
-  {
-    "name": "Classic High-Waisted Athletic Shorts",
-    "price": 43.0,
-    "photo": "https://i.imgur.com/eGOUveI.jpeg",
-    "category": "Shorts"
-  },
-  {
-    "name": "Classic White Crew Neck T-Shirt",
-    "price": 39.0,
-    "photo": "https://i.imgur.com/axsyGpD.jpeg",
-    "category": "T-Shirts"
-  },
-  {
-    "name": "Classic White Tee - Timeless Style and Comfort",
-    "price": 73.0,
-    "photo": "https://i.imgur.com/Y54Bt8J.jpeg",
-    "category": "T-Shirts"
-  },
-  {
-    "name": "Classic Black T-Shirt",
-    "price": 35.0,
-    "photo": "https://i.imgur.com/9DqEOV5.jpeg",
-    "category": "T-Shirts"
-  },
-  {
     "name": "Blahaj",
     "price": 35.0,
-    "photo": "https://www.ikea.com/us/en/images/products/blahaj-soft-toy-shark__0710175_pe727378_s5.jpg?f=xs",
-    "category": "Toys"
+    "photo": "https://media-hosting.imagekit.io//1507b37eec2341fb/blahaj.jpg?Expires=1836842147&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cCmE2IITEHZ~dQqPngsNQO7ZythWZYMWr4nZebSsxj05bOFG3SFrXmTVJDjO7oB-o65eGnuUW0oNcJNSKt5UbkWmNJrlgH-33KVf7Zcaap~5FsCNpWn9A5wbZjUB8RJiBJXz9Pn0YrFu8BoYjzph22FKPTt2HYNsFXdL8xGT34ZyLGL5jcM9bckxECs-JNVb1k2pSyFeY0an5YruBKduMA48NondAdCVsVvUgIajYHZg24B5U2mV11-2roJ7VAwShD2-84OPh3lG18ReNeZ8WSRys3kUdGvc4RSlyFO1~19i2ivHRQXm0UtcrG-1cMof~augWS4gdWGnOPga-RqT~w__",
+    "category": "Plushies"
+  },
+  {
+    "name": "Cat Socks",
+    "price": 20.0,
+    "photo": "https://media-hosting.imagekit.io//c6a488f0fab34fcd/cat_socks.jpg?Expires=1836841883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=tUENJr6RnmGuESkrYZV4HBC2PP~YuvceQ23JtxbkWYLJorJ1Z3ksYsEB7pmOfTBJRDOEeK6YRCFtRyfWE06mE5y69C--3m2cKN0100yF7Qc92Qnh3pGG11lQ3P0Fe8NlVTyBMiTDwuytmuctLho5aI-wuhRlUfSfz8kgepE02e~CEN96Z7oiYqoKHtJng5yiRkGi7jWEUJyP8qfKAYlbalZMiwL~~KfhWMC62XqlEE~Bnd7VK0iFO3Pe-yUMQw-RmY4JWTO1g6DvyBXqWUgcjX8p2vuCZWsmh-x0A4UR1CJqtMUWPxPWjGURQsT3~ML7HlIqKQ3xdoDLXGII72gTEA__",
+    "category": "Socks"
+  },
+  {
+    "name": "Kuromi Socks",
+    "price": 20.0,
+    "photo": "https://media-hosting.imagekit.io//16ffb92bc108456e/kuromi_socks.png?Expires=1836841883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=hKytPV-rzbfVnyu~VcMf5yme27icxXJGil-lZ2wW3W71RgkT6mIn5m~GOipBi0OgOSDpG97LGvjiErLijPlJ9DDi1i3ptUyw9T80xLap1GuQDdJADq72iDiogyu4DqL88cUJTxh88ntO7bkjNzJYrDgKhFsTJUm7buEgNWdZ9yhGcgsC4ZgMVUFZxcLQv3DnLi4hDOXogbT0jxetwKpFE39hh3WLQF1IJL4~018YN0HKNA3xLqOWGkIPRLF9E3MAp4gblGb0MjJqyjraQyuCkZ6INLknnST0uJth1qVhP4s8I2Oy34XjMxddNwCc0pZgkiYUr2LiO0oBG5YHlPLW9w__",
+    "category": "Socks"
+  },
+  {
+    "name": "Black and White Thigh Highs",
+    "price": 15.0,
+    "photo": "https://media-hosting.imagekit.io//7289909ae2dc496f/thigh_highs.jpg?Expires=1836841883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=sVW08fZnHdrlMK1~Zaj--DlWtwCii9sEKPRdXSyzxOIMPhLZ~9LgSX7wqsYQdsMbHv0SWu2ohcEUH3zVtuLneUDmBwPQdlsVkwRWhT~~r7HLFxN8Cd~-0o4UzW2L46nTs2I93Tw3p-kAWHUsc4U1NKppwMwk5OY98A2F1GmLtiRDJJlEazKcpso-MVQSftjO3MCPgc2N40fLxc0-UpOV1MRNNc68YFk6tJr3Fi3E8J7h0sqIyIkFrFKUi6RNne39zdKg5nUC1B~y3iZL2mTkDmyNNwBTyepBzzW1naAx-VujvkL9iJBm7-LYbpN0F14YMqXV9UAPtAhS2lKZ7SLzfg__",
+    "category": "Socks"
+  },
+  {
+    "name": "Cat Paws Gloves",
+    "price": 25.0,
+    "photo": "https://media-hosting.imagekit.io//ec147dff77184fed/paws_gloves.jpg?Expires=1836841883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=U8tobNaZb3iAaQareLVc28qjS5MN-RviUKOxJi4e-dadj9IrCP7SfZ9NBhbZySsUesjTrqmOP1I38QE~rJBAR1fdWnjq0omVL0MA7URTNhXlZ7gUYRtraTFMVs5joFhhPxn5OnTdijZWYTdmz3-Tg7cSxAEKUGsJaG1HH226o3xK-p8hTytbj2nQouTAyFv8T4OFkdRSXeZsjwnSCjPGPkaiiwJtCgN9Q9NxgTJWYZ0RR~FOdlWroAuvV9pZPapWEu1-B6vYYa0q2YDBIcw9hjGByapPBuMVzDPNtSWcHPMUfgNTV5GK9hIVDRIfxDc~aELa4Qtxc9Wte-rw9Mayzw__",
+    "category": "Gloves"
+  },
+  {
+    "name": "Purple Goth Skirt",
+    "price": 40.0,
+    "photo": "https://media-hosting.imagekit.io//88f3a9ee37e74292/purple_skirt.png?Expires=1836841883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=K6Ozz6c5LfacZ7Vgc7YETs5EStcaDPlFv6mTWGLL6INZA-vKXaSZKjCHIvFZdKDY4Ikr4LAY3bFF9Vv0ruyxAjrwoshh1GVBIqLNQEiiwuOij49dTxlIgsx5BYLirP1ON5B5i7TnVS2hyddxhyOyO9F5INtfjtPT5iazY6nA77QDB25-4scwdwEfTHGzZsWD48CZsUSsiPG4w9EuzBW8s8LzybVVjNf~jSfa78QZh9YbYhSHXB6U~DPu-Lh4ELQlpeakoUzT-4pPmTdz4Mdi-hjm0C3DCZRZsCc2Vl4DXK~xbw2mc-vpK5xFP78jT8bPwQWwPOFDrhoisqfbHOmNxA__",
+    "category": "Skirts"
+  },
+  {
+    "name": "Black Leather Goth Skirt ",
+    "price": 50.0,
+    "photo": "https://media-hosting.imagekit.io//ca4b1c67a352426e/goth_skirt.png?Expires=1836841883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1peTKtNFWq-x0ZgbykPPzE5M~Glz3miPAuq3DuVOPj3OxICNyko7EKDKeK2aodtkei6fq5Fr4RcYq7V1IwEsl5lg0PE-5vfjNJUBzLm0NlXkxLXYVASVEBni1XNpMbI8zS~aHP5B0mNKEXtQHbTcLb~ci6XNWLpbMvn8MPObFXBo~D2y6SbRCwKEh2x2ejW6ezX0L5lzp2IkTBhD76acuKIvam9w9ghbI3z0I5i-uP7x7GOB8HJQPW15z4WPaNJJBbhUm3mrcna7laDteuhBf~9c~lUZ84qOwW~kyoOsW6S-alwzWyCCTO-3zpAQ~3yFRYm02qMdHVr1CMCb3khsJw__",
+    "category": "Skirts"
+  },
+  {
+    "name": "The C Programming Language - Kernighan & Ritchie",
+    "price": 100.0,
+    "photo": "https://media-hosting.imagekit.io//7cd6630abcef48e7/c_book.jpg?Expires=1836841883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=RBeezyAoeqxaxGqpLgfBVfRV3j4uKBbvEShXMObd5~50GeYESkONE0PSU3B4Wl57DNEKe2HuKZTHC-~jc6fV3vjdLkIhpXpdjijO5VkNdX9O6M2aWSbEsyZzZjFk6jxJK8QeLcsLqpAcBOC-~xuTx-bp-OPJK7cfnE0FpszPLLnya4yE-eExXko6dGVNwF0242SwqUfBhlbHl5vVu42KveOG6jFbJcApqiYyDJcmvcUVgyv-~HnQ8IsbvGBXl5OcKsIrvm~eTTI6UE92P1hhSYgGgB2JaAuMOsth8Nd~06~3HwVC0SFmEDYu0Bg0yjaFCoSxJSP35V6X4Cs3Q4yMMQ__",
+    "category": "Books"
+  },
+  {
+    "name": "Anti-Oedipus: Capitalism and Schizophrenia - Deleuze & Guattari",
+    "price": 80.0,
+    "photo": "https://media-hosting.imagekit.io//9b1b01254b4444af/deleuze_book.jpg?Expires=1836841883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=pp0cK4pSPXiLLpLPV6Q4xMOxvrbJLHUSvuOqcGW9VZinidIt6cCGWuFfisR0-w2lw211e4GRHGHhDZVuCct4QCFYiJWhoKoxm2SfTe6qXA8q9KhNVjontY9b~aH3v2KnyhSb-2p4Ouc95x5AyXaCmSJ0bWcC5To4xzIzUIsauqHlwstWZXYFHJYcTg0n9st4uq-CdR-AHHxgSKdbjayNUNvOn13ScmxcOBFK3a6cabYRAAaliLORr3Soitkvd7Nezu0iapYux-AP0yKpJAPeCdh47xmdGV9YaKVoUCKzymJ6tHFr95Bww2HEISjPsUp2YlSU7OVUwyDxaJ1C8C6mpQ__",
+    "category": "Books"
   }
 ]

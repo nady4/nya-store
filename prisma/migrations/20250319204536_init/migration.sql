@@ -67,6 +67,7 @@ CREATE TABLE "Product" (
     "name" TEXT NOT NULL,
     "photo" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
+    "category" TEXT NOT NULL,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
@@ -74,8 +75,6 @@ CREATE TABLE "Product" (
 -- CreateTable
 CREATE TABLE "WishList" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "photo" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "productId" TEXT NOT NULL,
 
@@ -119,7 +118,7 @@ CREATE UNIQUE INDEX "Shipment_orderId_key" ON "Shipment"("orderId");
 CREATE UNIQUE INDEX "Shipment_addressId_key" ON "Shipment"("addressId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "WishList_userId_key" ON "WishList"("userId");
+CREATE UNIQUE INDEX "WishList_userId_productId_key" ON "WishList"("userId", "productId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Payment_orderId_key" ON "Payment"("orderId");

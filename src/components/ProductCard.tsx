@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   addToWishList,
   removeFromWishList,
 } from "@/store/slices/wishListSlice";
+import { toggleWishlist } from "@/actions/wishlist";
 import { ProductType } from "@/types";
 import { silkscreen, tomorrow } from "@/app/fonts";
 import heart from "../../public/assets/icons/heart.svg";
@@ -13,14 +15,19 @@ import heartFilled from "../../public/assets/icons/heartFilled.svg";
 const ProductCard: React.FC<ProductType> = ({ id, name, price, photo }) => {
   const wishList = useAppSelector((state) => state.wishList);
   const dispatch = useAppDispatch();
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
 
   const onHeartClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+
     if (wishList.includes(id)) {
       dispatch(removeFromWishList(id));
+      if (userId) toggleWishlist(userId, id);
     } else {
       dispatch(addToWishList(id));
+      if (userId) toggleWishlist(userId, id);
     }
   };
 
@@ -38,8 +45,8 @@ const ProductCard: React.FC<ProductType> = ({ id, name, price, photo }) => {
           <Image
             src={wishList.includes(id) ? heartFilled : heart}
             alt="heart"
-            width={24}
-            height={24}
+            width={40}
+            height={40}
             className="product-heart"
           />
         </button>

@@ -1,5 +1,7 @@
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+
+// Extending types for NextAuth session and JWT
 declare module "next-auth" {
   interface User {
     id: string;
@@ -55,16 +57,16 @@ export const authOptions: AuthOptions = {
         });
 
         if (!res.ok) {
-          return null;
+          return null; // If the response is not okay, return null
         }
 
         const user = await res.json();
 
         if (user.error) {
-          return null;
+          return null; // If there's an error in the response, return null
         }
 
-        return user;
+        return user; // Return the user object with necessary fields (id, email, etc.)
       },
     }),
   ],
@@ -74,7 +76,7 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async jwt({ token, user }) {
-      // Initial sign in
+      // Check if it's the initial sign-in and attach user data to the token
       if (user) {
         token.id = user.id;
         token.email = user.email;
@@ -83,6 +85,7 @@ export const authOptions: AuthOptions = {
       return token;
     },
     async session({ session, token }) {
+      // Attach the JWT data to the session object
       if (token) {
         session.user = {
           id: token.id,
@@ -94,12 +97,12 @@ export const authOptions: AuthOptions = {
     },
   },
   session: {
-    strategy: "jwt" as const,
+    strategy: "jwt", // Using JWT strategy for stateless sessions
   },
-  secret: process.env.NEXTAUTH_SECRET,
-  debug: process.env.NODE_ENV === "development",
+  secret: process.env.NEXTAUTH_SECRET, // Secret for signing JWT
+  debug: process.env.NODE_ENV === "development", // Enable debug in development
 };
 
+// Export handler for API routes
 const handler = NextAuth(authOptions);
-
 export { handler as GET, handler as POST };

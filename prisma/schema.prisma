@@ -12,7 +12,7 @@ model User {
   address    Address?    @relation(fields: [addressId], references: [id])
   orders     Order[]
   orderItems OrderItem[] 
-  wishlist   WishList?
+  wishlist   WishList[]
 
   username   String
   email      String      @unique
@@ -95,11 +95,9 @@ model WishList {
   user       User      @relation(fields: [userId], references: [id])
   product    Product   @relation(fields: [productId], references: [id])
 
-  name       String
-  photo      String
-
-  userId     String    @unique
+  userId     String
   productId  String
+  @@unique([userId, productId]) 
 }
 
 model Payment {
