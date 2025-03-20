@@ -1,10 +1,6 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
-interface DefaultLayoutProps {
-  children: ReactNode;
-}
-
-const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
+const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return <>{children}</>;
 };
 

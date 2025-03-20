@@ -22,13 +22,14 @@ const ProductCard: React.FC<ProductType> = ({ id, name, price, photo }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (wishList.includes(id)) {
-      dispatch(removeFromWishList(id));
-      if (userId) toggleWishlist(userId, id);
-    } else {
-      dispatch(addToWishList(id));
-      if (userId) toggleWishlist(userId, id);
-    }
+    if (userId)
+      if (wishList.includes(id)) {
+        dispatch(removeFromWishList(id));
+        toggleWishlist(userId, id);
+      } else {
+        dispatch(addToWishList(id));
+        toggleWishlist(userId, id);
+      }
   };
 
   return (

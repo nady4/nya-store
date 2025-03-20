@@ -3,7 +3,7 @@
     "name": "Blahaj",
     "price": 35.0,
     "photo": "https://media-hosting.imagekit.io//1507b37eec2341fb/blahaj.jpg?Expires=1836842147&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cCmE2IITEHZ~dQqPngsNQO7ZythWZYMWr4nZebSsxj05bOFG3SFrXmTVJDjO7oB-o65eGnuUW0oNcJNSKt5UbkWmNJrlgH-33KVf7Zcaap~5FsCNpWn9A5wbZjUB8RJiBJXz9Pn0YrFu8BoYjzph22FKPTt2HYNsFXdL8xGT34ZyLGL5jcM9bckxECs-JNVb1k2pSyFeY0an5YruBKduMA48NondAdCVsVvUgIajYHZg24B5U2mV11-2roJ7VAwShD2-84OPh3lG18ReNeZ8WSRys3kUdGvc4RSlyFO1~19i2ivHRQXm0UtcrG-1cMof~augWS4gdWGnOPga-RqT~w__",
-    "category": "Plushies"
+    "category": "Toys"
   },
   {
     "name": "Cat Socks",
@@ -52,5 +52,11 @@
     "price": 80.0,
     "photo": "https://media-hosting.imagekit.io//9b1b01254b4444af/deleuze_book.jpg?Expires=1836841883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=pp0cK4pSPXiLLpLPV6Q4xMOxvrbJLHUSvuOqcGW9VZinidIt6cCGWuFfisR0-w2lw211e4GRHGHhDZVuCct4QCFYiJWhoKoxm2SfTe6qXA8q9KhNVjontY9b~aH3v2KnyhSb-2p4Ouc95x5AyXaCmSJ0bWcC5To4xzIzUIsauqHlwstWZXYFHJYcTg0n9st4uq-CdR-AHHxgSKdbjayNUNvOn13ScmxcOBFK3a6cabYRAAaliLORr3Soitkvd7Nezu0iapYux-AP0yKpJAPeCdh47xmdGV9YaKVoUCKzymJ6tHFr95Bww2HEISjPsUp2YlSU7OVUwyDxaJ1C8C6mpQ__",
     "category": "Books"
+  },
+  {
+    "name": "Debugging Rubber Duck",
+    "price": 10.0,
+    "photo": "https://media-hosting.imagekit.io//36089c1076d148d9/rubber_duck.jpg?Expires=1837112108&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=n9o~BqvZh-~0L8K5PZP6lAmYzoEnbibxg~AWGAOAe2~9cnC~~lQAbmmlxhTVKNSECxtNX~ywT9654lVTvD~n8z0jO5p5Oo985eFZEgjw0YkyGny1ObSzqxx6wU02Xr0g0I25SiA1vZTv1Vc34WGj5A8n6cib0F5TiMe3WOHxGoEVCcxOynMksK332FFOl3lsHJPrj1WiOWWNvmIdel4a1PXHuZiQrGZM2kxLyxF2AlthoddyyAhUsAxzcgCOB029CrACx4UhWzShKHN3LeKXOunMEOhbx~v3Dd45SZZcAW6w0lxTFwsyFSmKcOxBSFHl7kUgTboxf0ivru2DzNwa9A__",
+    "category": "Toys"
   }
 ]

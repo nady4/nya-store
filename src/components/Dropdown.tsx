@@ -59,9 +59,9 @@ export default function Dropdown() {
           <Image src={truck} alt="orders button" />
           <h3>Orders</h3>
         </Link>
-        <Link href="/wishlists">
-          <Image src={heart} alt="wishlists button" />
-          <h3>Wishlists</h3>
+        <Link href="/wishlist">
+          <Image src={heart} alt="wishlist button" />
+          <h3>Wishlist</h3>
         </Link>
         <Link href="/userconfig">
           <Image src={gear} alt="user configuration button" />
