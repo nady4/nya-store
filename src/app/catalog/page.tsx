@@ -1,12 +1,12 @@
 "use client";
+import { useGetProducts } from "@/hooks/useGetProducts";
+import { useGetWishListIds } from "@/hooks/useGetWishListIds";
 import SearchBar from "@/components/SearchBar";
 import ProductList from "@/components/ProductList";
-import { useGetProducts } from "@/hooks/useGetProducts";
-import { useGetWishlist } from "@/hooks/useGetWishList";
 
-function Catalog() {
+export default function Catalog() {
   useGetProducts();
-  useGetWishlist();
+  useGetWishListIds();
 
   return (
     <div className="home-container">
@@ -15,5 +15,3 @@ function Catalog() {
     </div>
   );
 }
-
-export default Catalog;

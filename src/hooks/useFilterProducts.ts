@@ -1,3 +1,4 @@
+"use client";
 import { useMemo } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { ProductType } from "@/types";

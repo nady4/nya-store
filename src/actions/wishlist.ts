@@ -4,7 +4,7 @@ import prisma from "@/libs/prisma";
 import { revalidatePath } from "next/cache";
 import { ProductType } from "@/types";
 
-export async function toggleWishlist(userId: string, productId: string) {
+export async function toggleWishlistProduct(userId: string, productId: string) {
   if (!userId) throw new Error("Missing userId");
   if (!productId) throw new Error("Missing productId");
 
@@ -26,7 +26,7 @@ export async function toggleWishlist(userId: string, productId: string) {
   revalidatePath("/");
 }
 
-export async function getUserWishlistIds(userId: string) {
+export async function getWishlistIds(userId: string) {
   if (!userId) throw new Error("Missing userId");
 
   try {
@@ -42,7 +42,9 @@ export async function getUserWishlistIds(userId: string) {
   }
 }
 
-export async function getUserWishlist(userId: string): Promise<ProductType[]> {
+export async function getWishListProducts(
+  userId: string
+): Promise<ProductType[]> {
   if (!userId) throw new Error("Missing userId");
 
   try {
