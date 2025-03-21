@@ -3,6 +3,7 @@ import categoryReducer from "./slices/categorySlice";
 import { searchTermSlice } from "./slices/searchTermSlice";
 import { priceSlice } from "./slices/priceSlice";
 import { wishListSlice } from "./slices/wishListSlice";
+import { productsSlice } from "./slices/productsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     searchTerm: searchTermSlice.reducer,
     price: priceSlice.reducer,
     wishList: wishListSlice.reducer,
+    products: productsSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

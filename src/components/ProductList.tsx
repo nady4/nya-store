@@ -3,17 +3,17 @@ import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { useSession } from "next-auth/react";
 import { setCategories } from "@/store/slices/categorySlice";
+import { useFilteredProducts } from "@/hooks/useFilteredProducts";
 import ProductCard from "./ProductCard";
 import "../styles/ProductList.scss";
-import { ProductType } from "@/types";
-import { useFilteredProducts } from "@/hooks/useFilteredProducts"; // Import the new hook
 
-function ProductList({ products }: { products: ProductType[] }) {
+function ProductList() {
   const dispatch = useAppDispatch();
   const wishListIds = useAppSelector((state) => state.wishList);
   const { data: session } = useSession();
   const userId = session?.user?.id;
 
+  const products = useAppSelector((state) => state.products);
   const filteredProducts = useFilteredProducts(products);
 
   useEffect(() => {
@@ -23,18 +23,18 @@ function ProductList({ products }: { products: ProductType[] }) {
 
   return (
     <div className="product-list">
-      {filteredProducts.map((product) => (
-        <ProductCard
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          price={product.price}
-          category={product.category}
-          photo={product.photo}
-          wishListIds={wishListIds}
-          userId={userId as string}
-        />
-      ))}
+      {products.length === 0 ? (
+        <p>Loading Products...</p>
+      ) : (
+        filteredProducts.map((product) => (
+          <ProductCard
+            key={product.id}
+            {...product}
+            wishListIds={wishListIds}
+            userId={userId as string}
+          />
+        ))
+      )}
     </div>
   );
 }

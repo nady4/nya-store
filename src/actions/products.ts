@@ -1,5 +1,4 @@
 "use server";
-
 import prisma from "@/libs/prisma";
 import { ProductType } from "@/types";
 
@@ -11,5 +10,15 @@ export async function getProduct(id: string): Promise<ProductType> {
   } catch (error) {
     console.error("Error fetching product:", error);
     return {} as ProductType;
+  }
+}
+
+export async function getProducts(): Promise<ProductType[]> {
+  try {
+    const products = await prisma.product.findMany();
+    return products;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return [];
   }
 }

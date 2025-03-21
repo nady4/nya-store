@@ -16,7 +16,6 @@ export const categorySlice = createSlice({
   reducers: {
     setCategories: (state, action: PayloadAction<string[]>) => {
       state.categories = action.payload;
-      // Initialize all categories as active
       const activeCategories: Record<string, boolean> = {};
       action.payload.forEach((category) => {
         activeCategories[category] = true;
