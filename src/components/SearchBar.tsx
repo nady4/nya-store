@@ -5,8 +5,8 @@ import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setSearchTerm } from "@/store/slices/searchTermSlice";
 import { toggleCategory } from "@/store/slices/categorySlice";
 import { tomorrow } from "@/app/fonts";
+import { search } from "../../public/assets/icons";
 import PriceFilter from "./PriceFilter";
-import search from "../../public/assets/icons/search.svg";
 import "../styles/SearchBar.scss";
 
 function SearchBar() {

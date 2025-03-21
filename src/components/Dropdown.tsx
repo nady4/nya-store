@@ -3,12 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef, useEffect, useState, useCallback } from "react";
 import { signOut } from "next-auth/react";
-import menu from "../../public/assets/icons/menu.svg";
-import cart from "../../public/assets/icons/cart.svg";
-import heart from "../../public/assets/icons/heart.svg";
-import truck from "../../public/assets/icons/truck.svg";
-import gear from "../../public/assets/icons/gear.svg";
-import logout from "../../public/assets/icons/logout.svg";
+import {
+  menu,
+  cart,
+  heart,
+  truck,
+  gear,
+  logout,
+} from "../../public/assets/icons";
 import "@/styles/Dropdown.scss";
 
 export default function Dropdown() {

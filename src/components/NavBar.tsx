@@ -3,8 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { silkscreen } from "@/app/fonts";
-import cat from "../../public/assets/icons/cat.svg";
-import signin from "../../public/assets/icons/signin.svg";
+import { cat, signin } from "../../public/assets/icons";
 import Dropdown from "./Dropdown";
 import "@/styles/Navbar.scss";
 

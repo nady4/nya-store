@@ -14,6 +14,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    optimizePackageImports: ["./public/assets/icons"],
+  },
 };
 
 export default nextConfig;

@@ -6,11 +6,12 @@
     "seed": "node prisma/seed.js"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "node public/assets/icons/generate-index.js && next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
+  "type": "module",
   "dependencies": {
     "@prisma/client": "^6.5.0",
     "@reduxjs/toolkit": "^2.6.1",
