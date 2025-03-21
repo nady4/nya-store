@@ -1,30 +1,25 @@
 "use client";
 import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { useSession } from "next-auth/react";
 import { setCategories } from "@/store/slices/categorySlice";
 import ProductCard from "./ProductCard";
 import "../styles/ProductList.scss";
 import { ProductType } from "@/types";
+import { useFilteredProducts } from "@/hooks/useFilteredProducts"; // Import the new hook
 
 function ProductList({ products }: { products: ProductType[] }) {
   const dispatch = useAppDispatch();
-  const searchTerm = useAppSelector((state) => state.searchTerm);
-  const { activeCategories } = useAppSelector((state) => state.category);
-  const minPrice = useAppSelector((state) => state.price.min);
-  const maxPrice = useAppSelector((state) => state.price.max);
+  const wishListIds = useAppSelector((state) => state.wishList);
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
+
+  const filteredProducts = useFilteredProducts(products);
 
   useEffect(() => {
     const categories = [...new Set(products.map((p) => p.category))];
     dispatch(setCategories(categories));
   }, [products, dispatch]);
-
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      activeCategories[product.category] &&
-      product.price >= minPrice &&
-      product.price <= maxPrice
-  );
 
   return (
     <div className="product-list">
@@ -36,6 +31,8 @@ function ProductList({ products }: { products: ProductType[] }) {
           price={product.price}
           category={product.category}
           photo={product.photo}
+          wishListIds={wishListIds}
+          userId={userId as string}
         />
       ))}
     </div>

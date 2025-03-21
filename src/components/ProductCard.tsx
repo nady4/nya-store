@@ -1,29 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useAppDispatch } from "@/store/hooks";
 import {
   addToWishList,
   removeFromWishList,
 } from "@/store/slices/wishListSlice";
 import { toggleWishlist } from "@/actions/wishlist";
-import { ProductType } from "@/types";
 import { silkscreen, tomorrow } from "@/app/fonts";
 import heart from "../../public/assets/icons/heart.svg";
 import heartFilled from "../../public/assets/icons/heartFilled.svg";
+import { ProductCardProps } from "@/types";
 
-const ProductCard: React.FC<ProductType> = ({ id, name, price, photo }) => {
-  const wishList = useAppSelector((state) => state.wishList);
+const ProductCard: React.FC<ProductCardProps> = ({
+  id,
+  name,
+  price,
+  photo,
+  wishListIds,
+  userId,
+}) => {
   const dispatch = useAppDispatch();
-  const { data: session } = useSession();
-  const userId = session?.user?.id;
 
   const onHeartClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (userId)
-      if (wishList.includes(id)) {
+      if (wishListIds.includes(id)) {
         dispatch(removeFromWishList(id));
         toggleWishlist(userId, id);
       } else {
@@ -44,7 +47,7 @@ const ProductCard: React.FC<ProductType> = ({ id, name, price, photo }) => {
         />
         <button className="product-heart-button" onClick={onHeartClick}>
           <Image
-            src={wishList.includes(id) ? heartFilled : heart}
+            src={wishListIds.includes(id) ? heartFilled : heart}
             alt="heart"
             width={40}
             height={40}

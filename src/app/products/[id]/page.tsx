@@ -29,7 +29,6 @@ function ProductPage() {
     fetchProduct();
   }, [id]);
 
-  // Loading state
   if (loading) {
     return (
       <div className="product-item">
@@ -38,7 +37,6 @@ function ProductPage() {
     );
   }
 
-  // Error state
   if (error || !product) {
     return (
       <div className="product-item">
