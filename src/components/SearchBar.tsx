@@ -22,7 +22,6 @@ function SearchBar() {
   };
 
   const onSearchClick = () => {
-    console.log(inputRef.current?.value);
     if (inputRef.current) {
       dispatch(setSearchTerm(inputRef.current.value));
     }

@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, ReactNode } from "react";
+import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useAppDispatch } from "@/store/hooks";
 import { initializeWishList } from "@/store/slices/wishListSlice";
 import { getUserWishlistIds } from "@/actions/wishlist";
 
-export function WishlistProvider({ children }: { children: ReactNode }) {
+export const useGetWishlist = () => {
   const { data: session, status } = useSession();
   const userId = session?.user?.id;
   const dispatch = useAppDispatch();
@@ -23,6 +23,4 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
       fetchWishlist();
     }
   }, [userId, status, dispatch]);
-
-  return <>{children}</>;
-}
+};

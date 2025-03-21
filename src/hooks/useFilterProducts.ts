@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useAppSelector } from "@/store/hooks";
 import { ProductType } from "@/types";
 
-export const useFilteredProducts = (products: ProductType[]) => {
+export const useFilterProducts = (products: ProductType[]) => {
   const searchTerm = useAppSelector((state) => state.searchTerm);
   const { activeCategories } = useAppSelector((state) => state.category);
   const minPrice = useAppSelector((state) => state.price.min);

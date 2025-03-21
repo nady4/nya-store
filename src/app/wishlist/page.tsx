@@ -1,27 +1,38 @@
 "use client";
 import { useSession } from "next-auth/react";
-import Catalog from "@/components/Catalog";
-import { getUserWishlist } from "@/actions/wishlist";
 import { useEffect, useState } from "react";
-import { ProductType } from "@/types";
+import { getUserWishlist } from "@/actions/wishlist";
+import ProductList from "@/components/ProductList";
+import SearchBar from "@/components/SearchBar";
+import { useAppDispatch } from "@/store/hooks";
+import { setProducts } from "@/store/slices/productsSlice";
 
 export default function WishlistPage() {
   const { data: session } = useSession();
-  const [products, setProducts] = useState<ProductType[] | null>(null);
+  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     async function fetchWishlist() {
       if (session?.user?.id) {
+        setLoading(true);
         const wishlistProducts = await getUserWishlist(session.user.id);
-        setProducts(wishlistProducts);
+        dispatch(setProducts(wishlistProducts || []));
+        setLoading(false);
       }
     }
-
     fetchWishlist();
-  }, [session]);
+  }, [session, dispatch]);
 
-  if (products) {
-    return <Catalog products={products} />;
-  }
-  return <div>Loading...</div>;
+  return (
+    <div className="home-container">
+      <h1>My Wishlist</h1>
+      <SearchBar />
+      {loading ? (
+        <div>Loading your wishlist...</div>
+      ) : (
+        <ProductList isWishlistPage={true} />
+      )}
+    </div>
+  );
 }

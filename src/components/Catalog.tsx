@@ -1,16 +1,18 @@
 "use client";
-import { WishlistProvider } from "@/components/WishlistProvider";
 import SearchBar from "@/components/SearchBar";
 import ProductList from "@/components/ProductList";
+import { useGetProducts } from "@/hooks/useGetProducts";
+import { useGetWishlist } from "@/hooks/useGetWishList";
 
 function Catalog() {
+  useGetProducts();
+  useGetWishlist();
+
   return (
-    <WishlistProvider>
-      <div className="home-container">
-        <SearchBar />
-        <ProductList />
-      </div>
-    </WishlistProvider>
+    <div className="home-container">
+      <SearchBar />
+      <ProductList />
+    </div>
   );
 }
 
