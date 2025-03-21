@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setMin, setMax } from "@/store/slices/priceSlice";
 import "../styles/PriceFilter.scss";
@@ -8,26 +9,22 @@ const DoubleRangeSlider = () => {
   const minLimit = 0;
   const maxLimit = 100;
 
-  const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.min(Number(event.target.value), max - 1);
-    dispatch(setMin(value));
-  };
+  const handleMinChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(setMin(Math.min(Number(event.target.value), max - 1)));
+    },
+    [dispatch, max]
+  );
 
-  const handleMaxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.max(Number(event.target.value), min + 1);
-    dispatch(setMax(value));
-  };
+  const handleMaxChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      dispatch(setMax(Math.max(Number(event.target.value), min + 1)));
+    },
+    [dispatch, min]
+  );
 
   return (
-    <div
-      className="price-filter"
-      style={
-        {
-          "--min": `${((min - minLimit) / (maxLimit - minLimit)) * 100}%`,
-          "--max": `${((max - minLimit) / (maxLimit - minLimit)) * 100}%`,
-        } as React.CSSProperties
-      }
-    >
+    <div className="price-filter">
       <input
         type="range"
         min={minLimit}

@@ -5,12 +5,12 @@ import {
   addToWishList,
   removeFromWishList,
 } from "@/store/slices/wishListSlice";
+import { useCallback, useMemo } from "react";
 import { toggleWishlistProduct } from "@/actions/wishlist";
 import { silkscreen, tomorrow } from "@/app/fonts";
+import { ProductCardProps } from "@/types";
 import heart from "../../public/assets/icons/heart.svg";
 import heartFilled from "../../public/assets/icons/heartFilled.svg";
-import { ProductCardProps } from "@/types";
-import { useCallback, useMemo } from "react";
 
 const ProductCard: React.FC<ProductCardProps> = ({
   id,

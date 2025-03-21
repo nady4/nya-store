@@ -1,31 +1,27 @@
 "use client";
 import Image from "next/image";
-import { useRef } from "react";
+import { useCallback } from "react";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setSearchTerm } from "@/store/slices/searchTermSlice";
 import { toggleCategory } from "@/store/slices/categorySlice";
+import { tomorrow } from "@/app/fonts";
 import PriceFilter from "./PriceFilter";
 import search from "../../public/assets/icons/search.svg";
-import { tomorrow } from "@/app/fonts";
 import "../styles/SearchBar.scss";
 
 function SearchBar() {
   const dispatch = useAppDispatch();
-  const inputRef = useRef<HTMLInputElement>(null);
   const { categories, activeCategories } = useAppSelector(
     (state) => state.category
   );
   const searchTerm = useAppSelector((state) => state.searchTerm);
 
-  const onCategoriesClick = (category: string) => {
-    dispatch(toggleCategory(category));
-  };
-
-  const onSearchClick = () => {
-    if (inputRef.current) {
-      dispatch(setSearchTerm(inputRef.current.value));
-    }
-  };
+  const onCategoriesClick = useCallback(
+    (category: string) => {
+      dispatch(toggleCategory(category));
+    },
+    [dispatch]
+  );
 
   return (
     <div className="search-bar">
@@ -33,11 +29,9 @@ function SearchBar() {
         {categories.map((category) => (
           <button
             key={category}
-            className={
-              tomorrow.className +
-              " category-button" +
-              ` ${activeCategories[category] ? "active" : ""}`
-            }
+            className={`${tomorrow.className} category-button ${
+              activeCategories[category] ? "active" : ""
+            }`}
             onClick={() => onCategoriesClick(category)}
           >
             {category}
@@ -47,12 +41,14 @@ function SearchBar() {
       <div className="search-box">
         <input
           type="text"
-          className={tomorrow.className + " search-input"}
+          className={`${tomorrow.className} search-input`}
           value={searchTerm}
           onChange={(e) => dispatch(setSearchTerm(e.target.value))}
-          ref={inputRef}
         />
-        <button className="search-button" onClick={onSearchClick}>
+        <button
+          className="search-button"
+          onClick={() => dispatch(setSearchTerm(searchTerm))}
+        >
           <Image src={search} alt="search icon" height={20} />
         </button>
       </div>

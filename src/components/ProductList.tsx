@@ -1,7 +1,7 @@
 "use client";
+import { useSession } from "next-auth/react";
 import { useEffect, useMemo } from "react";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
-import { useSession } from "next-auth/react";
 import { setCategories } from "@/store/slices/categorySlice";
 import { useFilterProducts } from "@/hooks/useFilterProducts";
 import ProductCard from "./ProductCard";

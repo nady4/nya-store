@@ -12,19 +12,19 @@ function NavBar() {
   const { data: session } = useSession();
 
   return (
-    <div className={`${silkscreen.className} navbar-container`}>
+    <nav className={`${silkscreen.className} navbar-container`}>
       <h1 className="left-content">Nya Store</h1>
       <Link href="/" className="center-content">
-        <Image src={cat} alt="cat" height={60} />
+        <Image src={cat} alt="Home" height={60} />
       </Link>
       {session ? (
         <Dropdown />
       ) : (
         <Link href="/auth/signin" className="right-content">
-          <Image src={signin} alt="sign" height={50} />
+          <Image src={signin} alt="Sign in" height={50} />
         </Link>
       )}
-    </div>
+    </nav>
   );
 }
 
