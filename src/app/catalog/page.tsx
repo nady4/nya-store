@@ -1,11 +1,11 @@
 "use client";
-import { useGetProducts } from "@/hooks/useGetProducts";
+import { useFetchData } from "@/hooks/useFetchData";
 import { useGetWishListIds } from "@/hooks/useGetWishListIds";
 import SearchBar from "@/components/SearchBar";
 import ProductList from "@/components/ProductList";
 
 export default function Catalog() {
-  useGetProducts();
+  useFetchData();
   useGetWishListIds();
 
   return (
