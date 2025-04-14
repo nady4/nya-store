@@ -1,8 +1,15 @@
 .navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   padding: 1rem;
+  height: 80px;
+  background-color: #0e0e0e;
 
   .center-content {
     position: absolute;

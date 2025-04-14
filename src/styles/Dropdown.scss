@@ -10,7 +10,7 @@
 
   .dropdown-container {
     position: fixed;
-    top: 60px;
+    top: 80px;
     right: 0;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,6 @@
     box-sizing: border-box;
     background-color: #0e0e0e;
     transition: 0.3s ease-in-out;
-    margin-top: 1rem;
     z-index: 20;
 
     a {
@@ -51,11 +50,10 @@
   .dropdown-wrapper {
     .dropdown-container {
       width: 100%;
-      margin-top: 2rem;
 
       a,
       .logout-button {
-        height: 80px;
+        height: 70px;
         width: 70%;
 
         img {
