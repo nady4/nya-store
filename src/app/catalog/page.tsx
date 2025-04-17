@@ -1,17 +1,17 @@
 "use client";
-import { useFetchData } from "@/hooks/useFetchData";
-import { useGetWishListIds } from "@/hooks/useGetWishListIds";
+import { useLoadProducts } from "@/hooks/useLoadProducts";
+import { useLoadWishListIds } from "@/hooks/useLoadWishListIds";
 import SearchBar from "@/components/SearchBar";
-import ProductList from "@/components/ProductList";
+import Catalog from "@/components/Catalog";
 
-export default function Catalog() {
-  useFetchData();
-  useGetWishListIds();
+export default function CatalogPage() {
+  useLoadProducts();
+  useLoadWishListIds();
 
   return (
     <div className="home-container">
       <SearchBar />
-      <ProductList />
+      <Catalog />
     </div>
   );
 }

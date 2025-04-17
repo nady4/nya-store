@@ -1,56 +1,38 @@
 "use client";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useFetchData } from "@/hooks/useFetchData";
-import cart from "@/../public/assets/icons/cart.svg";
+import { useGetProduct } from "@/hooks/useGetProduct";
+import { useToggleWishlist } from "@/hooks/useToggleWishlist";
+import ProductCard from "@/components/ProductCard";
+import RelatedProducts from "@/components/RelatedProducts";
+import { heart, heartFilled } from "../../../../public/assets/icons";
 import "../../../styles/Product.scss";
 
 function ProductPage() {
   const id = usePathname().split("/")[2];
-  const { product, loading, error } = useFetchData(id);
+  const { product, relatedProducts, loading, error } = useGetProduct(id);
+  const { isWishlisted, onHeartClick } = useToggleWishlist(id);
 
-  if (loading) {
-    return (
-      <div className="item">
-        <div>Loading product...</div>
-      </div>
-    );
-  }
-
-  if (error || !product) {
-    return (
-      <div className="item">
-        <div>{error || "Product not found"}</div>
-      </div>
-    );
-  }
+  if (loading || !product) return <div className="item">Loading...</div>;
+  if (error) return <div className="item">{error.message}</div>;
 
   return (
     <div className="page">
       <div className="item">
-        <div className="left">
-          <Image
-            src={product.photo}
-            alt={product.name}
-            height={300}
-            width={300}
-          />
-        </div>
+        <ProductCard product={product} />
         <div className="right">
-          <div className="top">
-            <h2 className="name">{product.name}</h2>
-            <p className="category">{product.category}</p>
-            <p className="price">${product.price.toFixed(2)}</p>
-          </div>
-          <div className="bottom">
-            <button className="button">
-              <Image src={cart} className="button-icon" alt="cart icon" /> Add
-              to Cart
-            </button>
-          </div>
+          <button className="heart-button" onClick={onHeartClick}>
+            <Image
+              src={isWishlisted ? heartFilled : heart}
+              alt="heart"
+              width={40}
+              height={40}
+              className="heart"
+            />
+          </button>
         </div>
       </div>
-      <div className="related-products"></div>
+      <RelatedProducts products={relatedProducts} />
     </div>
   );
 }

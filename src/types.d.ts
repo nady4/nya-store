@@ -5,7 +5,7 @@ export interface ProductType {
   photo: string;
   category: string;
 }
-export interface ProductCardProps extends ProductType {
+export interface CatalogCardProps extends ProductType {
   wishListIds: string[];
   userId: string;
 }

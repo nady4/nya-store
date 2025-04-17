@@ -1,11 +1,11 @@
 "use client";
-import { useSession } from "next-auth/react";
 import { useEffect, useMemo } from "react";
+import { useSession } from "next-auth/react";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setCategories } from "@/store/slices/categorySlice";
 import { useFilterProducts } from "@/hooks/useFilterProducts";
-import ProductCard from "./ProductCard";
-import "../styles/ProductList.scss";
+import CatalogCard from "./CatalogCard";
+import "../styles/Catalog.scss";
 
 function ProductList() {
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ function ProductList() {
         <p>Loading Products...</p>
       ) : (
         filteredProducts.map((product) => (
-          <ProductCard
+          <CatalogCard
             key={product.id}
             {...product}
             wishListIds={wishListIds}

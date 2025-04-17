@@ -5,7 +5,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { setProducts } from "@/store/slices/productsSlice";
 import { getWishListProducts } from "@/actions/wishlist";
 
-export const useGetWishlistProducts = () => {
+export const useLoadWishlistProducts = () => {
   const { data: session } = useSession();
   const dispatch = useAppDispatch();
 

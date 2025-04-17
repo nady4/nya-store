@@ -5,7 +5,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { initializeWishList } from "@/store/slices/wishListSlice";
 import { getWishlistIds } from "@/actions/wishlist";
 
-export const useGetWishListIds = () => {
+export const useLoadWishListIds = () => {
   const { data: session, status } = useSession();
   const userId = session?.user?.id;
   const dispatch = useAppDispatch();
