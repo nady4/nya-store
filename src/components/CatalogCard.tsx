@@ -2,15 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useToggleWishlist } from "@/hooks/useToggleWishlist";
 import { silkscreen, tomorrow } from "@/app/fonts";
-import { CatalogCardProps } from "@/types";
+import { ProductType } from "@/types";
 import { heart, heartFilled } from "../../public/assets/icons";
 
-const CatalogCard: React.FC<CatalogCardProps> = ({
-  id,
-  name,
-  price,
-  photo,
-}) => {
+const CatalogCard: React.FC<ProductType> = ({ id, name, price, photo }) => {
   const { isWishlisted, onHeartClick } = useToggleWishlist(id);
 
   return (
