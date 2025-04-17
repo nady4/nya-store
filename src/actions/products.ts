@@ -1,4 +1,3 @@
-// actions/products
 "use server";
 import prisma from "@/libs/prisma";
 import { ProductType } from "@/types";

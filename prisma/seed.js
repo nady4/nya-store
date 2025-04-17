@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-import products from "../src/util/products.json" with { type: "json" };
+import products from "../src/data/products.json" with { type: "json" };
 
 async function main() {
     console.log("🌱 Seeding products...");
