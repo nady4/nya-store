@@ -12,8 +12,8 @@
     <img src="./public/assets/docs/mobile_product_1.png" width="49%">
     <img src="./public/assets/docs/mobile_product_2.png" width="49%">
     <img src="./public/assets/docs/desktop_product_1.png" width="100%">
-    <img src="./public/assets/docs/mobile_home_1.png" width="49%">
-    <img src="./public/assets/docs/mobile_home_2.png" width="49%">
+    <img src="./public/assets/docs/mobile_register_1.png" width="49%">
+    <img src="./public/assets/docs/mobile_signin_1.png" width="49%">
 </p>
 
 <br>

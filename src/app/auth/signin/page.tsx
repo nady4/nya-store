@@ -39,6 +39,7 @@ function SignInPage() {
 
   return (
     <div className="auth-form">
+      <h2 className="title">Welcome :3</h2>
       <form onSubmit={onSubmit}>
         <input
           type="email"

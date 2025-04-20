@@ -49,6 +49,7 @@ function RegisterPage() {
 
   return (
     <div className="auth-form">
+      <h2 className="title">Create your account</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
