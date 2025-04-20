@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import "@/styles/Auth.scss";
@@ -43,7 +44,10 @@ function SignInPage() {
         />
         <button type="submit">Sign In</button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
+      <Link href="/auth/register" className="register-link">
+        Register
+      </Link>
     </div>
   );
 }

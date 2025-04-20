@@ -5,60 +5,91 @@ $hover-bg: #1f1f1f;
 $input-bg: #1a1a1a;
 $border-color: #333;
 $accent-color: #ff007a;
+$hover-accent-color: #ff5eac;
+$active-accent-color: #d70169;
 $text-color: #f0f0f0;
 $error-color: #ff4d4f;
 
-.auth-form,
-form {
-  font-family: "Tomorrow", sans-serif;
+.auth-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
   background-color: $bg-color;
-  padding: 2rem;
-  border-radius: 1rem;
-  max-width: 400px;
-  box-shadow: 0 0 20px rgba(255, 0, 122, 0.1);
 
-  input {
+  form {
+    font-family: "Tomorrow", sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    align-items: center;
+    background-color: $bg-color;
+    padding: 2rem;
+    max-width: 400px;
     width: 100%;
-    padding: 0.75rem 1rem;
-    margin: 0.5rem 0;
-    font-size: 1rem;
-    border: 2px dashed $border-color;
-    border-radius: 0.5rem;
-    background: $input-bg;
-    color: $text-color;
-    transition: border-color 0.2s, background 0.2s;
 
-    &:focus {
-      outline: none;
-      border-color: $accent-color;
-      background-color: darken($input-bg, 5%);
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin: 1rem;
+      font-size: 1rem;
+      border: 2px dashed $border-color;
+      border-radius: 0.5rem;
+      background: $input-bg;
+      color: $text-color;
+      transition: border-color 0.2s, background 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: $accent-color;
+        background-color: darken($input-bg, 5%);
+      }
+    }
+
+    button {
+      margin-top: 3rem;
+      padding: 0.75rem 1.5rem;
+      font-family: "Silkscreen", cursive;
+      font-size: 1rem;
+      background-color: $accent-color;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background-color: $hover-accent-color;
+      }
+
+      &:active {
+        background-color: $active-accent-color;
+      }
+    }
+
+    .error {
+      margin-top: 0.5rem;
+      color: $error-color;
+      font-family: "Silkscreen", cursive;
+      font-size: 0.875rem;
     }
   }
 
-  button {
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
+  .register-link {
     font-family: "Silkscreen", cursive;
-    font-size: 1rem;
-    background-color: $accent-color;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
+    font-size: 1.2rem;
+    color: $accent-color;
+    text-decoration: none;
+    transition: color 0.2s;
 
     &:hover {
-      background-color: darken($accent-color, 10%);
+      color: $hover-accent-color;
+      text-decoration: underline;
     }
-  }
 
-  .error {
-    margin-top: 0.5rem;
-    color: $error-color;
-    font-family: "Silkscreen", cursive;
-    font-size: 0.875rem;
+    &:active {
+      color: $active-accent-color;
+    }
   }
 }
