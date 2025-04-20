@@ -4,6 +4,6 @@
     "env": {
       "DATABASE_URL": "@database_url"
     },
-    "commands": ["npx prisma migrate deploy", "npm run build"]
+    "command": "npx prisma migrate deploy && npm run build"
   }
 }
