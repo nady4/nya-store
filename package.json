@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node public/assets/icons/generate-index.js && next dev --turbopack",
-    "build": "next build",
+    "build": "prisma generate && npm run prisma:seed && next build",
     "start": "next start",
     "lint": "next lint",
     "prisma:seed": "node prisma/seed.js"
