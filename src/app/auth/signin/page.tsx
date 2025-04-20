@@ -4,28 +4,36 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useValidateForm } from "@/hooks/useValidateForm";
 import "@/styles/Auth.scss";
 
 function SignInPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: {},
-  } = useForm();
+  const { register, handleSubmit, watch } = useForm();
+
   const router = useRouter();
-  const [error, setError] = useState<string | null | undefined>(null);
+  const [serverError, setServerError] = useState<string | null | undefined>(
+    null
+  );
+
+  const email = watch("email") || "";
+  const password = watch("password") || "";
+
+  const { isFormValid, error } = useValidateForm({ email, password });
 
   const onSubmit = handleSubmit(async (data) => {
+    setServerError(null);
+
     const res = await signIn("credentials", {
       redirect: false,
       email: data.email,
       password: data.password,
     });
+
     if (res?.ok) {
       router.push("/");
       router.refresh();
     } else {
-      setError(res?.error);
+      setServerError(res?.error);
     }
   });
 
@@ -42,9 +50,20 @@ function SignInPage() {
           placeholder="Password"
           {...register("password", { required: true })}
         />
-        <button type="submit">Sign In</button>
+        {(error || serverError) && (
+          <p className="error">{error || serverError}</p>
+        )}
+        <button
+          type="submit"
+          disabled={!isFormValid}
+          style={{
+            opacity: isFormValid ? 1 : 0.5,
+            cursor: isFormValid ? "pointer" : "not-allowed",
+          }}
+        >
+          Sign In
+        </button>
       </form>
-      {error && <p className="error">{error}</p>}
       <Link href="/auth/register" className="link">
         Register
       </Link>

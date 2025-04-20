@@ -1,64 +1,98 @@
 "use client";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useValidateForm } from "@/hooks/useValidateForm";
 import "@/styles/Auth.scss";
 
 function RegisterPage() {
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-  } = useForm();
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
 
-  const onSubmit = handleSubmit(async (data) => {
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    if (res.ok) {
-      router.push("/auth/signin");
-    } else {
-      const error = await res.json();
-      alert(error.error);
-    }
+  // Use our custom validation hook
+  const { isFormValid, error, validateForm } = useValidateForm({
+    email,
+    username,
+    password,
+    confirmPassword,
   });
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, username, password }),
+      });
+
+      if (res.ok) {
+        router.push("/auth/signin");
+      } else {
+        const data = await res.json();
+        throw new Error(data.error || "Registration failed");
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        // Error handling is now managed through the hook
+        console.error(error.message);
+      }
+    }
+  };
+
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="auth-form">
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="Email"
-          {...register("email", { required: true })}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type="text"
           placeholder="Username"
-          {...register("username", { required: true })}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
         />
         <input
           type="password"
           placeholder="Password"
-          {...register("password", { required: true })}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <input
           type="password"
           placeholder="Confirm Password"
-          {...register("confirmPassword", {
-            required: true,
-            validate: (value) => value === getValues("password"),
-          })}
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          required
         />
-        {errors.confirmPassword && (
-          <p className="error">Passwords do not match</p>
-        )}
-        <button type="submit">Register</button>
+        {error && <p className="error">{error}</p>}
+        <button
+          type="submit"
+          disabled={!isFormValid}
+          style={{
+            opacity: isFormValid ? 1 : 0.5,
+            cursor: isFormValid ? "pointer" : "not-allowed",
+          }}
+        >
+          Register
+        </button>
       </form>
+      <Link href="/auth/signin" className="link">
+        Sign In
+      </Link>
     </div>
   );
 }
