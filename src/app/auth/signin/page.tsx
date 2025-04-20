@@ -45,7 +45,7 @@ function SignInPage() {
         <button type="submit">Sign In</button>
       </form>
       {error && <p className="error">{error}</p>}
-      <Link href="/auth/register" className="register-link">
+      <Link href="/auth/register" className="link">
         Register
       </Link>
     </div>
