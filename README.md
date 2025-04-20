@@ -8,18 +8,14 @@
 </p>
 
 <p align="center">
+    <img src="./public/assets/docs/desktop_home_1.png" width="100%">
     <img src="./public/assets/docs/mobile_product_1.png" width="49%">
     <img src="./public/assets/docs/mobile_product_2.png" width="49%">
+    <img src="./public/assets/docs/mobile_home_1.png" width="49%">
+    <img src="./public/assets/docs/mobile_home_2.png" width="49%">
     <img src="./public/assets/docs/desktop_product_1.png" width="100%">
 </p>
 
-<br>
-
-<p align="center">
-    <img src="./public/assets/docs/mobile_home_1.png" width="49%">
-    <img src="./public/assets/docs/mobile_home_2.png" width="49%">
-    <img src="./public/assets/docs/desktop_home_1.png" width="100%">
-</p>
 <br>
 
 ## 💾 Installation & Setup
