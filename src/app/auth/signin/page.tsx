@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import "@/styles/Auth.scss";
 
 function SignInPage() {
   const {
@@ -28,7 +29,7 @@ function SignInPage() {
   });
 
   return (
-    <div>
+    <div className="auth-form">
       <form onSubmit={onSubmit}>
         <input
           type="email"

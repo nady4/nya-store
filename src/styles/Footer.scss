@@ -10,4 +10,17 @@
   color: #fff;
   font-size: 16px;
   z-index: 20;
+
+  .footer-text {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      top: 1px;
+    }
+  }
 }

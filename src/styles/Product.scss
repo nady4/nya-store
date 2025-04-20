@@ -70,20 +70,20 @@
           justify-content: space-around;
           align-items: center;
           padding: 0.75rem;
-          background-color: #007bff;
+          background-color: #ff007a;
           color: #fff;
           border: none;
           border-radius: 5px;
           cursor: pointer;
 
           &:hover {
-            background-color: #0056b3;
+            background-color: #f6308f;
           }
           &:active {
-            background-color: #004085;
+            background-color: #d00768;
           }
           &:disabled {
-            background-color: #6c757d;
+            background-color: #d782df;
             cursor: not-allowed;
           }
           &:focus {
