@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "build": {
+    "env": {
+      "DATABASE_URL": "@database_url"
+    },
+    "commands": ["npx prisma migrate deploy", "npx next build"]
+  }
+}
