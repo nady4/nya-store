@@ -6,11 +6,11 @@
     "dev": "node public/assets/icons/generate-index.js && next dev --turbopack",
     "start": "next start",
     "lint": "next lint",
-    "build": "npm run prisma:generate && npm run prisma:seed && next build",
+    "build": "npm run prisma:generate && next build",
     "prisma:generate": "prisma generate",
     "prisma:seed": "node prisma/seed.js",
     "prisma:migrate": "prisma migrate dev --name init",
-    "postinstall": "npm run prisma:generate && npm run prisma:seed"
+    "postinstall": "npm run prisma:generate"
   },
   "type": "module",
   "dependencies": {
