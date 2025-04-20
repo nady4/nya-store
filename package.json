@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "node public/assets/icons/generate-index.js && next dev --turbopack",
-    "build": "prisma generate && npm run prisma:seed && next build",
     "start": "next start",
     "lint": "next lint",
-    "prisma:seed": "node prisma/seed.js"
+    "build": "npm run prisma:generate && npm run prisma:seed && next build",
+    "prisma:generate": "prisma generate",
+    "prisma:seed": "node prisma/seed.js",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "postinstall": "npm run prisma:generate && npm run prisma:seed"
   },
   "type": "module",
   "dependencies": {
