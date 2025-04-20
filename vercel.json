@@ -2,8 +2,8 @@
   "version": 2,
   "build": {
     "env": {
-      "DATABASE_URL": "postgresql://postgres:1369@db.ducvcdlxkkmuhtfwrtwi.supabase.co:5432/postgres"
+      "DATABASE_URL": "@database_url"
     },
-    "commands": ["npx prisma migrate deploy", "npx next build"]
+    "commands": ["npx prisma migrate deploy", "npm run build"]
   }
 }
