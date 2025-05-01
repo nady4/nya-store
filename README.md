@@ -21,21 +21,35 @@
 ## 💾 Installation & Setup
 
 ```sh
-# Clone the repository
+# 📥 Clone the repository
 git clone https://github.com/nady4/nya-store.git
 
-# Navigate to the project directory
+# 📂 Move to the project folder
 cd nya-store
 
-# Install dependencies
+# 📦 Install dependencies
 npm install
 
-# Set up environment variables
-cp .env.example .env
+# 🛠️ Create .env file
+cat <<EOF > .env
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="yourSecret"
+DATABASE_URL="postgresql://postgres:password@localhost:5432/nya-store"
+EOF
 
-# Run the development server
+# 🚀 Run the app
 npm run dev
 ```
+
+<br>
+
+## Environment Variables 🔐️
+
+The following environment variables are used in this code:
+
+- `NEXTAUTH_URL` : The base URL of your application, used by NextAuth.js to generate callback URLs.
+- `NEXTAUTH_SECRET` : A secret string used to encrypt session tokens and other sensitive data in NextAuth.js.
+- `DATABASE_URL` : The connection string for your database.
 
 <br>
 
@@ -60,32 +74,6 @@ npm run dev
         <img src="./public/assets/docs/erd.png" width="100%">
     </a>
 </p>
-
-<br>
-
-## 📜 Scripts
-
-Run these commands to get started:
-
-```sh
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Lint code
-npm run lint
-```
-
-<br>
-
-## 🎮 Demo
-
-🚧 _Coming soon... Stay tuned!_ 🚧
 
 <br>
 
