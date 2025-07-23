@@ -1,9 +1,7 @@
 {
   "version": 2,
-  "build": {
-    "env": {
-      "DATABASE_URL": "@database_url"
-    },
-    "command": "npx prisma migrate deploy && npm run build"
+  "buildCommand": "npx prisma migrate deploy && npm run build",
+  "env": {
+    "DATABASE_URL": "postgres://a11344f961158c97fe59db3cafb59aa22ff3eddb23a1812bf1f9fad0d9efca62:sk_H7-7MtYeg7Z_BfK8lahOH@db.prisma.io:5432/?sslmode=require"
   }
 }

@@ -1,7 +1,5 @@
-// useValidateForm.ts
 import { useState, useEffect, useMemo } from "react";
 
-// Define a flexible interface that makes username and confirmPassword optional
 interface FormValues {
   email: string;
   password: string;
@@ -15,7 +13,7 @@ interface ValidationResult {
   validateForm: () => boolean;
 }
 
-export function useValidateForm(formValues: FormValues): ValidationResult {
+export function useValidateAuth(formValues: FormValues): ValidationResult {
   const { email, password, username, confirmPassword } = formValues;
   const [isFormValid, setIsFormValid] = useState(false);
   const [error, setError] = useState("");

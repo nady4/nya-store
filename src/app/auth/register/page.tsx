@@ -1,8 +1,8 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { useValidateForm } from "@/hooks/useValidateForm";
+import { useValidateAuth } from "@/hooks/useValidateAuth";
 import "@/styles/Auth.scss";
 
 function RegisterPage() {
@@ -12,8 +12,7 @@ function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const router = useRouter();
 
-  // Use our custom validation hook
-  const { isFormValid, error, validateForm } = useValidateForm({
+  const { isFormValid, error, validateForm } = useValidateAuth({
     email,
     username,
     password,
@@ -41,7 +40,6 @@ function RegisterPage() {
       }
     } catch (error) {
       if (error instanceof Error) {
-        // Error handling is now managed through the hook
         console.error(error.message);
       }
     }

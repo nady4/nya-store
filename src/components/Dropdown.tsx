@@ -65,7 +65,7 @@ export default function Dropdown() {
           <Image src={heart} alt="Wishlist" />
           <h3>Wishlist</h3>
         </Link>
-        <Link href="/userconfig">
+        <Link href="/settings">
           <Image src={gear} alt="Settings" />
           <h3>Settings</h3>
         </Link>

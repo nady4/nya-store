@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useValidateForm } from "@/hooks/useValidateForm";
+import { useValidateAuth } from "@/hooks/useValidateAuth";
 import "@/styles/Auth.scss";
 
 function SignInPage() {
@@ -18,7 +18,7 @@ function SignInPage() {
   const email = watch("email") || "";
   const password = watch("password") || "";
 
-  const { isFormValid, error } = useValidateForm({ email, password });
+  const { isFormValid, error } = useValidateAuth({ email, password });
 
   const onSubmit = handleSubmit(async (data) => {
     setServerError(null);
