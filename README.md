@@ -67,7 +67,7 @@ The following environment variables are used in this code:
 
 <br>
 
-## 🗄️ Database
+## 💾 Database
 
 <p align="center">
     <a href="https://dbdiagram.io/d/nya-store-666152b99713410b05e47081">
@@ -75,10 +75,134 @@ The following environment variables are used in this code:
     </a>
 </p>
 
+### `User`
+
+| Column     | Type     | Restrictions                                 |
+| ---------- | -------- | -------------------------------------------- |
+| id         | STRING   | PRIMARY KEY 🔑                               |
+| addressId  | STRING   | FK 🔑 → Address(id)                          |
+| orderId    | STRING   | FK 🔑 → Order(id)                            |
+| wishlistId | STRING   | FK 🔑 → Wishlist(id)                         |
+| username   | STRING   | NOT NULL, UNIQUE                             |
+| email      | STRING   | NOT NULL, UNIQUE                             |
+| password   | STRING   | NOT NULL                                     |
+| createdAt  | DATETIME | DEFAULT CURRENT_TIMESTAMP                    |
+| updatedAt  | DATETIME | ON UPDATE CURRENT_TIMESTAMP                  |
+
+---
+
+### `Address`
+
+| Column      | Type     | Restrictions                                |
+| ----------- | -------- | ------------------------------------------- |
+| id          | STRING   | PRIMARY KEY 🔑                              |
+| userId      | STRING   | FK 🔑 → User(id)                            |
+| shipmentId  | STRING   | FK 🔑 → Shipment(id)                        |
+| street      | STRING   | NOT NULL                                    |
+| city        | STRING   | NOT NULL                                    |
+| state       | STRING   |                                             |
+| zipCode     | STRING   |                                             |
+
+---
+
+### `Shipment`
+
+| Column         | Type     | Restrictions                                |
+| -------------- | -------- | ------------------------------------------- |
+| id             | STRING   | PRIMARY KEY 🔑                              |
+| orderId        | STRING   | FK 🔑 → Order(id)                           |
+| addressId      | STRING   | FK 🔑 → Address(id)                         |
+| trackingNumber | STRING   | UNIQUE                                      |
+| shipmentStatus | STRING   | NOT NULL                                    |
+| shippedDate    | DATETIME |                                             |
+| deliveryDate   | DATETIME |                                             |
+
+---
+
+### `Order`
+
+| Column       | Type     | Restrictions                                |
+| ------------ | -------- | ------------------------------------------- |
+| id           | STRING   | PRIMARY KEY 🔑                              |
+| orderItemId  | STRING   | FK 🔑 → OrderItem(id)                       |
+| userId       | STRING   | FK 🔑 → User(id)                            |
+| status       | STRING   | NOT NULL                                    |
+| createdAt    | DATETIME | DEFAULT CURRENT_TIMESTAMP                   |
+| updatedAt    | DATETIME | ON UPDATE CURRENT_TIMESTAMP                 |
+
+---
+
+### `OrderItem`
+
+| Column                | Type     | Restrictions                                |
+| --------------------- | -------- | ------------------------------------------- |
+| id                    | STRING   | PRIMARY KEY 🔑                              |
+| userId                | STRING   | FK 🔑 → User(id)                            |
+| productId             | STRING   | FK 🔑 → Product(id)                         |
+| cardId                | STRING   | FK 🔑 → Card(id)                            |
+| size                  | STRING   |                                             |
+| quantity              | INTEGER  | NOT NULL                                    |
+| cost                  | FLOAT    |                                             |
+| price                 | FLOAT    | NOT NULL                                    |
+| paymentMethodDiscount | FLOAT    |                                             |
+| quantityDiscount      | FLOAT    |                                             |
+| total                 | FLOAT    | NOT NULL                                    |
+
+---
+
+### `Product`
+
+| Column     | Type     | Restrictions                                |
+| ---------- | -------- | ------------------------------------------- |
+| id         | STRING   | PRIMARY KEY 🔑                              |
+| cartItemId | STRING   | FK 🔑 → OrderItem(id)                       |
+| wishlistId | STRING   | FK 🔑 → Wishlist(id)                        |
+| name       | STRING   | NOT NULL                                    |
+| photo      | STRING   |                                             |
+| price      | FLOAT    | NOT NULL                                    |
+
+---
+
+### `Wishlist`
+
+| Column    | Type     | Restrictions                                |
+| --------- | -------- | ------------------------------------------- |
+| id        | STRING   | PRIMARY KEY 🔑                              |
+| productId | STRING   | FK 🔑 → Product(id)                         |
+| userId    | STRING   | FK 🔑 → User(id)                            |
+| name      | STRING   | NOT NULL                                    |
+| photo     | STRING   |                                             |
+
+---
+
+### `Payment`
+
+| Column        | Type     | Restrictions                                |
+| ------------- | -------- | ------------------------------------------- |
+| id            | STRING   | PRIMARY KEY 🔑                              |
+| orderId       | STRING   | FK 🔑 → Order(id)                           |
+| paymentMethod | STRING   | NOT NULL                                    |
+| paymentDate   | DATETIME |                                             |
+| paymentStatus | STRING   | NOT NULL                                    |
+
+---
+
+### `Card`
+
+| Column     | Type     | Restrictions                                |
+| ---------- | -------- | ------------------------------------------- |
+| id         | STRING   | PRIMARY KEY 🔑                              |
+| paymentId  | STRING   | FK 🔑 → Payment(id)                         |
+| type       | STRING   | NOT NULL                                    |
+| name       | STRING   | NOT NULL                                    |
+| numbers    | STRING   | NOT NULL, UNIQUE                            |
+| expiryDate | DATETIME | NOT NULL                                    |
+| ccv        | STRING   | NOT NULL                                    |
+
 <br>
 
 ## 📬 Contact
 
-- 💌 Email: **nadyajerochim@gmail.com**
+- 💌 Email: **dev@nady4.com.com**
 - 💼 LinkedIn: [/nady4](https://www.linkedin.com/in/nady4)
 - 👩🏻‍💻 GitHub: [@nady4](https://github.com/nady4)
