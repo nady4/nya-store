@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./public/assets/icons/cat.svg" height="50px">
+    <img src="./public/assets/icons/cat.svg" width="80px">
 </p>
 <h1 align="center"> NYA STORE </h1>
 
