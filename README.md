@@ -18,7 +18,7 @@
 
 <br>
 
-## 💾 Installation & Setup
+## 💾 Installation
 
 ```sh
 # 📥 Clone the repository
@@ -43,7 +43,7 @@ npm run dev
 
 <br>
 
-## Environment Variables 🔐️
+## 🔐️ Environment Variables
 
 The following environment variables are used in this code:
 
