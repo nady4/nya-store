@@ -4,7 +4,7 @@
 <h1 align="center"> NYA STORE </h1>
 
 <p align="center">
-🐱 E-commerce built with Next.js, Redux Toolkit, Prisma and PostgreSQL 🛒
+❤️ E-commerce built with Next.js, Redux Toolkit, Prisma and PostgreSQL ❤️
 </p>
 
 <p align="center">
