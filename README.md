@@ -89,7 +89,7 @@ The following environment variables are used in this code:
 | createdAt  | DATETIME | DEFAULT CURRENT_TIMESTAMP                    |
 | updatedAt  | DATETIME | ON UPDATE CURRENT_TIMESTAMP                  |
 
----
+<br>
 
 ### `Address`
 
@@ -103,7 +103,7 @@ The following environment variables are used in this code:
 | state       | STRING   |                                             |
 | zipCode     | STRING   |                                             |
 
----
+<br>
 
 ### `Shipment`
 
@@ -117,7 +117,7 @@ The following environment variables are used in this code:
 | shippedDate    | DATETIME |                                             |
 | deliveryDate   | DATETIME |                                             |
 
----
+<br>
 
 ### `Order`
 
@@ -130,7 +130,7 @@ The following environment variables are used in this code:
 | createdAt    | DATETIME | DEFAULT CURRENT_TIMESTAMP                   |
 | updatedAt    | DATETIME | ON UPDATE CURRENT_TIMESTAMP                 |
 
----
+<br>
 
 ### `OrderItem`
 
@@ -148,7 +148,7 @@ The following environment variables are used in this code:
 | quantityDiscount      | FLOAT    |                                             |
 | total                 | FLOAT    | NOT NULL                                    |
 
----
+<br>
 
 ### `Product`
 
@@ -161,7 +161,7 @@ The following environment variables are used in this code:
 | photo      | STRING   |                                             |
 | price      | FLOAT    | NOT NULL                                    |
 
----
+<br>
 
 ### `Wishlist`
 
@@ -173,7 +173,7 @@ The following environment variables are used in this code:
 | name      | STRING   | NOT NULL                                    |
 | photo     | STRING   |                                             |
 
----
+<br>
 
 ### `Payment`
 
@@ -185,7 +185,7 @@ The following environment variables are used in this code:
 | paymentDate   | DATETIME |                                             |
 | paymentStatus | STRING   | NOT NULL                                    |
 
----
+<br>
 
 ### `Card`
 
