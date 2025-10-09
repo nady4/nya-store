@@ -4,26 +4,10 @@ import bcrypt from "bcrypt";
 
 export async function POST(request: Request) {
   try {
-    const contentType = request.headers.get("content-type");
-    let data;
-
-    if (contentType?.includes("application/json")) {
-      data = await request.json();
-    } else if (contentType?.includes("application/x-www-form-urlencoded")) {
-      const formData = await request.formData();
-      data = {
-        email: formData.get("email"),
-        password: formData.get("password"),
-      };
-    } else {
-      return NextResponse.json(
-        { error: "Unsupported content type" },
-        { status: 400 }
-      );
-    }
+    const data = await request.json();
 
     const user = await prisma.user.findUnique({
-      where: { email: data.email as string },
+      where: { email: data.email },
     });
 
     if (!user) {
@@ -33,10 +17,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const isPasswordValid = await bcrypt.compare(
-      data.password as string,
-      user.password
-    );
+    const isPasswordValid = await bcrypt.compare(data.password, user.password);
 
     if (!isPasswordValid) {
       return NextResponse.json(

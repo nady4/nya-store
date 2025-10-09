@@ -1,47 +1,34 @@
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import prisma from "@/libs/prisma";
+import bcrypt from "bcrypt";
 
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: {
-          label: "Email",
-          type: "text",
-          placeholder: "email@example.com",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-          placeholder: "******",
-        },
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
+        if (!credentials?.email || !credentials?.password) return null;
 
-        const res = await fetch("https://nya.nady4.com/api/auth/signin", {
-          method: "POST",
-          body: JSON.stringify({
-            email: credentials.email,
-            password: credentials.password,
-          }),
-          headers: { "Content-Type": "application/json" },
+        const user = await prisma.user.findUnique({
+          where: { email: credentials.email },
         });
 
-        if (!res.ok) {
-          return null;
-        }
+        if (!user) return null;
 
-        const user = await res.json();
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
 
-        if (user.error) {
-          return null;
-        }
+        if (!isPasswordValid) return null;
 
-        return user;
+        const { ...userWithoutPassword } = user;
+        return userWithoutPassword;
       },
     }),
   ],

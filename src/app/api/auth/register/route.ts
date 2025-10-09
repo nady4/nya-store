@@ -6,36 +6,37 @@ export async function POST(request: Request) {
   try {
     const data = await request.json();
 
-    // Check if email already exists
-    const userFoundByEmail = await prisma.user.findUnique({
-      where: {
-        email: data.email,
-      },
-    });
-
-    if (userFoundByEmail) {
-      return NextResponse.json({
-        error: "Email already exists",
-      });
+    if (!data.email || !data.username || !data.password) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
 
-    // Check if username already exists
-    const userFoundByUsername = await prisma.user.findFirst({
-      where: {
-        username: data.username,
-      },
+    const existingEmail = await prisma.user.findUnique({
+      where: { email: data.email },
     });
 
-    if (userFoundByUsername) {
-      return NextResponse.json({
-        error: "Username already exists",
-      });
+    if (existingEmail) {
+      return NextResponse.json(
+        { error: "Email already exists" },
+        { status: 400 }
+      );
     }
 
-    // Hash password
+    const existingUsername = await prisma.user.findFirst({
+      where: { username: data.username },
+    });
+
+    if (existingUsername) {
+      return NextResponse.json(
+        { error: "Username already exists" },
+        { status: 400 }
+      );
+    }
+
     const hashedPassword = await bcrypt.hash(data.password, 10);
 
-    // Create new user
     const newUser = await prisma.user.create({
       data: {
         username: data.username,
@@ -43,16 +44,14 @@ export async function POST(request: Request) {
         password: hashedPassword,
       },
     });
-    return NextResponse.json(newUser);
+
+    const { ...userWithoutPassword } = newUser;
+    return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch (error) {
     console.error("Error creating user:", error);
     return NextResponse.json(
-      {
-        error: "An error occurred while creating the user",
-      },
-      {
-        status: 500,
-      }
+      { error: "An error occurred while creating the user" },
+      { status: 500 }
     );
   }
 }
