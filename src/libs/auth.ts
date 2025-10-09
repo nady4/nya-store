@@ -22,7 +22,7 @@ export const authOptions: AuthOptions = {
           return null;
         }
 
-        const res = await fetch("http://localhost:3000/api/auth/signin", {
+        const res = await fetch("https://nya.nady4.com/api/auth/signin", {
           method: "POST",
           body: JSON.stringify({
             email: credentials.email,
