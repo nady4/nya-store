@@ -4,16 +4,28 @@ import bcrypt from "bcrypt";
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
+    const contentType = request.headers.get("content-type");
+    let data;
 
-    // Find user by email
+    if (contentType?.includes("application/json")) {
+      data = await request.json();
+    } else if (contentType?.includes("application/x-www-form-urlencoded")) {
+      const formData = await request.formData();
+      data = {
+        email: formData.get("email"),
+        password: formData.get("password"),
+      };
+    } else {
+      return NextResponse.json(
+        { error: "Unsupported content type" },
+        { status: 400 }
+      );
+    }
+
     const user = await prisma.user.findUnique({
-      where: {
-        email: data.email,
-      },
+      where: { email: data.email as string },
     });
 
-    // Check if user exists
     if (!user) {
       return NextResponse.json(
         { error: "Invalid credentials" },
@@ -21,8 +33,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // Compare password
-    const isPasswordValid = await bcrypt.compare(data.password, user.password);
+    const isPasswordValid = await bcrypt.compare(
+      data.password as string,
+      user.password
+    );
 
     if (!isPasswordValid) {
       return NextResponse.json(
@@ -31,9 +45,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Return user without password
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...userWithoutPassword } = user;
+    const { ...userWithoutPassword } = user;
     return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error("Error during signin:", error);
