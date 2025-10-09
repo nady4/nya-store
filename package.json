@@ -1,6 +1,6 @@
 {
   "name": "nya-store",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "node public/assets/icons/generate-index.js && next dev --turbopack",
