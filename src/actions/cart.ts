@@ -7,14 +7,14 @@ export async function toggleCartProduct(userId: string, productId: string) {
   if (!userId) throw new Error("Missing userId");
   if (!productId) throw new Error("Missing productId");
 
-  const existingCart = await prisma.wishList.findFirst({
+  const existingCart = await prisma.cart.findFirst({
     where: { userId, productId },
   });
 
   if (existingCart) {
-    await prisma.wishList.delete({ where: { id: existingCart.id } });
+    await prisma.cart.delete({ where: { id: existingCart.id } });
   } else {
-    await prisma.wishList.create({
+    await prisma.cart.create({
       data: {
         userId,
         productId,
@@ -29,14 +29,14 @@ export async function getCartIds(userId: string) {
   if (!userId) throw new Error("Missing userId");
 
   try {
-    const cartItems = await prisma.wishList.findMany({
+    const cartItems = await prisma.cart.findMany({
       where: { userId },
       select: { productId: true },
     });
 
     return cartItems.map((item) => item.productId);
   } catch (error) {
-    console.error("Error fetching wishlist:", error);
+    console.error("Error fetching cart:", error);
     return [];
   }
 }
@@ -45,7 +45,7 @@ export async function getCartProducts(userId: string): Promise<ProductType[]> {
   if (!userId) throw new Error("Missing userId");
 
   try {
-    const cartItems = await prisma.wishList.findMany({
+    const cartItems = await prisma.cart.findMany({
       where: { userId },
       select: { productId: true },
     });
@@ -62,7 +62,7 @@ export async function getCartProducts(userId: string): Promise<ProductType[]> {
 
     return products as ProductType[];
   } catch (error) {
-    console.error("Error fetching wishlist:", error);
+    console.error("Error fetching cart:", error);
     return [];
   }
 }
