@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "./variables";
 
 .auth-form {
@@ -49,7 +50,7 @@
       &:focus {
         outline: none;
         border-color: $accent-color;
-        background-color: darken($input-bg, 5%);
+        background-color: color.adjust($input-bg, $lightness: 5%);
       }
     }
 

@@ -2,8 +2,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0rem 8rem;
+  justify-content: space-around;
   position: relative;
   margin-top: 100px;
 
@@ -86,5 +85,12 @@
     .category-filter {
       order: 3;
     }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .search-bar {
+    justify-content: space-between;
+    padding: 0 2rem;
   }
 }
