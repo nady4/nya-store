@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { useSession } from "next-auth/react";
 import { addToCart, removeFromCart } from "@/store/slices/cartSlice";
@@ -10,11 +10,7 @@ export function useToggleCartProduct(productId: string) {
   const { data: session } = useSession();
   const userId = session?.user?.id as string;
   const cartIds = useAppSelector((state) => state.cart);
-
-  const isInCart = useMemo(
-    () => cartIds.includes(productId),
-    [cartIds, productId]
-  );
+  const isInCart = cartIds.includes(productId);
 
   const onCartClick = useCallback(
     (e: React.MouseEvent) => {
@@ -27,7 +23,7 @@ export function useToggleCartProduct(productId: string) {
         dispatch(addToCart(productId));
       }
 
-      toggleCartProduct(userId, productId);
+      toggleCartProduct(userId, productId); // async
     },
     [dispatch, isInCart, productId, userId]
   );
