@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setCategories } from "@/store/slices/categorySlice";
 import { useFilterProducts } from "@/hooks/useFilterProducts";
@@ -8,12 +9,14 @@ import "../styles/Catalog.scss";
 
 function ProductList() {
   const dispatch = useAppDispatch();
+  const pathname = usePathname();
   const products = useAppSelector((state) => state.products);
   const filteredProducts = useFilterProducts(products);
   const categories = useMemo(
     () => [...new Set(products.map((p) => p.category))],
     [products]
   );
+  const isCartRoute = pathname === "/cart";
 
   useEffect(() => {
     dispatch(setCategories(categories));
@@ -25,7 +28,11 @@ function ProductList() {
         <p>Loading Products...</p>
       ) : (
         filteredProducts.map((product) => (
-          <CatalogCard key={product.id} {...product} />
+          <CatalogCard
+            key={product.id}
+            {...product}
+            showRemoveButton={isCartRoute}
+          />
         ))
       )}
     </div>
