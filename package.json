@@ -8,7 +8,7 @@
     "lint": "next lint",
     "build": "npm run prisma:generate && next build",
     "prisma:generate": "prisma generate",
-    "prisma:seed": "node prisma/seed.js",
+    "prisma:seed": "node prisma/seed.mjs",
     "prisma:migrate": "prisma migrate dev --name init",
     "postinstall": "npm run prisma:generate"
   },
