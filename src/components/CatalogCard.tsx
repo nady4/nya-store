@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useToggleWishlist } from "@/hooks/useToggleWishlist";
 import { useToggleCartProduct } from "@/hooks/useToggleCartProduct";
 import { heart, heartFilled, cart } from "../../public/assets/icons";
@@ -16,16 +15,13 @@ const CatalogCard: React.FC<CatalogCardProps> = ({
   name,
   price,
   photo,
-  showRemoveButton = false,
 }) => {
   const { isWishlisted, onHeartClick } = useToggleWishlist(id);
   const { isInCart, onCartClick } = useToggleCartProduct(id);
-  const pathname = usePathname();
-  const isCartRoute = pathname === "/cart";
 
   return (
     <Link href={`/products/${id}`} passHref>
-      <div className={`product-card ${isCartRoute ? " isCart" : ""}`}>
+      <div className={"product-card"}>
         <Image
           src={photo}
           alt={name}
@@ -46,19 +42,17 @@ const CatalogCard: React.FC<CatalogCardProps> = ({
         <p className={`${silkscreen.className} product-price`}>
           ${price.toFixed(2)}
         </p>
-        {showRemoveButton && (
-          <div className="bottom">
-            <button
-              className={
-                silkscreen.className + " button" + (isInCart ? " isInCart" : "")
-              }
-              onClick={onCartClick}
-            >
-              <Image src={cart} className="button-icon" alt="cart icon" />
-              Remove from cart
-            </button>
-          </div>
-        )}
+        <div className="bottom">
+          <button
+            className={
+              silkscreen.className + " button" + (isInCart ? " isInCart" : "")
+            }
+            onClick={onCartClick}
+          >
+            <Image src={cart} className="button-icon" alt="cart icon" />
+            {isInCart ? "Remove from cart" : "Add to cart"}
+          </button>
+        </div>
       </div>
     </Link>
   );

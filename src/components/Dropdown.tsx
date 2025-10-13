@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRef, useEffect, useState, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import {
   menu,
@@ -17,6 +18,7 @@ export default function Dropdown() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleDropdown = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
@@ -39,6 +41,10 @@ export default function Dropdown() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [handleClickOutside]);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <div className="dropdown-wrapper right-content">
