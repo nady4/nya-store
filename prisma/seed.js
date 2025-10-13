@@ -12,11 +12,13 @@ async function main() {
   const products = JSON.parse(productsData);
 
   for (const product of products) {
-    await prisma.product.upsert({
+    const exists = await prisma.product.findFirst({
       where: { name: product.name },
-      update: {},
-      create: product,
     });
+
+    if (!exists) {
+      await prisma.product.create({ data: product });
+    }
   }
 
   console.log("✅ Seeding complete!");
