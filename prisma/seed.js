@@ -13,7 +13,7 @@ async function main() {
 
   for (const product of products) {
     await prisma.product.upsert({
-      where: { id: product.id },
+      where: { name: product.name },
       update: {},
       create: product,
     });
