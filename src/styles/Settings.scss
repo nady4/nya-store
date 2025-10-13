@@ -17,6 +17,10 @@ body {
   min-height: 100vh;
 }
 
+.checkout-button {
+  font-family: $body-font;
+}
+
 // Common Form Styles
 .form-container {
   display: flex;

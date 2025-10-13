@@ -36,13 +36,13 @@
     "category": "Skirts"
   },
   {
-    "name": "Black Leather Goth Skirt ",
+    "name": "Black Leather Goth Skirt",
     "price": 50.0,
     "photo": "/assets/products/goth_skirt.jpg",
     "category": "Skirts"
   },
   {
-    "name": "The C Programming Language - Kernighan & Ritchie",
+    "name": "The C Programming Language",
     "price": 100.0,
     "photo": "/assets/products/c_book.jpg",
     "category": "Books"
