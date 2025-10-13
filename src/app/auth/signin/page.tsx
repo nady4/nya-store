@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useValidateAuth } from "@/hooks/useValidateAuth";
 import "@/styles/Auth.scss";
 

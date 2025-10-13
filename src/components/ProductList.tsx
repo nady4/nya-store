@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
+import { useFilterProducts } from "@/hooks/useFilterProducts";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setCategories } from "@/store/slices/categorySlice";
-import { useFilterProducts } from "@/hooks/useFilterProducts";
 import { silkscreen } from "@/app/fonts";
 import CatalogCard from "./CatalogCard";
 import "../styles/Catalog.scss";

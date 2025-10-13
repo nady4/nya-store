@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useToggleWishlist } from "@/hooks/useToggleWishlist";
-import { useToggleCartProduct } from "@/hooks/useToggleCartProduct";
+import { useToggleCartProduct, useToggleWishlist } from "@/hooks/useToggleData";
 import { heart, heartFilled, cart } from "../../public/assets/icons";
 import { silkscreen, tomorrow } from "@/app/fonts";
 import { ProductType } from "@/types";

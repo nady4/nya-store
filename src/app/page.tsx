@@ -4,8 +4,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useInitData } from "@/hooks/useInitData";
 import { initializeCart } from "@/store/slices/cartSlice";
-import { getCartIds } from "@/actions/cart";
 import { initializeWishList } from "@/store/slices/wishListSlice";
+import { getCartIds } from "@/actions/cart";
 import { getWishlistIds } from "@/actions/wishlist";
 
 const initializationTasks = [

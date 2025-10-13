@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useToggleCartProduct } from "@/hooks/useToggleCartProduct";
+import { useToggleCartProduct } from "@/hooks/useToggleData";
 import { tomorrow, silkscreen } from "@/app/fonts";
 import { cart } from "../../public/assets/icons";
 import { ProductType } from "@/types";

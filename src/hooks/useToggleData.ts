@@ -1,12 +1,41 @@
 "use client";
-import { useCallback, useMemo } from "react";
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { useCallback } from "react";
+import { useMemo } from "react";
 import { useSession } from "next-auth/react";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addToCart, removeFromCart } from "@/store/slices/cartSlice";
 import {
   addToWishList,
   removeFromWishList,
 } from "@/store/slices/wishListSlice";
+import { toggleCartProduct } from "@/actions/cart";
 import { toggleWishlistProduct } from "@/actions/wishlist";
+
+export function useToggleCartProduct(productId: string) {
+  const dispatch = useAppDispatch();
+  const { data: session } = useSession();
+  const userId = session?.user?.id as string;
+  const cartIds = useAppSelector((state) => state.cart);
+  const isInCart = cartIds.includes(productId);
+
+  const onCartClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (isInCart) {
+        dispatch(removeFromCart(productId));
+      } else {
+        dispatch(addToCart(productId));
+      }
+
+      toggleCartProduct(userId, productId); // async
+    },
+    [dispatch, isInCart, productId, userId]
+  );
+
+  return { isInCart, onCartClick };
+}
 
 export function useToggleWishlist(productId: string) {
   const dispatch = useAppDispatch();

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useGetProduct } from "@/hooks/useGetProduct";
-import { useToggleWishlist } from "@/hooks/useToggleWishlist";
+import { useToggleWishlist } from "@/hooks/useToggleData";
 import ProductCard from "@/components/ProductCard";
 import RelatedProducts from "@/components/RelatedProducts";
 import { heart, heartFilled } from "../../../../public/assets/icons";
