@@ -7,7 +7,7 @@ import { silkscreen } from "@/app/fonts";
 import CatalogCard from "./CatalogCard";
 import "../styles/Catalog.scss";
 
-function ProductList() {
+function ProductList({ isLoadingExternal }: { isLoadingExternal?: boolean }) {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.products);
   const [loading, setLoading] = useState(true);
@@ -19,8 +19,13 @@ function ProductList() {
   );
 
   useEffect(() => {
-    if (products.length > 0) setLoading(false);
-  }, [products]);
+    if (products.length > 0) {
+      setLoading(false);
+    } else if (isLoadingExternal === false) {
+      // Data fetch complete but no products - this handles empty cart
+      setLoading(false);
+    }
+  }, [products, isLoadingExternal]);
 
   useEffect(() => {
     dispatch(setCategories(categories));

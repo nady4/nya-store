@@ -1,17 +1,15 @@
 "use client";
-import { useLoadProducts } from "@/hooks/useLoadProducts";
-import { useLoadWishListIds } from "@/hooks/useLoadWishListIds";
+import { useLoadPageData } from "@/hooks/useLoadPageData";
 import SearchBar from "@/components/SearchBar";
-import Catalog from "@/components/Catalog";
+import ProductList from "@/components/ProductList";
 
 export default function CatalogPage() {
-  useLoadProducts();
-  useLoadWishListIds();
+  const { loading } = useLoadPageData("catalog");
 
   return (
     <div className="home-container">
       <SearchBar />
-      <Catalog />
+      <ProductList isLoadingExternal={loading} />
     </div>
   );
 }

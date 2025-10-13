@@ -2,16 +2,23 @@
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useInitializeWishList } from "@/hooks/useInitializeWishList";
-import { useInitializeCart } from "@/hooks/useInitializeCart";
+import { useInitData } from "@/hooks/useInitData";
+import { initializeCart } from "@/store/slices/cartSlice";
+import { getCartIds } from "@/actions/cart";
+import { initializeWishList } from "@/store/slices/wishListSlice";
+import { getWishlistIds } from "@/actions/wishlist";
+
+const initializationTasks = [
+  { action: getCartIds, initializer: initializeCart },
+  { action: getWishlistIds, initializer: initializeWishList },
+];
 
 export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const userId = session?.user?.id;
 
-  useInitializeWishList(userId);
-  useInitializeCart(userId);
+  useInitData(userId, initializationTasks);
 
   useEffect(() => {
     if (status === "loading") return;
