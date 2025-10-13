@@ -1,10 +1,15 @@
 import { PrismaClient } from "@prisma/client";
-import products from "../src/data/products.json" assert { type: "json" };
+import { readFile } from "fs/promises";
+import { join } from "path";
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log("🌱 Seeding products...");
+
+  const productsPath = join(process.cwd(), "src/data/products.json");
+  const productsData = await readFile(productsPath, "utf-8");
+  const products = JSON.parse(productsData);
 
   for (const product of products) {
     await prisma.product.upsert({
