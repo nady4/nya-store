@@ -81,7 +81,7 @@ model OrderItem {
 }
 
 model Product {
-  id         String      @id @default(uuid())
+  id       String  @id @default(cuid())
   orderItems OrderItem[]
   wishLists  WishList[]
   carts Cart[]
