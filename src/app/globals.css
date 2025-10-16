@@ -1,4 +1,9 @@
-@import "@/styles/variables.scss";
+$bg-color: #0e0e0e;
+$text-color: #f0f0f0;
+
+// Fonts
+$title-font: "Silkscreen", cursive;
+$body-font: "Tomorrow", sans-serif;
 
 :root {
   --background: #ffffff;
