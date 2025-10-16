@@ -8,6 +8,16 @@
     border: none;
   }
 
+  &:hover .dropdown-switch {
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+  }
+
+  &:active .dropdown-switch {
+    transform: scale(0.9);
+    transition: 0.3s ease-in-out;
+  }
+
   .dropdown-container {
     position: fixed;
     top: 80px;

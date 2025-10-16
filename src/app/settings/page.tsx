@@ -85,7 +85,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="settings-form">
+    <div className="form-container">
       <h2 className="title">Account Settings</h2>
       <form onSubmit={handleSubmit}>
         <input

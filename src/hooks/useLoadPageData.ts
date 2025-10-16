@@ -10,6 +10,8 @@ import { getCartProducts, getCartIds } from "@/actions/cart";
 import { getWishListProducts, getWishlistIds } from "@/actions/wishlist";
 import { ProductType } from "@/types";
 
+type PageType = "catalog" | "cart" | "wishlist";
+
 // Caches
 let productsCache: ProductType[] | null = null;
 let cartProductsCache: ProductType[] | null = null;
@@ -23,8 +25,6 @@ let cartProductsFetchPromise: Promise<ProductType[]> | null = null;
 let cartIdsFetchPromise: Promise<string[]> | null = null;
 let wishlistProductsFetchPromise: Promise<ProductType[]> | null = null;
 let wishlistIdsFetchPromise: Promise<string[]> | null = null;
-
-type PageType = "catalog" | "cart" | "wishlist";
 
 export const useLoadPageData = (pageType: PageType) => {
   const { data: session, status } = useSession();

@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setCategories } from "@/store/slices/categorySlice";
 import { silkscreen } from "@/app/fonts";
 import CatalogCard from "./CatalogCard";
-import "../styles/Catalog.scss";
+import "../styles/ProductList.scss";
 
 function ProductList({ isLoadingExternal }: { isLoadingExternal?: boolean }) {
   const dispatch = useAppDispatch();

@@ -23,8 +23,19 @@ const DoubleRangeSlider = () => {
     [dispatch, min]
   );
 
+  const minPercent = ((min - minLimit) / (maxLimit - minLimit)) * 100;
+  const maxPercent = ((max - minLimit) / (maxLimit - minLimit)) * 100;
+
   return (
-    <div className="price-filter">
+    <div
+      className="price-filter"
+      style={
+        {
+          "--min": `${minPercent}%`,
+          "--max": `${maxPercent}%`,
+        } as React.CSSProperties
+      }
+    >
       <input
         type="range"
         min={minLimit}
@@ -44,8 +55,12 @@ const DoubleRangeSlider = () => {
         className="price-filter-input max-range"
       />
       <div className="range-values">
-        <span className="min-value">{min}</span>
-        <span className="max-value">{max}</span>
+        <span className="min-value" style={{ left: `${minPercent}%` }}>
+          {min}
+        </span>
+        <span className="max-value" style={{ left: `${maxPercent}%` }}>
+          {max}
+        </span>
       </div>
     </div>
   );
