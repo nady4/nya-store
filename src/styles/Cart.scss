@@ -1,7 +1,13 @@
 .cart-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 1rem;
   margin-bottom: 3rem;
+}
+
+@media screen and (max-width: 600px) {
+  .cart-container {
+    flex-direction: column;
+  }
 }

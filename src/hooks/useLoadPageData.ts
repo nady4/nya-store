@@ -6,7 +6,7 @@ import { setProducts } from "@/store/slices/productsSlice";
 import { initializeCart } from "@/store/slices/cartSlice";
 import { initializeWishList } from "@/store/slices/wishListSlice";
 import { getProducts } from "@/actions/products";
-import { getCartProducts, getCartIds } from "@/actions/cart";
+import { getCartProducts } from "@/actions/cart";
 import { getWishListProducts, getWishlistIds } from "@/actions/wishlist";
 import { ProductType } from "@/types";
 
@@ -15,14 +15,11 @@ type PageType = "catalog" | "cart" | "wishlist";
 // Caches
 let productsCache: ProductType[] | null = null;
 let cartProductsCache: ProductType[] | null = null;
-let cartIdsCache: string[] | null = null;
 let wishlistProductsCache: ProductType[] | null = null;
 let wishlistIdsCache: string[] | null = null;
 
-// Promises
 let productsFetchPromise: Promise<ProductType[]> | null = null;
 let cartProductsFetchPromise: Promise<ProductType[]> | null = null;
-let cartIdsFetchPromise: Promise<string[]> | null = null;
 let wishlistProductsFetchPromise: Promise<ProductType[]> | null = null;
 let wishlistIdsFetchPromise: Promise<string[]> | null = null;
 
@@ -38,7 +35,6 @@ export const useLoadPageData = (pageType: PageType) => {
 
       try {
         if (pageType === "catalog") {
-          // Load all products
           if (productsCache) {
             dispatch(setProducts(productsCache));
           } else if (productsFetchPromise) {
@@ -52,7 +48,6 @@ export const useLoadPageData = (pageType: PageType) => {
             productsFetchPromise = null;
           }
 
-          // Load wishlist IDs if authenticated
           if (status === "authenticated" && userId) {
             if (wishlistIdsCache) {
               dispatch(initializeWishList(wishlistIdsCache));
@@ -68,55 +63,39 @@ export const useLoadPageData = (pageType: PageType) => {
             }
           }
         } else if (pageType === "cart") {
-          if (status === "unauthenticated") {
-            dispatch(setProducts([]));
+          if (status !== "authenticated" || !userId) {
+            dispatch(initializeCart([]));
             setLoading(false);
             return;
           }
 
-          if (!userId || status !== "authenticated") {
-            return;
-          }
-
-          // Load cart IDs
-          if (cartIdsCache) {
-            dispatch(initializeCart(cartIdsCache));
-          } else if (cartIdsFetchPromise) {
-            const ids = await cartIdsFetchPromise;
-            dispatch(initializeCart(ids));
-          } else {
-            cartIdsFetchPromise = getCartIds(userId);
-            const ids = await cartIdsFetchPromise;
-            cartIdsCache = ids;
-            dispatch(initializeCart(ids));
-            cartIdsFetchPromise = null;
-          }
-
-          // Load cart products
           if (cartProductsCache) {
-            dispatch(setProducts(cartProductsCache));
+            dispatch(
+              initializeCart(
+                cartProductsCache.map((p) => ({ ...p, quantity: 1 }))
+              )
+            );
           } else if (cartProductsFetchPromise) {
             const products = await cartProductsFetchPromise;
-            dispatch(setProducts(products));
+            dispatch(
+              initializeCart(products.map((p) => ({ ...p, quantity: 1 })))
+            );
           } else {
             cartProductsFetchPromise = getCartProducts(userId);
             const products = await cartProductsFetchPromise;
             cartProductsCache = products;
-            dispatch(setProducts(products));
+            dispatch(
+              initializeCart(products.map((p) => ({ ...p, quantity: 1 })))
+            );
             cartProductsFetchPromise = null;
           }
         } else if (pageType === "wishlist") {
-          if (status === "unauthenticated") {
+          if (status !== "authenticated" || !userId) {
             dispatch(setProducts([]));
             setLoading(false);
             return;
           }
 
-          if (!userId || status !== "authenticated") {
-            return;
-          }
-
-          // Load wishlist IDs
           if (wishlistIdsCache) {
             dispatch(initializeWishList(wishlistIdsCache));
           } else if (wishlistIdsFetchPromise) {
@@ -130,7 +109,6 @@ export const useLoadPageData = (pageType: PageType) => {
             wishlistIdsFetchPromise = null;
           }
 
-          // Load wishlist products
           if (wishlistProductsCache) {
             dispatch(setProducts(wishlistProductsCache));
           } else if (wishlistProductsFetchPromise) {

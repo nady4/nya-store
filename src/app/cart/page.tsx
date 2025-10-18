@@ -1,9 +1,9 @@
 "use client";
 import { useAppSelector } from "@/store/hooks";
 import { useLoadPageData } from "@/hooks/useLoadPageData";
-import ProductList from "@/components/ProductList";
-import CheckoutButton from "@/components/CheckoutButton";
+import Order from "@/components/Order";
 import "@/styles/Cart.scss";
+import AddressPage from "../address/page";
 
 export default function CartPage() {
   const { loading } = useLoadPageData("cart");
@@ -12,10 +12,13 @@ export default function CartPage() {
 
   return (
     <div className="cart-container">
-      <div style={{ height: "50px" }}></div>
-      <ProductList isLoadingExternal={loading} />
-      {!loading && !isCartEmpty && (
-        <CheckoutButton title="Cart" price={1000} quantity={1} />
+      {isCartEmpty ? (
+        <p className="status">Your cart is empty</p>
+      ) : (
+        <>
+          <Order />
+          <AddressPage />
+        </>
       )}
     </div>
   );

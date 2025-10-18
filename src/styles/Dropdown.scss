@@ -46,6 +46,11 @@
       border: none;
       text-align: left;
 
+      img{
+        width: 30px;
+        height: 30px;
+      }
+
       &:hover {
         background-color: #1f1f1f;
       }

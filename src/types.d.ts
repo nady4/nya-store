@@ -5,6 +5,15 @@ export interface ProductType {
   photo: string;
   category: string;
 }
+
+export interface AddressType {
+  id: string;
+  street: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+}
 declare module "next-auth" {
   interface User {
     id: string;

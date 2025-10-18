@@ -4,6 +4,7 @@ export { default as filter } from "./filter.svg";
 export { default as gear } from "./gear.svg";
 export { default as heart } from "./heart.svg";
 export { default as heartFilled } from "./heartFilled.svg";
+export { default as house } from "./house.svg";
 export { default as logout } from "./logout.svg";
 export { default as menu } from "./menu.svg";
 export { default as paws } from "./paws.svg";

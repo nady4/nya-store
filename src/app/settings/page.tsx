@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useValidateAuth } from "@/hooks/useValidateAuth";
 import { useValidateSettings } from "@/hooks/useValidateSettings";
-import "@/styles/Settings.scss";
+import FormContainer from "@/components/FormContainer";
 
 export default function SettingsPage() {
   const { data: session, status } = useSession();
@@ -21,7 +21,6 @@ export default function SettingsPage() {
     if (session?.user) {
       const userEmail = session.user.email || "";
       const userUsername = session.user.username || "";
-
       setEmail(userEmail);
       setUsername(userUsername);
       setInitialEmail(userEmail);
@@ -48,45 +47,36 @@ export default function SettingsPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (newPassword && !validateForm()) return;
 
     try {
       const res = await fetch("/api/user/settings", {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
           username,
           currentPassword,
-          newPassword: newPassword || undefined, // Only send newPassword if it's not empty
+          newPassword: newPassword || undefined,
         }),
       });
 
-      if (res.ok) {
-        router.push("/dashboard");
-      } else {
-        const data = await res.json();
-        throw new Error(data.error || "Update failed");
-      }
+      if (res.ok) router.push("/dashboard");
+      else throw new Error((await res.json()).error || "Update failed");
     } catch (err) {
       if (err instanceof Error) console.error(err.message);
     }
   };
 
-  if (status === "loading") {
+  if (status === "loading")
     return (
-      <div className="settings-form">
+      <FormContainer title="Account Settings">
         <p className="loading">Loading session...</p>
-      </div>
+      </FormContainer>
     );
-  }
 
   return (
-    <div className="form-container">
-      <h2 className="title">Account Settings</h2>
+    <FormContainer title="Account Settings">
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -114,17 +104,10 @@ export default function SettingsPage() {
           required
         />
         {error && <p className="error">{error}</p>}
-        <button
-          type="submit"
-          disabled={!isSubmitEnabled}
-          style={{
-            opacity: isSubmitEnabled ? 1 : 0.5,
-            cursor: isSubmitEnabled ? "pointer" : "not-allowed",
-          }}
-        >
+        <button type="submit" disabled={!isSubmitEnabled}>
           Save Changes
         </button>
       </form>
-    </div>
+    </FormContainer>
   );
 }

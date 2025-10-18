@@ -7,6 +7,7 @@ import { signOut } from "next-auth/react";
 import {
   menu,
   cart,
+  house,
   heart,
   truck,
   gear,
@@ -59,17 +60,21 @@ export default function Dropdown() {
         className={`dropdown-container ${isOpen ? "open" : "closed"}`}
         ref={dropdownRef}
       >
-        <Link href="/cart">
-          <Image src={cart} alt="Cart" />
-          <h3>Cart</h3>
-        </Link>
+      <Link href="/wishlist">
+        <Image src={heart} alt="Wishlist" />
+        <h3>Wishlist</h3>
+      </Link>
+      <Link href="/cart">
+        <Image src={cart} alt="Cart" />
+        <h3>Cart</h3>
+      </Link>
         <Link href="/orders">
           <Image src={truck} alt="Orders" />
           <h3>Orders</h3>
         </Link>
-        <Link href="/wishlist">
-          <Image src={heart} alt="Wishlist" />
-          <h3>Wishlist</h3>
+        <Link href="/address">
+          <Image src={house} alt="Address" />
+          <h3>Address</h3>
         </Link>
         <Link href="/settings">
           <Image src={gear} alt="Settings" />

@@ -11,7 +11,6 @@ model User {
   id         String      @id @default(uuid())
   address    Address?    @relation(fields: [addressId], references: [id])
   orders     Order[]
-  orderItems OrderItem[] 
   wishlist   WishList[]
   cart       Cart[]
 
@@ -32,7 +31,8 @@ model Address {
   street     String
   city       String
   state      String
-  zipCode    String
+  postalCode String
+  country    String
 }
 
 model Shipment {
@@ -66,17 +66,14 @@ model Order {
 model OrderItem {
   id         String   @id @default(uuid())
   order      Order    @relation(fields: [orderId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
   product    Product  @relation(fields: [productId], references: [id])
 
-  size       String
   quantity   Int
   cost       Float
   price      Float
   total      Float
 
   orderId    String
-  userId     String
   productId  String
 }
 
