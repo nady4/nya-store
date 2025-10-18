@@ -1,21 +1,20 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { useValidateAuth } from "@/hooks/useValidateAuth";
 import { useValidateSettings } from "@/hooks/useValidateSettings";
+import { updateUser } from "@/actions/user";
 import FormContainer from "@/components/FormContainer";
 
 export default function SettingsPage() {
   const { data: session, status } = useSession();
-  const router = useRouter();
-
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [initialEmail, setInitialEmail] = useState("");
   const [initialUsername, setInitialUsername] = useState("");
+  const [pending, startTransition] = useTransition();
 
   useEffect(() => {
     if (session?.user) {
@@ -45,27 +44,16 @@ export default function SettingsPage() {
     hasOtherChanges,
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (formData: FormData) => {
     if (newPassword && !validateForm()) return;
-
-    try {
-      const res = await fetch("/api/user/settings", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          username,
-          currentPassword,
-          newPassword: newPassword || undefined,
-        }),
-      });
-
-      if (res.ok) router.push("/dashboard");
-      else throw new Error((await res.json()).error || "Update failed");
-    } catch (err) {
-      if (err instanceof Error) console.error(err.message);
-    }
+    startTransition(async () => {
+      try {
+        await updateUser(formData);
+        window.location.href = "/dashboard";
+      } catch (err) {
+        console.error(err);
+      }
+    });
   };
 
   if (status === "loading")
@@ -77,35 +65,39 @@ export default function SettingsPage() {
 
   return (
     <FormContainer title="Account Settings">
-      <form onSubmit={handleSubmit}>
+      <form action={handleSubmit}>
         <input
           type="email"
+          name="email"
           placeholder="New Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="text"
+          name="username"
           placeholder="New Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
+          name="newPassword"
           placeholder="New Password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
         />
         <input
           type="password"
+          name="currentPassword"
           placeholder="Current Password"
           value={currentPassword}
           onChange={(e) => setCurrentPassword(e.target.value)}
           required
         />
         {error && <p className="error">{error}</p>}
-        <button type="submit" disabled={!isSubmitEnabled}>
-          Save Changes
+        <button type="submit" disabled={!isSubmitEnabled || pending}>
+          {pending ? "Saving..." : "Save Changes"}
         </button>
       </form>
     </FormContainer>
