@@ -9,6 +9,7 @@ import { getProducts } from "@/actions/products";
 import { getCartProducts } from "@/actions/cart";
 import { getWishListProducts, getWishlistIds } from "@/actions/wishlist";
 import { ProductType } from "@/types";
+import { setCategories } from "@/store/slices/categorySlice";
 
 type PageType = "catalog" | "cart" | "wishlist";
 
@@ -35,19 +36,27 @@ export const useLoadPageData = (pageType: PageType) => {
 
       try {
         if (pageType === "catalog") {
+          let products: ProductType[];
+
           if (productsCache) {
-            dispatch(setProducts(productsCache));
+            products = productsCache;
           } else if (productsFetchPromise) {
-            const products = await productsFetchPromise;
-            dispatch(setProducts(products));
+            products = await productsFetchPromise;
           } else {
             productsFetchPromise = getProducts();
-            const products = await productsFetchPromise;
+            products = await productsFetchPromise;
             productsCache = products;
-            dispatch(setProducts(products));
             productsFetchPromise = null;
           }
 
+          // Setear productos
+          dispatch(setProducts(products));
+
+          // 💥 Setear categorías
+          const categories = [...new Set(products.map((p) => p.category))];
+          dispatch(setCategories(categories));
+
+          // Wishlist (ya estaba)
           if (status === "authenticated" && userId) {
             if (wishlistIdsCache) {
               dispatch(initializeWishList(wishlistIdsCache));
@@ -71,22 +80,17 @@ export const useLoadPageData = (pageType: PageType) => {
 
           if (cartProductsCache) {
             dispatch(
-              initializeCart(
-                cartProductsCache.map((p) => ({ ...p, quantity: 1 }))
-              )
+              initializeCart(cartProductsCache.map((p: ProductType) => p.id))
             );
           } else if (cartProductsFetchPromise) {
             const products = await cartProductsFetchPromise;
-            dispatch(
-              initializeCart(products.map((p) => ({ ...p, quantity: 1 })))
-            );
+            dispatch(initializeCart(products.map((p) => p.id)));
           } else {
             cartProductsFetchPromise = getCartProducts(userId);
             const products = await cartProductsFetchPromise;
             cartProductsCache = products;
-            dispatch(
-              initializeCart(products.map((p) => ({ ...p, quantity: 1 })))
-            );
+            dispatch(initializeCart(products.map((p) => p.id)));
+
             cartProductsFetchPromise = null;
           }
         } else if (pageType === "wishlist") {

@@ -11,10 +11,21 @@ import "../styles/SearchBar.scss";
 
 function SearchBar() {
   const dispatch = useAppDispatch();
-  const { categories, activeCategories } = useAppSelector(
-    (state) => state.category
+
+  const categoryState = useAppSelector(
+    (state) =>
+      state.category as
+        | { categories: string[]; activeCategories: Record<string, boolean> }
+        | undefined
   );
-  const searchTerm = useAppSelector((state) => state.searchTerm);
+
+  const categories = categoryState?.categories ?? [];
+  const activeCategories = categoryState?.activeCategories ?? {};
+
+  const searchTermState = useAppSelector(
+    (state) => state.searchTerm as string | undefined
+  );
+  const searchTerm = searchTermState ?? "";
 
   const onCategoriesClick = useCallback(
     (category: string) => {

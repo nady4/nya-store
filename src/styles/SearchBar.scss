@@ -4,7 +4,10 @@
   align-items: center;
   justify-content: space-around;
   position: relative;
-  margin-top: 100px;
+  top: 80px;
+  z-index: 10;
+  background-color: #0e0e0e;
+  min-height: 100px;
 
   .search-box {
     display: flex;

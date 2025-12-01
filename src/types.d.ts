@@ -14,6 +14,17 @@ export interface AddressType {
   postalCode: string;
   country: string;
 }
+
+export interface AddressProps {
+  initialAddress: {
+    street: string;
+    city: string;
+    state: string | null;
+    postalCode: string;
+    country: string;
+  } | null;
+}
+
 declare module "next-auth" {
   interface User {
     id: string;

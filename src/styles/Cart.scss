@@ -1,13 +1,23 @@
 .cart-container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
+  justify-content: center;
+  padding: 2rem;
 }
 
-@media screen and (max-width: 600px) {
-  .cart-container {
-    flex-direction: column;
-  }
+.order {
+  width: 100%;
+  max-width: 480px;
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+  padding: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #ff0099 #111;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px dashed #444;
 }

@@ -11,6 +11,10 @@
   height: 80px;
   background-color: #0e0e0e;
 
+  .left-content {
+    font-size: 1.5rem;
+  }
+
   .center-content {
     position: absolute;
     left: 50%;
@@ -21,9 +25,7 @@
 @media screen and (max-width: 600px) {
   .navbar-container {
     align-items: center;
-    .left-content {
-      font-size: 1.5rem;
-    }
+
     .center-content {
       order: -1;
       position: relative;

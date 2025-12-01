@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { useAppSelector } from "@/store/hooks";
 import { getCartProducts } from "@/actions/cart";
 import { ProductType } from "@/types";
 import "../styles/Order.scss";
@@ -12,34 +11,44 @@ interface CartItem extends ProductType {
 }
 
 function Order() {
-  const { data: session } = useSession();
-  const cartIds = useAppSelector((state) => state.cart);
+  const { data: session, status } = useSession();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (status !== "authenticated") return;
+    if (!session?.user?.id) return;
+
     async function loadCart() {
-      if (!session?.user?.id) return;
-
       setLoading(true);
-      const products = await getCartProducts(session.user.id);
+      try {
+        if (status !== "authenticated") return;
+        if (!session?.user?.id) return;
 
-      // Count quantities from cartIds
-      const cartWithQuantities = products.map((product) => {
-        const quantity = cartIds.filter((id) => id === product.id).length;
-        return { ...product, quantity };
-      });
+        const products = await getCartProducts(session.user.id);
 
-      setCart(cartWithQuantities);
-      setLoading(false);
+        const cartWithQuantities: CartItem[] = products.map((product) => ({
+          ...product,
+          quantity: 1,
+        }));
+
+        setCart(cartWithQuantities);
+      } catch (error) {
+        console.error("Error loading cart:", error);
+        setCart([]);
+      } finally {
+        setLoading(false);
+      }
     }
 
     loadCart();
-  }, [session?.user?.id, cartIds]);
+  }, [status, session]);
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  if (loading) return <p className="empty">Cargando...</p>;
+  if (loading || status === "loading")
+    return <p className="empty">Cargando...</p>;
+
   if (cart.length === 0)
     return <p className="empty">🛒 Tu carrito está vacío</p>;
 
@@ -56,7 +65,7 @@ function Order() {
             style={{ borderRadius: "8px" }}
           />
           <span className="name">{item.name}</span>
-          <span className="quantity">x: {item.quantity}</span>
+          <span className="quantity">x{item.quantity}</span>
           <span className="price">
             ${(item.price * item.quantity).toFixed(2)}
           </span>
@@ -66,7 +75,7 @@ function Order() {
       <div className="order-total">Total: ${total.toFixed(2)}</div>
 
       <div className="button-container">
-        <button className="confirm-button"> Confirm Order</button>
+        <button className="confirm-button">Confirm Order</button>
       </div>
     </div>
   );

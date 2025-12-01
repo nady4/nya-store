@@ -46,7 +46,7 @@
       border: none;
       text-align: left;
 
-      img{
+      img {
         width: 30px;
         height: 30px;
       }
@@ -56,7 +56,7 @@
       }
     }
     &.closed {
-      right: -400px;
+      right: -500px;
     }
   }
 }

@@ -49,7 +49,7 @@ export default function SettingsPage() {
     startTransition(async () => {
       try {
         await updateUser(formData);
-        window.location.href = "/dashboard";
+        window.location.href = "/catalog";
       } catch (err) {
         console.error(err);
       }
