@@ -52,11 +52,11 @@ export const useLoadPageData = (pageType: PageType) => {
           // Setear productos
           dispatch(setProducts(products));
 
-          // 💥 Setear categorías
+          // Setear categorías
           const categories = [...new Set(products.map((p) => p.category))];
           dispatch(setCategories(categories));
 
-          // Wishlist (ya estaba)
+          // Wishlist
           if (status === "authenticated" && userId) {
             if (wishlistIdsCache) {
               dispatch(initializeWishList(wishlistIdsCache));

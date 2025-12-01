@@ -15,8 +15,7 @@ export async function getUserAddress() {
 
   return user?.address || null;
 }
-
-export async function updateAddress(formData: FormData) {
+export async function updateAddress(formData: FormData): Promise<void> {
   const session = await getServerSession(authOptions);
   if (!session?.user?.email) throw new Error("Unauthorized");
 
@@ -52,5 +51,4 @@ export async function updateAddress(formData: FormData) {
   }
 
   revalidatePath("/address");
-  return { success: true };
 }

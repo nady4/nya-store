@@ -1,13 +1,15 @@
 @import "./variables";
 
-body {
+.form-page {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
 
   .form-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     max-width: 450px;
     width: 100%;

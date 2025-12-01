@@ -6,23 +6,17 @@ export interface ProductType {
   category: string;
 }
 
-export interface AddressType {
+export interface Address {
   id: string;
   street: string;
   city: string;
-  state: string;
+  state: string | null;
   postalCode: string;
   country: string;
 }
 
 export interface AddressProps {
-  initialAddress: {
-    street: string;
-    city: string;
-    state: string | null;
-    postalCode: string;
-    country: string;
-  } | null;
+  initialAddress: Omit<Address, "id"> | null;
 }
 
 declare module "next-auth" {
