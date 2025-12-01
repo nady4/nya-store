@@ -4,8 +4,9 @@ import { useFilterProducts } from "@/hooks/useFilterProducts";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { setCategories } from "@/store/slices/categorySlice";
 import { silkscreen } from "@/app/fonts";
-import CatalogCard from "./CatalogCard";
+import ProductCard from "./ProductCard";
 import "../styles/ProductList.scss";
+import "../styles/ProductCard.scss";
 
 function ProductList({ isLoadingExternal }: { isLoadingExternal?: boolean }) {
   const dispatch = useAppDispatch();
@@ -44,7 +45,7 @@ function ProductList({ isLoadingExternal }: { isLoadingExternal?: boolean }) {
   return (
     <div className="product-list">
       {filteredProducts.map((product) => (
-        <CatalogCard key={product.id} {...product} />
+        <ProductCard key={product.id} {...product} />
       ))}
     </div>
   );

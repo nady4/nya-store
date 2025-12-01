@@ -1,48 +1,46 @@
-"use client";
 import Image from "next/image";
-import { useState } from "react";
-import { useToggleCartProduct } from "@/hooks/useToggleData";
-import { tomorrow, silkscreen } from "@/app/fonts";
-import { cart } from "../../public/assets/icons";
+import Link from "next/link";
+import { useToggleCartProduct, useToggleWishlist } from "@/hooks/useToggleData";
+import { heart, heartFilled, cart } from "../../public/assets/icons";
+import { silkscreen, tomorrow } from "@/app/fonts";
 import { ProductType } from "@/types";
 
-function ProductCard({ product }: { product: ProductType }) {
-  const { isInCart, onCartClick } = useToggleCartProduct(product.id);
-  const [quantity, setQuantity] = useState(1);
+interface ProductCardProps extends ProductType {
+  showRemoveButton?: boolean;
+}
 
-  const handleDecrease = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
-  };
-
-  const handleIncrease = () => {
-    setQuantity(quantity + 1);
-  };
+const ProductCard: React.FC<ProductCardProps> = ({
+  id,
+  name,
+  price,
+  photo,
+}) => {
+  const { isWishlisted, onHeartClick } = useToggleWishlist(id);
+  const { isInCart, onCartClick } = useToggleCartProduct(id);
 
   return (
-    <>
-      <div className="left">
+    <Link href={`/products/${id}`} passHref>
+      <div className={"product-card"}>
         <Image
-          src={product.photo}
-          alt={product.name}
-          height={300}
-          width={300}
+          src={photo}
+          alt={name}
+          width={200}
+          height={200}
+          className="product-image"
         />
-      </div>
-      <div className="center">
-        <div className="top">
-          <h2 className={tomorrow.className + " name"}>{product.name}</h2>
-          <p className={tomorrow.className + " category"}>{product.category}</p>
-          <div className="price-quantity">
-            <p className={silkscreen.className + " price"}>
-              ${product.price.toFixed(2)}
-            </p>
-            <div className="quantity-controls">
-              <button onClick={handleDecrease}>-</button>
-              <span>{quantity}</span>
-              <button onClick={handleIncrease}>+</button>
-            </div>
-          </div>
-        </div>
+        <button className="product-heart-button" onClick={onHeartClick}>
+          <Image
+            src={isWishlisted ? heartFilled : heart}
+            alt="heart"
+            width={40}
+            height={40}
+            className="product-heart"
+          />
+        </button>
+        <h2 className={`${tomorrow.className} product-title`}>{name}</h2>
+        <p className={`${silkscreen.className} product-price`}>
+          ${price?.toFixed(2)}
+        </p>
         <div className="bottom">
           <button
             className={
@@ -55,8 +53,8 @@ function ProductCard({ product }: { product: ProductType }) {
           </button>
         </div>
       </div>
-    </>
+    </Link>
   );
-}
+};
 
 export default ProductCard;
