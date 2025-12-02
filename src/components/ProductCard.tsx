@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useToggleCartProduct, useToggleWishlist } from "@/hooks/useToggleData";
 import { heart, heartFilled, cart } from "../../public/assets/icons";
 import { silkscreen, tomorrow } from "@/app/fonts";
 import { ProductType } from "@/types";
+import { updateCartQuantity } from "@/actions/cart";
 
 interface ProductCardProps extends ProductType {
   showRemoveButton?: boolean;
@@ -15,8 +18,34 @@ const ProductCard: React.FC<ProductCardProps> = ({
   price,
   photo,
 }) => {
+  const { data: session } = useSession();
   const { isWishlisted, onHeartClick } = useToggleWishlist(id);
   const { isInCart, onCartClick } = useToggleCartProduct(id);
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    if (!isInCart) {
+      setQuantity(1);
+    }
+  }, [isInCart]);
+
+  const handleIncreaseQuantity = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!session?.user?.id) return;
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    updateCartQuantity(session.user.id, id, newQuantity);
+  };
+
+  const handleDecreaseQuantity = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!session?.user?.id) return;
+    const newQuantity = quantity > 1 ? quantity - 1 : 1;
+    setQuantity(newQuantity);
+    updateCartQuantity(session.user.id, id, newQuantity);
+  };
 
   return (
     <Link href={`/products/${id}`} passHref>
@@ -51,6 +80,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <Image src={cart} className="button-icon" alt="cart icon" />
             {isInCart ? "Remove from cart" : "Add to cart"}
           </button>
+          {isInCart && (
+            <div className="quantity-controls">
+              <button onClick={handleDecreaseQuantity}>-</button>
+              <span>{quantity}</span>
+              <button onClick={handleIncreaseQuantity}>+</button>
+            </div>
+          )}
         </div>
       </div>
     </Link>

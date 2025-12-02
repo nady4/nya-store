@@ -53,21 +53,67 @@
       object-fit: cover;
     }
 
-    span {
+    .name {
       font-size: 1rem;
       color: $text-color;
       flex: 1;
-      text-align: center;
-      margin-left: 30px;
-    }
-
-    span:first-of-type {
-      font-weight: bold;
       text-align: left;
+      margin-left: 30px;
+      font-weight: bold;
     }
 
-    span:last-of-type {
+    .quantity {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid $border-color;
+      background-color: darken($bg-color, 5%);
+      min-width: 120px;
+
+      button {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 999px;
+        border: none;
+        background-color: $accent-color;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s ease, transform 0.1s ease;
+
+        &:hover {
+          background-color: $hover-accent-color;
+          transform: scale(1.05);
+        }
+
+        &:active {
+          background-color: $active-accent-color;
+          transform: scale(0.95);
+        }
+      }
+
+      span {
+        font-size: 1rem;
+        color: $text-color;
+        min-width: 2rem;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+
+    .price {
+      font-size: 1rem;
+      color: $text-color;
       text-align: right;
+      min-width: 100px;
+      font-family: $title-font;
     }
   }
 
@@ -140,13 +186,19 @@
         margin-bottom: 1rem;
       }
 
-      span {
-        text-align: center !important;
-        margin-left: 0px;
+      .name {
+        text-align: center;
+        margin-left: 0;
+        font-size: 1.3rem;
       }
 
-      .name {
-        font-size: 1.5rem;
+      .quantity {
+        margin-top: 0.5rem;
+        justify-content: center;
+      }
+
+      .price {
+        text-align: center;
       }
     }
 
