@@ -4,7 +4,7 @@
 <h1 align="center">NYA STORE</h1>
 
 <p align="center">
-  🐾 Neon cyber-cat e-commerce built with Next.js, Prisma, Redux Toolkit and PostgreSQL 🐾
+  🐱 Fullstack e-commerce with Next.js, Redux Toolkit, Prisma ORM and PostgreSQL. 🛍️
 </p>
 
 <p align="center">
