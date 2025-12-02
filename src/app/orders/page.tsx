@@ -59,14 +59,30 @@ async function cancelOrder(orderId: string) {
 
   const userId = session.user.id as string;
 
-  await prisma.order.updateMany({
+  const order = await prisma.order.findFirst({
     where: {
       id: orderId,
       userId,
       status: "pending",
     },
-    data: {
-      status: "cancelled",
+    select: {
+      id: true,
+    },
+  });
+
+  if (!order) {
+    redirect("/orders");
+  }
+
+  await prisma.orderItem.deleteMany({
+    where: {
+      orderId: order.id,
+    },
+  });
+
+  await prisma.order.delete({
+    where: {
+      id: order.id,
     },
   });
 
@@ -81,7 +97,10 @@ export default async function OrdersPage() {
   }
 
   const orders = await prisma.order.findMany({
-    where: { userId: session.user.id as string },
+    where: {
+      userId: session.user.id as string,
+      NOT: { status: "cancelled" },
+    },
     orderBy: { createdAt: "desc" },
     include: {
       orderItems: {
@@ -119,8 +138,6 @@ export default async function OrdersPage() {
                     ? "⏳ Pendiente"
                     : order.status === "rejected"
                     ? "❌ Rechazada"
-                    : order.status === "cancelled"
-                    ? "🚫 Cancelada"
                     : order.status}
                 </strong>
               </span>
