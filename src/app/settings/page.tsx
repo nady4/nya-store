@@ -64,42 +64,44 @@ export default function SettingsPage() {
     );
 
   return (
-    <FormContainer title="Account Settings">
-      <form action={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="New Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          name="username"
-          placeholder="New Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          name="newPassword"
-          placeholder="New Password"
-          value={newPassword}
-          onChange={(e) => setNewPassword(e.target.value)}
-        />
-        <input
-          type="password"
-          name="currentPassword"
-          placeholder="Current Password"
-          value={currentPassword}
-          onChange={(e) => setCurrentPassword(e.target.value)}
-          required
-        />
-        {error && <p className="error">{error}</p>}
-        <button type="submit" disabled={!isSubmitEnabled || pending}>
-          {pending ? "Saving..." : "Save Changes"}
-        </button>
-      </form>
-    </FormContainer>
+    <div className="form-page">
+      <FormContainer title="Account Settings">
+        <form action={handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            placeholder="New Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            name="username"
+            placeholder="New Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            name="newPassword"
+            placeholder="New Password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <input
+            type="password"
+            name="currentPassword"
+            placeholder="Current Password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            required
+          />
+          {error && <p className="error">{error}</p>}
+          <button type="submit" disabled={!isSubmitEnabled || pending}>
+            {pending ? "Saving..." : "Save Changes"}
+          </button>
+        </form>
+      </FormContainer>
+    </div>
   );
 }

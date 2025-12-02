@@ -51,6 +51,8 @@ model Cart {
 
   userId     String
   productId  String
+  quantity   Int       @default(1)
+
   @@unique([userId, productId]) 
 }
 

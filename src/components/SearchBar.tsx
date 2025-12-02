@@ -34,38 +34,39 @@ function SearchBar() {
     [dispatch]
   );
 
-  return (
-    <div className="search-bar">
-      <div className="category-filter">
-        {categories.map((category) => (
+  if (categories.length)
+    return (
+      <div className="search-bar">
+        <div className="category-filter">
+          {categories.map((category) => (
+            <button
+              key={category}
+              className={`${tomorrow.className} category-button ${
+                activeCategories[category] ? "active" : ""
+              }`}
+              onClick={() => onCategoriesClick(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+        <div className="search-box">
+          <input
+            type="text"
+            className={`${tomorrow.className} search-input`}
+            value={searchTerm}
+            onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+          />
           <button
-            key={category}
-            className={`${tomorrow.className} category-button ${
-              activeCategories[category] ? "active" : ""
-            }`}
-            onClick={() => onCategoriesClick(category)}
+            className="search-button"
+            onClick={() => dispatch(setSearchTerm(searchTerm))}
           >
-            {category}
+            <Image src={search} alt="search icon" height={20} />
           </button>
-        ))}
+        </div>
+        <PriceFilter />
       </div>
-      <div className="search-box">
-        <input
-          type="text"
-          className={`${tomorrow.className} search-input`}
-          value={searchTerm}
-          onChange={(e) => dispatch(setSearchTerm(e.target.value))}
-        />
-        <button
-          className="search-button"
-          onClick={() => dispatch(setSearchTerm(searchTerm))}
-        >
-          <Image src={search} alt="search icon" height={20} />
-        </button>
-      </div>
-      <PriceFilter />
-    </div>
-  );
+    );
 }
 
 export default SearchBar;

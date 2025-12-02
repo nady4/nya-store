@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { getCartProducts } from "@/actions/cart";
+import { getCartProducts, updateCartQuantity } from "@/actions/cart";
 import { ProductType } from "@/types";
 import "@/styles/Cart.scss";
 
@@ -27,12 +27,7 @@ export default function CartPage() {
 
         const products = await getCartProducts(session.user.id);
 
-        const cartWithQuantities: CartItem[] = products.map((product) => ({
-          ...product,
-          quantity: 1,
-        }));
-
-        setCart(cartWithQuantities);
+        setCart(products);
       } catch (error) {
         console.error("Error loading cart:", error);
         setCart([]);
@@ -43,6 +38,40 @@ export default function CartPage() {
 
     loadCart();
   }, [status, session]);
+
+  const handleIncreaseQuantity = (
+    productId: string,
+    currentQuantity: number
+  ) => {
+    const newQuantity = currentQuantity + 1;
+
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+
+    if (session?.user?.id) {
+      updateCartQuantity(session.user.id, productId, newQuantity);
+    }
+  };
+
+  const handleDecreaseQuantity = (
+    productId: string,
+    currentQuantity: number
+  ) => {
+    const newQuantity = currentQuantity > 1 ? currentQuantity - 1 : 1;
+
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item
+      )
+    );
+
+    if (session?.user?.id) {
+      updateCartQuantity(session.user.id, productId, newQuantity);
+    }
+  };
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
@@ -65,7 +94,19 @@ export default function CartPage() {
             style={{ borderRadius: "8px" }}
           />
           <span className="name">{item.name}</span>
-          <span className="quantity">x{item.quantity}</span>
+          <div className="quantity">
+            <button
+              onClick={() => handleDecreaseQuantity(item.id, item.quantity)}
+            >
+              -
+            </button>
+            <span>x{item.quantity}</span>
+            <button
+              onClick={() => handleIncreaseQuantity(item.id, item.quantity)}
+            >
+              +
+            </button>
+          </div>
           <span className="price">
             ${(item.price * item.quantity).toFixed(2)}
           </span>

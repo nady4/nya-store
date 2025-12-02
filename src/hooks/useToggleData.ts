@@ -29,7 +29,7 @@ export function useToggleCartProduct(productId: string) {
         dispatch(addToCart(productId));
       }
 
-      toggleCartProduct(userId, productId); // async
+      toggleCartProduct(userId, productId);
     },
     [dispatch, isInCart, productId, userId]
   );

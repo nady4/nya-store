@@ -3,63 +3,54 @@
     "name": "Blahaj",
     "price": 35.0,
     "photo": "/assets/products/blahaj.jpg",
-    "category": "Toys",
-    "stock": 10
+    "category": "Toys"
   },
   {
     "name": "Cat Socks",
     "price": 20.0,
     "photo": "/assets/products/cat_socks.jpg",
-    "category": "Socks",
-    "stock": 1
+    "category": "Socks"
   },
   {
     "name": "Kuromi Socks",
     "price": 20.0,
     "photo": "/assets/products/kuromi_socks.jpg",
-    "category": "Socks",
-    "stock": 1
+    "category": "Socks"
   },
   {
     "name": "Black and White Thigh Highs",
     "price": 15.0,
     "photo": "/assets/products/thigh_highs.jpg",
-    "category": "Socks",
-    "stock": 10
+    "category": "Socks"
   },
   {
     "name": "Cat Paws Gloves",
     "price": 25.0,
     "photo": "/assets/products/paws_gloves.jpg",
-    "category": "Gloves",
-    "stock": 1
+    "category": "Gloves"
   },
   {
     "name": "Purple Goth Skirt",
     "price": 40.0,
     "photo": "/assets/products/purple_skirt.jpg",
-    "category": "Skirts",
-    "stock": 2
+    "category": "Skirts"
   },
   {
     "name": "Black Leather Goth Skirt",
     "price": 50.0,
     "photo": "/assets/products/goth_skirt.jpg",
-    "category": "Skirts",
-    "stock": 4
+    "category": "Skirts"
   },
   {
     "name": "The C Programming Language",
     "price": 100.0,
     "photo": "/assets/products/c_book.jpg",
-    "category": "Books",
-    "stock": 3
+    "category": "Books"
   },
   {
     "name": "Debugging Rubber Duck",
     "price": 10.0,
     "photo": "/assets/products/rubber_duck.jpg",
-    "category": "Toys",
-    "stock": 5
+    "category": "Toys"
   }
 ]
