@@ -20,13 +20,13 @@
 
 ## ✨ Features
 
-- 🛍️ Product catalog with categories, stock management and prices.
+- 🛍️ Product catalog with categories, stock and pricing.
 - 🧺 Persistent shopping cart per user (PostgreSQL + Prisma).
-- ❤️ Wishlist per user.
-- 👤 Authentication with credentials (NextAuth.js, JWT sessions).
-- 💳 Checkout with Mercado Pago (preferences + redirects + webhooks).
-- 📦 Orders with items, quantities and total, plus order history.
-- 📱 Fully responsive UI with custom pixel-art / neon aesthetics (Sass).
+- ❤️ User wishlist.
+- 👤 Credential-based authentication (NextAuth.js, JWT sessions).
+- 💳 Checkout with Mercado Pago (preferences, redirects, webhooks).
+- 📦 Orders with items, quantities and totals + order history.
+- 📱 Fully responsive UI with custom pixel-art / neon theme (Sass).
 
 <br>
 
@@ -35,21 +35,21 @@
 Prerequisites:
 
 - Node.js 18+
-- PostgreSQL running locally (or a remote instance)
+- PostgreSQL (local or remote)
 
 Steps:
 
-1. Clonar el repositorio
+1. Clone the repository
 
    `git clone https://github.com/nady4/nya-store.git`
 
    `cd nya-store`
 
-2. Instalar dependencias
+2. Install dependencies
 
    `npm install`
 
-3. Crear archivo `.env` (local)
+3. Create a `.env` file
 
    - `NEXTAUTH_URL`="http://localhost:3000"
 
@@ -61,69 +61,68 @@ Steps:
 
    - `NEXT_PUBLIC_MP_PUBLIC_KEY`="TEST-XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
-4. Ejecutar migraciones de Prisma
+4. Run Prisma migrations
 
    `npx prisma migrate dev --name init`
 
-5. (Opcional) Poblar la base de datos con productos de ejemplo
+5. (Optional) Seed example products
 
    `npx prisma db seed`
 
-6. Levantar la app en modo desarrollo
+6. Start development server
 
    `npm run dev`
 
-La app estará disponible en: `http://localhost:3000` 🐱
+The app will be available at: `http://localhost:3000` 🐱
 
 <br>
 
 ## 🔐 Environment Variables
 
-Usadas actualmente por el proyecto:
+Used in the project:
 
 - `NEXTAUTH_URL`  
-  URL base de la aplicación (ej: `http://localhost:3000` en dev, `https://tu-dominio` en producción).  
-  La usa NextAuth y también se reutiliza para `back_urls` y `notification_url` de Mercado Pago.
+  Base URL for the app. Required by NextAuth and also reused for Mercado Pago `back_urls` and `notification_url`.
 
 - `NEXTAUTH_SECRET`  
-  Clave secreta para firmar/encriptar tokens de sesión de NextAuth. Debe ser una string larga y aleatoria.
+  Secret used to sign/encrypt NextAuth JWT sessions. Must be long and random.
 
 - `DATABASE_URL`  
-  Connection string de PostgreSQL. Ejemplo local:
+  PostgreSQL connection string, e.g.:
 
   `postgresql://postgres:password@localhost:5432/nya-store`
 
 - `MP_ACCESS_TOKEN`  
-  Access token del vendedor en Mercado Pago.  
-  En desarrollo: usar SIEMPRE el token de prueba (`TEST-...`) de una cuenta vendedor de prueba.
+  Mercado Pago **seller** access token.  
+  In development always use a **TEST-...** token from a test seller account.
 
 - `NEXT_PUBLIC_MP_PUBLIC_KEY`  
-  Public key de Mercado Pago (también en modo prueba en desarrollo).  
-  Al llevar el prefijo `NEXT_PUBLIC_`, se expone en el cliente y se usa para `initMercadoPago`.
+  Public key for Mercado Pago (test key in dev).  
+  Prefixed with `NEXT_PUBLIC_`, so it’s exposed to the client and used in `initMercadoPago`.
 
-En producción debés configurar los mismos nombres de variables en tu proveedor (Vercel, etc.) usando las credenciales de producción o de sandbox que quieras.
+In production, configure the same variable names on Vercel (or your provider), using your desired live/sandbox credentials.
 
 <br>
 
 ## 🚀 Tech Stack
 
-| Technology       | Notes                                     |
-| ---------------- | ----------------------------------------- |
-| Next.js          | 15.x (App Router)                         |
-| React            | 18+/19                                    |
-| TypeScript       | Full-typed components & actions           |
-| Prisma ORM       | 7.x + `prisma migrate` / `prisma db seed` |
-| PostgreSQL       | Relational database                       |
-| NextAuth.js      | Credentials provider + JWT sessions       |
-| Redux Toolkit    | UI state (filters, search, etc.)          |
-| Sass (SCSS)      | Theming + responsive layout               |
-| Mercado Pago SDK | `@mercadopago/sdk-react` (Wallet)         |
+| Technology       | Notes                               |
+| ---------------- | ----------------------------------- |
+| Next.js          | 15.x (App Router)                   |
+| React            | 18+/19                              |
+| TypeScript       | Fully typed components & actions    |
+| Prisma ORM       | 7.x + migrations + seed             |
+| PostgreSQL       | Relational DB                       |
+| NextAuth.js      | Credentials provider + JWT sessions |
+| Redux Toolkit    | UI state (filters, search, etc.)    |
+| Sass (SCSS)      | Theming + responsive layout         |
+| Mercado Pago SDK | `@mercadopago/sdk-react` (Wallet)   |
 
 <br>
 
 ## 🧠 Data Model (Prisma)
 
-Diagrama (ERD):
+ERD:
 
 <p align="center">
   <a href="https://dbdiagram.io/d/nya-store-666152b99713410b05e47081">
@@ -133,7 +132,7 @@ Diagrama (ERD):
 
 ### `User`
 
-Representa a la persona que se registra y compra en la tienda.
+Represents the person registered in the store.
 
 | Column    | Type       | Details                        |
 | --------- | ---------- | ------------------------------ |
@@ -142,18 +141,18 @@ Representa a la persona que se registra y compra en la tienda.
 | email     | String     | Required, unique               |
 | password  | String     | Hashed password                |
 | addressId | String?    | Unique FK → `Address.id` (1:1) |
-| createdAt | DateTime   | Default `now()`                |
-| updatedAt | DateTime   | Auto `@updatedAt`              |
-| address   | Address?   | Optional relation              |
-| orders    | Order[]    | Orders made by the user        |
+| createdAt | DateTime   | `now()`                        |
+| updatedAt | DateTime   | `@updatedAt`                   |
+| address   | Address?   | Relation                       |
+| orders    | Order[]    | User orders                    |
 | wishlist  | WishList[] | Wishlist items                 |
-| cart      | Cart[]     | Items currently in cart        |
+| cart      | Cart[]     | Cart items                     |
 
 <br>
 
 ### `Address`
 
-Dirección única asociada a un usuario (envío/facturación simple).
+Unique address per user.
 
 | Column     | Type   | Details                   |
 | ---------- | ------ | ------------------------- |
@@ -163,31 +162,31 @@ Dirección única asociada a un usuario (envío/facturación simple).
 | state      | String | Required                  |
 | postalCode | String | Required                  |
 | country    | String | Required                  |
-| user       | User?  | Optional inverse relation |
+| user       | User?  | Inverse relation          |
 
 <br>
 
 ### `Product`
 
-Producto vendible en la tienda.
+Sellable product.
 
-| Column     | Type        | Details                        |
-| ---------- | ----------- | ------------------------------ |
-| id         | String      | Primary key (`cuid()`) 🗝️      |
-| name       | String      | Required                       |
-| photo      | String      | URL / path to image            |
-| price      | Float       | Required                       |
-| category   | String      | Required (used for filters)    |
-| stock      | Int         | Required, stock actual         |
-| orderItems | OrderItem[] | Items referencing this product |
-| wishLists  | WishList[]  | Wishlist records               |
-| carts      | Cart[]      | Cart records                   |
+| Column     | Type        | Details                       |
+| ---------- | ----------- | ----------------------------- |
+| id         | String      | Primary key (`cuid()`) 🗝️     |
+| name       | String      | Required                      |
+| photo      | String      | Image URL/path                |
+| price      | Float       | Required                      |
+| category   | String      | Used for filters              |
+| stock      | Int         | Current stock                 |
+| orderItems | OrderItem[] | Items referencing the product |
+| wishLists  | WishList[]  | Wishlist records              |
+| carts      | Cart[]      | Cart records                  |
 
 <br>
 
 ### `WishList`
 
-Relación muchos-a-muchos entre `User` y `Product` para favoritos.
+Many-to-many between `User` and `Product`.
 
 | Column    | Type    | Details                   |
 | --------- | ------- | ------------------------- |
@@ -197,87 +196,84 @@ Relación muchos-a-muchos entre `User` y `Product` para favoritos.
 | user      | User    | Relation                  |
 | product   | Product | Relation                  |
 
-Constraints:
+Constraint:
 
-- `@@unique([userId, productId])` → no se puede repetir el mismo producto en la wishlist del mismo user.
+- `@@unique([userId, productId])`
 
 <br>
 
 ### `Cart`
 
-Carrito persistente por usuario.
+Persistent cart.
 
 | Column    | Type    | Details                   |
 | --------- | ------- | ------------------------- |
 | id        | String  | Primary key (`uuid()`) 🗝️ |
-| userId    | String  | FK → `User.id`            |
-| productId | String  | FK → `Product.id`         |
-| quantity  | Int     | Default `1`               |
+| userId    | String  | FK → User                 |
+| productId | String  | FK → Product              |
+| quantity  | Int     | Default 1                 |
 | user      | User    | Relation                  |
 | product   | Product | Relation                  |
 
-Constraints:
+Constraint:
 
-- `@@unique([userId, productId])` → un ítem por producto + usuario.
+- `@@unique([userId, productId])`
 
 <br>
 
 ### `Order`
 
-Orden de compra asociada a un usuario, generada al crear una preferencia de pago.
+Purchase order generated during checkout.
 
-| Column     | Type        | Details                                                      |
-| ---------- | ----------- | ------------------------------------------------------------ |
-| id         | String      | Primary key (`uuid()`) 🗝️                                    |
-| userId     | String      | FK → `User.id`                                               |
-| status     | String      | `"pending"`, `"approved"`, `"rejected"`, `"cancelled"`, etc. |
-| total      | Float       | Importe total de la orden                                    |
-| createdAt  | DateTime    | Default `now()`                                              |
-| updatedAt  | DateTime    | `@updatedAt`                                                 |
-| user       | User        | Relation                                                     |
-| orderItems | OrderItem[] | Items que componen la orden                                  |
+| Column     | Type        | Details                                       |
+| ---------- | ----------- | --------------------------------------------- |
+| id         | String      | Primary key (`uuid()`) 🗝️                     |
+| userId     | String      | FK → User                                     |
+| status     | String      | `"pending"`, `"approved"`, `"rejected"`, etc. |
+| total      | Float       | Order total                                   |
+| createdAt  | DateTime    | `now()`                                       |
+| updatedAt  | DateTime    | Updated automatically                         |
+| user       | User        | Relation                                      |
+| orderItems | OrderItem[] | Items in the order                            |
 
 <br>
 
 ### `OrderItem`
 
-Línea dentro de una `Order`.
+Line item inside an order.
 
 | Column    | Type    | Details                   |
 | --------- | ------- | ------------------------- |
 | id        | String  | Primary key (`uuid()`) 🗝️ |
-| orderId   | String  | FK → `Order.id`           |
-| productId | String  | FK → `Product.id`         |
+| orderId   | String  | FK → Order                |
+| productId | String  | FK → Product              |
 | quantity  | Int     | Required                  |
 | order     | Order   | Relation                  |
 | product   | Product | Relation                  |
 
 <br>
 
-## 💳 Mercado Pago Integration (overview)
+## 💳 Mercado Pago Integration (Overview)
 
-- Cuando el usuario confirma el carrito, se llama a `/api/orders`:
+- When the user confirms the cart, `/api/orders`:
 
-  - Se crea una `Order` en la DB con `status = "pending"` y los `OrderItem`.
-  - Se crea una Preferencia en Mercado Pago usando `MP_ACCESS_TOKEN`.
-  - Se envía:
-    - `back_urls` → `/success`, `/failure`, `/pending`.
-    - `notification_url` → `/api/mp-webhook`.
-    - `external_reference = order.id`.
+  - Creates an `Order` with `pending` status.
+  - Creates a Mercado Pago Preference.
+  - Sends `back_urls`, `notification_url`, `external_reference`.
 
-- El frontend inicializa el `Wallet` con `NEXT_PUBLIC_MP_PUBLIC_KEY` y el `preferenceId` devuelto.
+- Frontend initializes the `Wallet` using `NEXT_PUBLIC_MP_PUBLIC_KEY` and the returned `preferenceId`.
 
 - Mercado Pago:
-  - Redirige al usuario a la URL de éxito o error.
-  - Llama al webhook `/api/mp-webhook`, donde se consulta el pago y se actualiza `Order.status`.
+  - Redirects the user to success/failure pages.
+  - Calls `/api/mp-webhook` → updates `Order.status`.
 
-En desarrollo, el flujo completo solo se puede testear contra una URL pública HTTPS (por ejemplo un deploy en Vercel) porque Mercado Pago no puede acceder a `localhost`.
+In development, webhooks **require a public HTTPS URL** (e.g. Vercel deploy).
 
 <br>
 
 ## 🧪 Development Tip
 
-- Usar cuentas de prueba de Mercado Pago (seller + buyer) y tarjetas de test para simular pagos sin dinero real.
+Use Mercado Pago test accounts and test cards to run the entire flow safely.
 
 <br>
 
