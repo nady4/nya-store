@@ -25,7 +25,6 @@ model User {
 model Address {
   id         String    @id @default(uuid())
   user       User?
-  shipment   Shipment?
 
   street     String
   city       String
@@ -56,12 +55,11 @@ model Cart {
   @@unique([userId, productId])
 }
 
-
 model Product {
-  id       String  @id @default(cuid())
+  id         String     @id @default(cuid())
   orderItems OrderItem[]
   wishLists  WishList[]
-  carts Cart[]
+  carts      Cart[]
 
   name       String
   photo      String
@@ -85,38 +83,11 @@ model Order {
   id         String      @id @default(uuid())
   user       User        @relation(fields: [userId], references: [id])
   orderItems OrderItem[]
-  payment    Payment?
-  shipment   Shipment?   
 
   status     String
+  total      Float
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
 
   userId     String
-}
-
-
-model Shipment {
-  id             String    @id @default(uuid())
-  order          Order     @relation(fields: [orderId], references: [id])
-  address        Address?  @relation(fields: [addressId], references: [id])
-
-  trackingNumber String?
-  shipmentStatus String
-  shippedDate    DateTime?
-  deliveryDate   DateTime?
-
-  orderId        String    @unique
-  addressId      String?   @unique
-}
-
-model Payment {
-  id            String   @id @default(uuid())
-  order         Order    @relation(fields: [orderId], references: [id])
-
-  paymentMethod String
-  paymentDate   DateTime
-  paymentStatus String
-  
-  orderId       String   @unique
 }

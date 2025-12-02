@@ -6,7 +6,7 @@ import { useToggleCartProduct, useToggleWishlist } from "@/hooks/useToggleData";
 import { heart, heartFilled, cart } from "../../public/assets/icons";
 import { silkscreen, tomorrow } from "@/app/fonts";
 import { ProductType } from "@/types";
-import { updateCartQuantity } from "@/actions/cart";
+import { getCartProducts, updateCartQuantity } from "@/actions/cart";
 
 interface ProductCardProps extends ProductType {
   showRemoveButton?: boolean;
@@ -19,32 +19,94 @@ const ProductCard: React.FC<ProductCardProps> = ({
   photo,
 }) => {
   const { data: session } = useSession();
+  const userId = session?.user?.id ?? null;
+
   const { isWishlisted, onHeartClick } = useToggleWishlist(id);
-  const { isInCart, onCartClick } = useToggleCartProduct(id);
+  const { onCartClick } = useToggleCartProduct(id);
+
+  const [inCart, setInCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [quantityLoaded, setQuantityLoaded] = useState(false);
 
   useEffect(() => {
-    if (!isInCart) {
-      setQuantity(1);
+    if (!userId) return;
+
+    const safeUserId = userId;
+    let cancelled = false;
+
+    async function syncFromCart() {
+      const products = await getCartProducts(safeUserId);
+      const item = products.find((p) => p.id === id);
+
+      if (cancelled) return;
+
+      if (item) {
+        setInCart(true);
+        setQuantity(item.quantity);
+        setQuantityLoaded(true);
+      } else {
+        setInCart(false);
+        setQuantity(1);
+        setQuantityLoaded(false);
+      }
     }
-  }, [isInCart]);
+
+    syncFromCart();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [userId, id]);
 
   const handleIncreaseQuantity = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!session?.user?.id) return;
+    if (!userId) return;
+    if (!inCart || !quantityLoaded) return;
+
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
-    updateCartQuantity(session.user.id, id, newQuantity);
+    updateCartQuantity(userId, id, newQuantity);
   };
 
   const handleDecreaseQuantity = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!session?.user?.id) return;
-    const newQuantity = quantity > 1 ? quantity - 1 : 1;
+    if (!userId) return;
+    if (!inCart || !quantityLoaded) return;
+
+    const newQuantity = quantity - 1;
+
+    if (newQuantity <= 0) {
+      onCartClick(e);
+      setInCart(false);
+      setQuantity(1);
+      setQuantityLoaded(false);
+      return;
+    }
+
     setQuantity(newQuantity);
-    updateCartQuantity(session.user.id, id, newQuantity);
+    updateCartQuantity(userId, id, newQuantity);
+  };
+
+  const handleToggleCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!userId) return;
+
+    if (!inCart) {
+      onCartClick(e);
+      setInCart(true);
+      if (!quantityLoaded || quantity <= 0) {
+        setQuantity(1);
+      }
+      setQuantityLoaded(true);
+    } else {
+      onCartClick(e);
+      setInCart(false);
+      setQuantity(1);
+      setQuantityLoaded(false);
+    }
   };
 
   return (
@@ -71,22 +133,22 @@ const ProductCard: React.FC<ProductCardProps> = ({
           ${price?.toFixed(2)}
         </p>
         <div className="bottom">
-          <button
-            className={
-              silkscreen.className + " button" + (isInCart ? " isInCart" : "")
-            }
-            onClick={onCartClick}
-          >
-            <Image src={cart} className="button-icon" alt="cart icon" />
-            {isInCart ? "Remove from cart" : "Add to cart"}
-          </button>
-          {isInCart && (
+          {inCart && (
             <div className="quantity-controls">
               <button onClick={handleDecreaseQuantity}>-</button>
-              <span>{quantity}</span>
+              <span>{quantityLoaded ? quantity : "-"}</span>
               <button onClick={handleIncreaseQuantity}>+</button>
             </div>
           )}
+          <button
+            className={
+              silkscreen.className + " button" + (inCart ? " isInCart" : "")
+            }
+            onClick={handleToggleCart}
+          >
+            <Image src={cart} className="button-icon" alt="cart icon" />
+            {inCart ? "Remove from cart" : "Add to cart"}
+          </button>
         </div>
       </div>
     </Link>

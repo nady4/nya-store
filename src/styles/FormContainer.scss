@@ -1,4 +1,5 @@
-@import "./variables";
+@use "./variables" as *;
+@use "sass:color";
 
 .form-page {
   display: flex;
@@ -54,13 +55,13 @@
         transition: border-color 0.2s, background 0.2s;
 
         &::placeholder {
-          color: darken($text-color, 30%);
+          color: color.adjust($text-color, $lightness: -30%);
         }
 
         &:focus {
           outline: none;
           border-color: $accent-color;
-          background-color: darken($input-bg, 5%);
+          background-color: color.adjust($input-bg, $lightness: -5%);
         }
       }
 

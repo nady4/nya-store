@@ -1,8 +1,48 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/auth";
+import { getCartProducts } from "@/actions/cart";
+import prisma from "@/libs/prisma";
 
-export async function POST(req: Request) {
+export async function POST() {
   try {
-    const body = await req.json();
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const userId = session.user.id as string;
+    const cartItems = await getCartProducts(userId);
+
+    if (!cartItems || cartItems.length === 0) {
+      return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
+    }
+
+    const total = cartItems.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+
+    const order = await prisma.order.create({
+      data: {
+        userId,
+        status: "pending",
+        total,
+        orderItems: {
+          create: cartItems.map((item) => ({
+            productId: item.id,
+            quantity: item.quantity,
+          })),
+        },
+      },
+    });
+
+    const items = cartItems.map((item) => ({
+      title: item.name,
+      quantity: item.quantity,
+      unit_price: item.price,
+    }));
 
     const response = await fetch(
       "https://api.mercadopago.com/checkout/preferences",
@@ -13,19 +53,15 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          items: [
-            {
-              title: body.title,
-              quantity: body.quantity,
-              unit_price: body.price,
-            },
-          ],
+          items,
           back_urls: {
             success: `${process.env.NEXTAUTH_URL}/success`,
             failure: `${process.env.NEXTAUTH_URL}/failure`,
             pending: `${process.env.NEXTAUTH_URL}/pending`,
           },
           auto_return: "approved",
+          notification_url: `${process.env.NEXTAUTH_URL}/api/mp-webhook`,
+          external_reference: order.id,
         }),
       }
     );

@@ -19,6 +19,15 @@ export interface AddressProps {
   initialAddress: Omit<Address, "id"> | null;
 }
 
+export interface OrderType {
+  id: string;
+  address: Address;
+  createdAt: Date;
+  products: (ProductType & { quantity: number })[];
+  total: number;
+  status: string;
+}
+
 declare module "next-auth" {
   interface User {
     id: string;

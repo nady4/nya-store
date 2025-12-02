@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { getCartProducts, updateCartQuantity } from "@/actions/cart";
+import CheckoutButton from "@/components/CheckoutButton";
 import { ProductType } from "@/types";
 import "@/styles/Cart.scss";
 
@@ -15,34 +16,45 @@ export default function CartPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const userId = session?.user?.id;
+
   useEffect(() => {
     if (status !== "authenticated") return;
-    if (!session?.user?.id) return;
+    if (!userId) return;
 
-    async function loadCart() {
+    let cancelled = false;
+
+    async function loadCart(currentUserId: string) {
       setLoading(true);
       try {
-        if (status !== "authenticated") return;
-        if (!session?.user?.id) return;
-
-        const products = await getCartProducts(session.user.id);
-
-        setCart(products);
+        const products = await getCartProducts(currentUserId);
+        if (!cancelled) {
+          setCart(products);
+        }
       } catch (error) {
         console.error("Error loading cart:", error);
-        setCart([]);
+        if (!cancelled) {
+          setCart([]);
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     }
 
-    loadCart();
-  }, [status, session]);
+    loadCart(userId);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [status, userId]);
 
   const handleIncreaseQuantity = (
     productId: string,
     currentQuantity: number
   ) => {
+    if (!userId) return;
     const newQuantity = currentQuantity + 1;
 
     setCart((prev) =>
@@ -51,16 +63,21 @@ export default function CartPage() {
       )
     );
 
-    if (session?.user?.id) {
-      updateCartQuantity(session.user.id, productId, newQuantity);
-    }
+    updateCartQuantity(userId, productId, newQuantity);
   };
 
   const handleDecreaseQuantity = (
     productId: string,
     currentQuantity: number
   ) => {
-    const newQuantity = currentQuantity > 1 ? currentQuantity - 1 : 1;
+    if (!userId) return;
+    const newQuantity = currentQuantity - 1;
+
+    if (newQuantity <= 0) {
+      setCart((prev) => prev.filter((item) => item.id !== productId));
+      updateCartQuantity(userId, productId, newQuantity);
+      return;
+    }
 
     setCart((prev) =>
       prev.map((item) =>
@@ -68,18 +85,24 @@ export default function CartPage() {
       )
     );
 
-    if (session?.user?.id) {
-      updateCartQuantity(session.user.id, productId, newQuantity);
-    }
+    updateCartQuantity(userId, productId, newQuantity);
   };
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   if (loading || status === "loading")
-    return <p className="empty">Cargando...</p>;
+    return (
+      <div className="cart">
+        <p className="empty">Cargando...</p>
+      </div>
+    );
 
   if (cart.length === 0)
-    return <p className="empty">🛒 Tu carrito está vacío</p>;
+    return (
+      <div className="cart">
+        <p className="empty">🛒 Tu carrito está vacío</p>
+      </div>
+    );
 
   return (
     <div className="cart">
@@ -100,7 +123,7 @@ export default function CartPage() {
             >
               -
             </button>
-            <span>x{item.quantity}</span>
+            <span>{item.quantity}</span>
             <button
               onClick={() => handleIncreaseQuantity(item.id, item.quantity)}
             >
@@ -116,7 +139,7 @@ export default function CartPage() {
       <div className="cart-total">Total: ${total.toFixed(2)}</div>
 
       <div className="button-container">
-        <button className="confirm-button">Confirm Order</button>
+        <CheckoutButton total={total} />
       </div>
     </div>
   );
