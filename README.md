@@ -41,34 +41,39 @@ Steps:
 
 1. Clonar el repositorio
 
-   git clone https://github.com/nady4/nya-store.git
-   cd nya-store
+   `git clone https://github.com/nady4/nya-store.git`
+
+   `cd nya-store`
 
 2. Instalar dependencias
 
-   npm install
+   `npm install`
 
 3. Crear archivo `.env` (local)
 
-   NEXTAUTH_URL="http://localhost:3000"
-   NEXTAUTH_SECRET="yourSecret" # genera algo largo y random
-   DATABASE_URL="postgresql://postgres:password@localhost:5432/nya-store"
-   MP_ACCESS_TOKEN="TEST-XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-   NEXT_PUBLIC_MP_PUBLIC_KEY="TEST-XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+   - `NEXTAUTH_URL`="http://localhost:3000"
+
+   - `NEXTAUTH_SECRET`="yourSecret"
+
+   - `DATABASE_URL`="postgresql://postgres:password@localhost:5432/nya-store"
+
+   - `MP_ACCESS_TOKEN`="TEST-XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+   - `NEXT_PUBLIC_MP_PUBLIC_KEY`="TEST-XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 4. Ejecutar migraciones de Prisma
 
-   npx prisma migrate dev --name init
+   `npx prisma migrate dev --name init`
 
 5. (Opcional) Poblar la base de datos con productos de ejemplo
 
-   npx prisma db seed
+   `npx prisma db seed`
 
 6. Levantar la app en modo desarrollo
 
-   npm run dev
+   `npm run dev`
 
-La app estará disponible en: http://localhost:3000 🐱
+La app estará disponible en: `http://localhost:3000` 🐱
 
 <br>
 
