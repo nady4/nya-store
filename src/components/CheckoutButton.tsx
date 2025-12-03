@@ -46,7 +46,7 @@ export default function CheckoutButton({ total }: { total: number }) {
             onClick={handleCheckout}
             disabled={isLoading || total <= 0}
           >
-            {isLoading ? "Creando orden..." : "Generar link de pago"}
+            {isLoading ? "Creating order..." : "Generate payment link"}
           </button>
         </div>
       )}
