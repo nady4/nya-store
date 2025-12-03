@@ -29,6 +29,9 @@ export async function POST(req: Request) {
             where: { id: externalReference },
             data: { status },
           });
+          await prisma.cart.deleteMany({
+            where: { userId: payment.metadata?.userId as string },
+          });
         }
       }
     }
