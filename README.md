@@ -12,6 +12,8 @@
   <img src="./public/assets/docs/2.png" width="49%">
   <img src="./public/assets/docs/3.png" width="49%">
   <img src="./public/assets/docs/4.png" width="100%">
+  <img src="./public/assets/docs/5.png" width="49%">
+  <img src="./public/assets/docs/6.png" width="49%">
 </p>
 
 <br>
