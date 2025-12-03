@@ -128,9 +128,9 @@ export default async function OrdersPage() {
         {orders.map((order) => (
           <div key={order.id} className="order-card">
             <div className="order-header">
-              <span className="order-id">Orden #{order.id.slice(0, 8)}</span>
+              <span className="order-id">Order #{order.id.slice(0, 8)}</span>
               <span className="order-status">
-                Estado:{" "}
+                Status:{" "}
                 <strong>
                   {order.status === "approved"
                     ? "✅ Approved"
