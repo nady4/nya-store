@@ -114,16 +114,16 @@ export default async function OrdersPage() {
   if (!orders.length) {
     return (
       <div className="orders-page">
-        <h1>Mis órdenes 🧾</h1>
-        <p>No tenés órdenes todavía.</p>
-        <Link href="/">🛍️ Volver a la tienda</Link>
+        <h1>My orders 🧾</h1>
+        <p>You don&apos;t have any orders</p>
+        <Link href="/">🛍️ Back to the store</Link>
       </div>
     );
   }
 
   return (
     <div className="orders-page">
-      <h1>Mis órdenes 🧾</h1>
+      <h1>My orders 🧾</h1>
       <div className="orders-list">
         {orders.map((order) => (
           <div key={order.id} className="order-card">
@@ -133,11 +133,11 @@ export default async function OrdersPage() {
                 Estado:{" "}
                 <strong>
                   {order.status === "approved"
-                    ? "✅ Aprobada"
+                    ? "✅ Approved"
                     : order.status === "pending"
-                    ? "⏳ Pendiente"
+                    ? "⏳ Pending"
                     : order.status === "rejected"
-                    ? "❌ Rechazada"
+                    ? "❌ Rejected"
                     : order.status}
                 </strong>
               </span>
@@ -145,7 +145,7 @@ export default async function OrdersPage() {
 
             <div className="order-meta">
               <span>
-                Fecha:{" "}
+                Date:{" "}
                 {order.createdAt.toLocaleString("es-AR", {
                   day: "2-digit",
                   month: "2-digit",
@@ -164,7 +164,7 @@ export default async function OrdersPage() {
                 <div key={item.id} className="order-item">
                   <span className="order-item-name">{item.product.name}</span>
                   <span className="order-item-qty">
-                    Cantidad: {item.quantity}
+                    Quantity: {item.quantity}
                   </span>
                   <span className="order-item-subtotal">
                     Subtotal: ${(item.product.price * item.quantity).toFixed(2)}
@@ -177,12 +177,12 @@ export default async function OrdersPage() {
               <div className="order-actions">
                 <form action={retryOrder.bind(null, order.id)}>
                   <button type="submit" className="order-retry-button">
-                    Reintentar pago
+                    Retry payment
                   </button>
                 </form>
                 <form action={cancelOrder.bind(null, order.id)}>
                   <button type="submit" className="order-cancel-button">
-                    Cancelar orden
+                    Cancel order
                   </button>
                 </form>
               </div>
@@ -192,7 +192,7 @@ export default async function OrdersPage() {
       </div>
 
       <div className="orders-actions">
-        <Link href="/">🛍️ Seguir comprando</Link>
+        <Link href="/">🛍️ Continue Shopping</Link>
       </div>
     </div>
   );
