@@ -279,8 +279,6 @@ Use Mercado Pago test accounts and test cards to run the entire flow safely.
 
 ## 📬 Contact
 
-### 💌 Email: dev@nady4.com
-
-### 💼 LinkedIn: <a href="https://www.linkedin.com/in/nady4">linkedin.com/in/nady4</a>
-
-### 👩🏻‍💻 GitHub: <a href="https://github.com/nady4">github.com/nady4</a>
+### 💌 Email: **dev@nady4.com**
+### 💼 LinkedIn: [nady4](https://www.linkedin.com/in/nady4)
+### 👩🏻‍💻 GitHub: [@nady4](https://github.com/nady4)
