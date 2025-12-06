@@ -4,7 +4,7 @@
 <h1 align="center">NYA STORE</h1>
 
 <p align="center">
-  🐱 Fullstack e-commerce with Next.js, Redux Toolkit, Prisma ORM and PostgreSQL. 🛍️
+  🐱 Full Stack e-commerce platform using Next.js 15 (App Router), TypeScript, Prisma ORM, PostgreSQL, Redux Toolkit, and a complete Mercado Pago payment integration (checkout + redirect flows + webhooks). It handles authentication with NextAuth.js + JWT sessions. 🛍️
 </p>
 
 <p align="center">
