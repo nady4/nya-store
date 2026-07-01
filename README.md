@@ -12,8 +12,8 @@
   <img src="./public/assets/docs/2.png" width="49%">
   <img src="./public/assets/docs/3.png" width="49%">
   <img src="./public/assets/docs/4.png" width="100%">
-  <img src="./public/assets/docs/5.png" width="49%">
-  <img src="./public/assets/docs/6.png" width="49%">
+  <img src="./public/assets/docs/5.png" width="100%">
+  <img src="./public/assets/docs/6.png" width="100%">
 </p>
 
 <br>
@@ -50,7 +50,6 @@ Steps:
    `npm install`
 
 3. Create a `.env` file
-
    - `NEXTAUTH_URL`="http://localhost:3000"
 
    - `NEXTAUTH_SECRET`="yourSecret"
@@ -256,7 +255,6 @@ Line item inside an order.
 ## 💳 Mercado Pago Integration (Overview)
 
 - When the user confirms the cart, `/api/orders`:
-
   - Creates an `Order` with `pending` status.
   - Creates a Mercado Pago Preference.
   - Sends `back_urls`, `notification_url`, `external_reference`.
@@ -280,5 +278,7 @@ Use Mercado Pago test accounts and test cards to run the entire flow safely.
 ## 📬 Contact
 
 ### 💌 Email: **dev@nady4.com**
+
 ### 💼 LinkedIn: [nady4](https://www.linkedin.com/in/nady4)
+
 ### 👩🏻‍💻 GitHub: [@nady4](https://github.com/nady4)
