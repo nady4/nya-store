@@ -4,7 +4,7 @@
 <h1 align="center">NYA STORE</h1>
 
 <p align="center">
-  🐱 Full Stack e-commerce platform using Next.js 15 (App Router), TypeScript, Prisma ORM, PostgreSQL, Redux Toolkit, and a complete Mercado Pago payment integration (checkout + redirect flows + webhooks). It handles authentication with NextAuth.js + JWT sessions. 🛍️
+🐱 Full-stack e-commerce platform with product management, persistent shopping carts, wishlists, authentication, order workflows, and a complete Mercado Pago payment flow with checkout, redirects, and webhooks. Built with Next.js 15 (App Router), TypeScript, Prisma ORM, PostgreSQL, Redux Toolkit and NextAuth.js
 </p>
 
 <p align="center">
